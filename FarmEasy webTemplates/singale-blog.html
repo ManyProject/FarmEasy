@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from html.lionode.com/freshfood/singale-blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 24 Mar 2020 08:39:51 GMT -->
+<head>
+<title>Fresh Food</title><meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="e-commerce site well design with responsive view." />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href='https://fonts.googleapis.com/css?family=Work+Sans:100,300,400,500,700,900' rel='stylesheet' type='text/css'>
+<link href="css/stylesheet.css" rel="stylesheet">
+<link href="css/responsive.css" rel="stylesheet">
+<link href="owl-carousel/owl.carousel.css" type="text/css" rel="stylesheet" media="screen" />
+<link href="owl-carousel/owl.transitions.css" type="text/css" rel="stylesheet" media="screen" />
+<script src="javascript/jquery-2.1.1.min.js" ></script>
+<script src="bootstrap/js/bootstrap.min.js" ></script>
+<script src="javascript/jstree.min.js"></script>
+<script src="javascript/template.js"></script>
+<script src="javascript/common.js" ></script>
+<script src="javascript/global.js" ></script>
+<script src="owl-carousel/owl.carousel.min.js" ></script>
+</head>
+<body class="single-blog col-2">
+<div class="preloader loader" style="display: block; background:#f2f2f2;"> <img src="image/loader.gif"  alt="#"/></div>
+<header>
+  <div class="header-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="top-left pull-left">
+            <div class="language">
+              <form action="#" method="post" enctype="multipart/form-data" id="language">
+                <div class="btn-group">
+                  <button class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="image/flags/gb.png" alt="English" title="English">English <i class="fa fa-caret-down"></i></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#"><img src="image/flags/lb.png" alt="Arabic" title="Arabic"> Arabic</a></li>
+                    <li><a href="#"><img src="image/flags/gb.png" alt="English" title="English"> English</a></li>
+                  </ul>
+                </div>
+              </form>
+            </div>
+            <div class="currency">
+              <form action="#" method="post" enctype="multipart/form-data" id="currency">
+                <div class="btn-group">
+                  <button class="btn btn-link dropdown-toggle" data-toggle="dropdown"> <strong>$</strong> <i class="fa fa-caret-down"></i> </button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <button class="currency-select btn btn-link btn-block" type="button" name="EUR">€ Euro</button>
+                    </li>
+                    <li>
+                      <button class="currency-select btn btn-link btn-block" type="button" name="GBP">£ Pound Sterling</button>
+                    </li>
+                    <li>
+                      <button class="currency-select btn btn-link btn-block" type="button" name="USD">$ US Dollar</button>
+                    </li>
+                  </ul>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="top-right pull-right">
+            <div id="top-links" class="nav pull-right">
+              <ul class="list-inline">
+                <li class="dropdown"><a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-user"></i><span>My Account</span> <span class="caret"></span></a>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="login.html">Login</a></li>
+                  </ul>
+                </li>
+                <li><a href="#" id="wishlist-total" title="Wish List (0)"><i class="fa fa-heart"></i><span>Wish List</span><span> (0)</span></a></li>
+              </ul>
+              <div class="search-box">
+                          <input class="input-text" placeholder="search.." type="text">
+                          <button class="search-btn"><i class="fa fa-search"></i></button>
+                        </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="header-inner">
+      <div class="col-sm-4 col-xs-6 header-left">
+        <div class="shipping">
+          <div class="shipping-img"></div>
+          <div class="shipping-text">+91(000)1234-1234<span class="shipping-detail">Week From 9:00am To 7:00pm</span></div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12 header-middle">
+        <div class="header-middle-top">
+          <div id="logo"> <a href="index-2.html"><img src="image/logo.png" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12 header-right">
+        <div id="cart" class="btn-group btn-block">
+          <button type="button" class="btn btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button"> <span id="cart-total"><span class="cart-title">Shopping Cart</span><br>
+          0 item(s) - $0.00</span> </button>
+          <ul class="dropdown-menu pull-right cart-dropdown-menu">
+            <li>
+              <table class="table table-striped">
+                <tbody>
+                  <tr>
+                    <td class="text-center"><a href="#"><img class="img-thumbnail" title="lorem ippsum dolor dummy" alt="lorem ippsum dolor dummy" src="image/product/7product50x59.jpg"></a></td>
+                    <td class="text-left"><a href="#">lorem ippsum dolor dummy</a></td>
+                    <td class="text-right">x 1</td>
+                    <td class="text-right">$254.00</td>
+                    <td class="text-center"><button class="btn btn-danger btn-xs" title="Remove" type="button"><i class="fa fa-times"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li>
+              <div>
+                <table class="table table-bordered">
+                  <tbody>
+                    <tr>
+                      <td class="text-right"><strong>Sub-Total</strong></td>
+                      <td class="text-right">$210.00</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right"><strong>Eco Tax (-2.00)</strong></td>
+                      <td class="text-right">$2.00</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right"><strong>VAT (20%)</strong></td>
+                      <td class="text-right">$42.00</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right"><strong>Total</strong></td>
+                      <td class="text-right">$254.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p class="text-right"> <span class="btn-viewcart"><a href="cart.html"><strong><i class="fa fa-shopping-cart"></i> View Cart</strong></a></span> <span class="btn-checkout"><a href="checkout.html"><strong><i class="fa fa-share"></i> Checkout</strong></a></span> </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<nav id="menu" class="navbar">
+    <div class="nav-inner container">
+        <div class="navbar-header"><span id="category" class="visible-xs">Categories</span>
+            <button type="button" class="btn btn-navbar navbar-toggle" ><i class="fa fa-bars"></i></button>
+        </div>
+        <div class="navbar-collapse">
+            <ul class="main-navigation">
+                <li><a href="index-2.html"   class="parent"  >Home</a> </li>
+                <li><a href="category.html"   class="parent"  >Fruits</a> </li>
+                <li><a href="category.html"   class="parent"  >Vegetables</a> </li>
+                <li><a href="category.html"   class="parent"  >Exotica</a> </li>
+                <li><a href="category.html"   class="parent"  >Groceries</a> </li>
+                <li><a href="category.html"   class="parent"  >Health & Beauty</a> </li>
+                <li><a href="#" class="active parent">Page</a>
+                    <ul>
+                        <li><a href="category.html">Category Page</a></li>
+                        <li><a href="cart.html">Cart Page</a></li>
+                        <li><a href="checkout.html">Checkout Page</a></li>
+                        <li><a href="blog.html" >Blog Page</a></li>
+                        <li><a href="singale-blog.html" >Singale Blog Page</a></li>
+                        <li><a href="register.html">Register Page</a></li>
+                        <li><a href="contact.html">Contact Page</a></li>
+                    </ul>
+                </li>
+                <li><a href="blog.html" class="parent"  >Blog</a></li>
+                <li><a href="about-us.html" >About us</a></li>
+                <li><a href="contact.html" >Contact Us</a> </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+  <ul class="breadcrumb">
+      <li><a href="index-2.html"><i class="fa fa-home"></i></a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="singale-blog.html">Singale Post</a></li>
+    </ul>
+  <div class="row">
+
+    <div id="content" class="col-sm-9">
+      <div class="blog1 blog">
+        <div class="blog_img"><img src="image/blog/blog_4.jpg" alt="" /></div>
+        <h4 class="p-name"><a href="singale-blog.html">Image Post Format</a></h4>
+        <ul class="blog-meta">
+          <li><i class="fa fa-clock-o"></i><span class="dt-published">December 23, 2015</span></li>
+          <li><i class="fa fa-comment-o"></i><span>2</span> Comment</li>
+          <li><i class="fa fa-user"></i><span><a rel="author" title="Posts by Admin" href="#">Admin admin</a></span></li>
+        </ul>
+        <p class="p-summary"></p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae provident minus similique porro assumenda illo dolore ducimus vero ipsum illum ipsa velit, deleniti accusantium repellat facilis tempora ab consectetur! Sequi, aperiam, dignissimos! Molestias quidem temporibus, earum deleniti, quae voluptatibus cum, doloremque libero dolorum sapiente neque saepe magnam ullam nisi mollitia itaque voluptas illo pariatur inventore,doloremque libero dolorum sapiente neque saepe magnam ullam nisi mollitia itaque voluptas illo pariatur inventor.</p>
+
+      <div class="blog-comment">
+        <div class="comment-form col-sm-12">
+          <div class="row">
+            <div class="col-sm-12 row">
+              <h4 class="section-title">Leave a Reply</h4>
+              <div class="taberna-line"> <span class="line-inner bg-color"></span> </div>
+            </div>
+            <div class="comment-respond" id="respond">
+
+              <form novalidate class="comment-form" id="commentform" method="post" action="#">
+                <div class="row">
+                  <div class="name col-xs-12 col-sm-12">
+                    <label>Name *</label>
+                    <input type="text" aria-required="true" value="" name="author" id="author">
+                  </div>
+                  <div class="email col-xs-12 col-sm-12">
+                    <label>Email *</label>
+                    <input type="email" aria-required="true" value="" name="email" id="email">
+                  </div>
+                  <div class="comment-form-url col-xs-12">
+                    <label>Url</label>
+                    <input type="text" value="" name="url" id="url">
+                  </div>
+                  <div class="comment-form-comment col-xs-12 col-sm-12">
+                    <label for="comment">Comment</label>
+                    <textarea required rows="8" cols="45" name="comment" id="comment"></textarea>
+                  </div>
+                </div>
+                <p class="form-submit">
+                  <button type="submit" value="send" class="submit taberna-btn bg-color" id="submit" name="submit">send </button>
+                  <input type="hidden" id="comment_post_ID" value="872" name="comment_post_ID" class="taberna-btn bg-color">
+                  <input type="hidden" value="0" id="comment_parent" name="comment_parent" class="taberna-btn bg-color">
+                </p>
+                <p style="display: none;">
+                  <input type="hidden" value="daabc47a44" name="akismet_comment_nonce" id="akismet_comment_nonce">
+                </p>
+                <p style="display: none;"></p>
+                <input type="hidden" value="1452356543102" name="ak_js" id="ak_js">
+              </form>
+            </div>
+            <!-- #respond -->
+
+          </div>
+        </div>
+      </div>
+      <!-- end comment-form -->
+
+    </div>
+    </div>
+    <div id="column-right" class="col-sm-3 hidden-xs column-left">
+      <div class="column-block">
+        <div class="columnblock-title">Categories</div>
+        <div class="blog-categories-block category_block">
+          <div class="list-group"> <a class="list-group-item" href="#">Audio</a> <a class="list-group-item" href="#">Gallery</a> <a class="list-group-item" href="#">Link</a> <a class="list-group-item" href="#">Quote</a> <a class="list-group-item" href="#">Uncategorized</a> <a class="list-group-item last" href="#">Video</a> </div>
+        </div>
+      </div>
+      <div class="productblock-title">Recent Posts</div>
+      <div class="blog-categories-block category_block">
+        <div class="list-group"> <a class="list-group-item" href="#">Gallery Post Format</a> <a class="list-group-item" href="#">Recent Posts</a> <a class="list-group-item" href="index.html#">Gallery Post Format</a> <a class="list-group-item" href="#">Standard Post Format</a> <a class="list-group-item last" href="#">Image Post Format</a> </div>
+      </div>
+
+      <!-- end blog-sidebar -->
+
+    </div>
+    <!-- end blog-sidebar -->
+
+  </div>
+</div>
+<!-- end container -->
+
+<footer>
+    <div class="container">
+        <div class="row">
+        	<div class="footer-top-cms">
+            <div class="col-sm-7">
+                    <div class="newslatter">
+                        <form>
+                            <h5>Newsletter</h5>
+                            <div class="input-group">
+                                <input type="text" class=" form-control" placeholder="Email Here......">
+                                <button type="submit" value="Sign up" class="btn btn-large btn-primary">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            <div class="col-sm-5">
+            <div class="footer-social">
+                <h5>Social</h5>
+                <ul>
+                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li class="gplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li class="youtube"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 footer-block">
+                <h5 class="footer-title">Information</h5>
+                <ul class="list-unstyled ul-wrapper">
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="checkout.html">Delivery Information</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3 footer-block">
+                <h5 class="footer-title">Customer Service</h5>
+                <ul class="list-unstyled ul-wrapper">
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Site Map</a></li>
+                    <li><a href="#">Wish List</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3 footer-block">
+                <h5 class="footer-title">Extras</h5>
+                <ul class="list-unstyled ul-wrapper">
+                    <li><a href="#">Brands</a></li>
+                    <li><a href="gift.html">Gift Vouchers</a></li>
+                    <li><a href="affiliate.html">Affiliates</a></li>
+                    <li><a href="#">Specials</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3 footer-block">
+                <div class="content_footercms_right">
+                    <div class="footer-contact">
+                        <h5 class="contact-title footer-title">Contact Us</h5>
+                        <ul class="ul-wrapper">
+                            <li><i class="fa fa-map-marker"></i><span class="location2"> Warehouse & Offices,<br>
+                                12345 Street name, California<br>
+                                USA</span></li>
+                            <li><i class="fa fa-envelope"></i><span class="mail2"><a href="#">info@localhost.com</a></span></li>
+                            <li><i class="fa fa-mobile"></i><span class="phone2">+91 0987-654-321</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a id="scrollup">Scroll</a> </footer>
+<div class="footer-bottom">
+  <div class="container">
+    <div class="copyright">Powered By<a class="yourstore" href="http://www.lionode.com/">lionode &copy; 2016 </a> </div>
+    <div class="footer-bottom-cms">
+      <div class="footer-payment">
+        <ul>
+          <li class="mastero"><a href="#"><img alt="" src="image/payment/mastero.jpg"></a></li>
+          <li class="visa"><a href="#"><img alt="" src="image/payment/visa.jpg"></a></li>
+          <li class="currus"><a href="#"><img alt="" src="image/payment/currus.jpg"></a></li>
+          <li class="discover"><a href="#"><img alt="" src="image/payment/discover.jpg"></a></li>
+          <li class="bank"><a href="#"><img alt="" src="image/payment/bank.jpg"></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- end info-footer -->
+
+</body>
+
+<!-- Mirrored from html.lionode.com/freshfood/singale-blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 24 Mar 2020 08:39:51 GMT -->
+</html>

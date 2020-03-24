@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from html.lionode.com/freshfood/about-us.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 24 Mar 2020 08:39:51 GMT -->
+<head>
+<title>Fresh Food</title><meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="e-commerce site well design with responsive view." />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href='https://fonts.googleapis.com/css?family=Work+Sans:100,300,400,500,700,900' rel='stylesheet' type='text/css'>
+<link href="css/stylesheet.css" rel="stylesheet">
+<link href="css/responsive.css" rel="stylesheet">
+<link href="owl-carousel/owl.carousel.css" type="text/css" rel="stylesheet" media="screen" />
+<link href="owl-carousel/owl.transitions.css" type="text/css" rel="stylesheet" media="screen" />
+<script src="javascript/jquery-2.1.1.min.js" ></script>
+<script src="bootstrap/js/bootstrap.min.js" ></script>
+<script src="javascript/jstree.min.js"></script>
+<script src="javascript/template.js"></script>
+<script src="javascript/common.js" ></script>
+<script src="javascript/global.js" ></script>
+<script src="owl-carousel/owl.carousel.min.js" ></script>
+<script src="javascript/DioProgress.js"></script>
+
+</head>
+<body>
+<div class="preloader loader" style="display: block; background:#f2f2f2;"> <img src="image/loader.gif"  alt="#"/></div>
+<header>
+  <div class="header-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="top-left pull-left">
+            <div class="language">
+              <form action="#" method="post" enctype="multipart/form-data" id="language">
+                <div class="btn-group">
+                  <button class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="image/flags/gb.png" alt="English" title="English">English <i class="fa fa-caret-down"></i></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#"><img src="image/flags/lb.png" alt="Arabic" title="Arabic"> Arabic</a></li>
+                    <li><a href="#"><img src="image/flags/gb.png" alt="English" title="English"> English</a></li>
+                  </ul>
+                </div>
+              </form>
+            </div>
+            <div class="currency">
+              <form action="#" method="post" enctype="multipart/form-data" id="currency">
+                <div class="btn-group">
+                  <button class="btn btn-link dropdown-toggle" data-toggle="dropdown"> <strong>$</strong> <i class="fa fa-caret-down"></i> </button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <button class="currency-select btn btn-link btn-block" type="button" name="EUR">€ Euro</button>
+                    </li>
+                    <li>
+                      <button class="currency-select btn btn-link btn-block" type="button" name="GBP">£ Pound Sterling</button>
+                    </li>
+                    <li>
+                      <button class="currency-select btn btn-link btn-block" type="button" name="USD">$ US Dollar</button>
+                    </li>
+                  </ul>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="top-right pull-right">
+            <div id="top-links" class="nav pull-right">
+              <ul class="list-inline">
+                <li class="dropdown"><a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-user"></i><span>My Account</span> <span class="caret"></span></a>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="login.html">Login</a></li>
+                  </ul>
+                </li>
+                <li><a href="#" id="wishlist-total" title="Wish List (0)"><i class="fa fa-heart"></i><span>Wish List</span><span> (0)</span></a></li>
+              </ul>
+              <div class="search-box">
+                          <input class="input-text" placeholder="search.." type="text">
+                          <button class="search-btn"><i class="fa fa-search"></i></button>
+                        </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="header-inner">
+      <div class="col-sm-4 col-xs-6 header-left">
+        <div class="shipping">
+          <div class="shipping-img"></div>
+          <div class="shipping-text">+91(000)1234-1234<span class="shipping-detail">Week From 9:00am To 7:00pm</span></div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12 header-middle">
+        <div class="header-middle-top">
+          <div id="logo"> <a href="index-2.html"><img src="image/logo.png" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12 header-right">
+        <div id="cart" class="btn-group btn-block">
+          <button type="button" class="btn btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button"> <span id="cart-total"><span class="cart-title">Shopping Cart</span><br>
+          0 item(s) - $0.00</span> </button>
+          <ul class="dropdown-menu pull-right cart-dropdown-menu">
+            <li>
+              <table class="table table-striped">
+                <tbody>
+                  <tr>
+                    <td class="text-center"><a href="#"><img class="img-thumbnail" title="lorem ippsum dolor dummy" alt="lorem ippsum dolor dummy" src="image/product/7product50x59.jpg"></a></td>
+                    <td class="text-left"><a href="#">lorem ippsum dolor dummy</a></td>
+                    <td class="text-right">x 1</td>
+                    <td class="text-right">$254.00</td>
+                    <td class="text-center"><button class="btn btn-danger btn-xs" title="Remove" type="button"><i class="fa fa-times"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li>
+              <div>
+                <table class="table table-bordered">
+                  <tbody>
+                    <tr>
+                      <td class="text-right"><strong>Sub-Total</strong></td>
+                      <td class="text-right">$210.00</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right"><strong>Eco Tax (-2.00)</strong></td>
+                      <td class="text-right">$2.00</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right"><strong>VAT (20%)</strong></td>
+                      <td class="text-right">$42.00</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right"><strong>Total</strong></td>
+                      <td class="text-right">$254.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p class="text-right"> <span class="btn-viewcart"><a href="cart.html"><strong><i class="fa fa-shopping-cart"></i> View Cart</strong></a></span> <span class="btn-checkout"><a href="checkout.html"><strong><i class="fa fa-share"></i> Checkout</strong></a></span> </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<nav id="menu" class="navbar">
+    <div class="nav-inner container">
+        <div class="navbar-header"><span id="category" class="visible-xs">Categories</span>
+            <button type="button" class="btn btn-navbar navbar-toggle" ><i class="fa fa-bars"></i></button>
+        </div>
+        <div class="navbar-collapse">
+            <ul class="main-navigation">
+                <li><a href="index-2.html"   class="parent"  >Home</a> </li>
+                <li><a href="category.html"   class="parent"  >Fruits</a> </li>
+                <li><a href="category.html"   class="parent"  >Vegetables</a> </li>
+                <li><a href="category.html"   class="parent"  >Exotica</a> </li>
+                <li><a href="category.html"   class="parent"  >Groceries</a> </li>
+                <li><a href="category.html"   class="parent"  >Health & Beauty</a> </li>
+                <li><a href="#" class="active parent">Page</a>
+                    <ul>
+                        <li><a href="category.html">Category Page</a></li>
+                        <li><a href="cart.html">Cart Page</a></li>
+                        <li><a href="checkout.html">Checkout Page</a></li>
+                        <li><a href="blog.html" >Blog Page</a></li>
+                        <li><a href="singale-blog.html" >Singale Blog Page</a></li>
+                        <li><a href="register.html">Register Page</a></li>
+                        <li><a href="contact.html">Contact Page</a></li>
+                    </ul>
+                </li>
+                <li><a href="blog.html" class="parent"  >Blog</a></li>
+                <li><a href="about-us.html" >About us</a></li>
+                <li><a href="contact.html" >Contact Us</a> </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+  <ul class="breadcrumb">
+      <li><a href="index-2.html"><i class="fa fa-home"></i></a></li>
+      <li><a href="about-us.html">About Us</a></li>
+    </ul>
+  <div class="row">
+
+    <div class="wwd">
+      <div class="col-sm-6"><img class="img-responsive" src="image/blog/blog_4.jpg" alt="#"></div>
+      <div class="col-sm-6">
+        <div class="column-inner ">
+          <div class="wrapper">
+            <h4 class="tf">We made a unique &amp; Beautyfull theme </h4>
+            <div class="desc">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+            <div class="buttton">
+              <button class="btn">READ MORE</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="services">
+          <div class="col-sm-4">
+            <h4 class="tf">What we do</h4>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p><a class="btn" href="#">Read more</a></p>
+          </div>
+          <div class="col-sm-4">
+            <h4 class="tf">What we do</h4>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p><a class="btn" href="#">Read more</a></p>
+          </div>
+          <div class="col-sm-4">
+            <h4 class="tf">What we do</h4>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p><a class="btn" href="#">Read more</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="features">
+      <div class="col-md-3">
+        <div class="icon clearfix  "> <a href="#"><i class="circle fa fa-delicious"></i>
+          <div class="content">
+            <h4 class="tf">Clean design</h4>
+            <p>Elegant layouts that help you organize your content in the best way</p>
+          </div>
+          </a></div>
+      </div>
+      <div class="col-md-3">
+        <div class="icon clearfix  "><a href="#"><i class="circle fa fa-html5"></i>
+          <div class="content">
+            <h4 class="tf">Html5 &amp; css3</h4>
+            <p>Built with modern technologies like HTML5 and CSS3, SEO optimised</p>
+          </div>
+          </a></div>
+      </div>
+      <div class="col-md-3">
+        <div class="icon clearfix  "><a href="#"><i class="circle fa fa-desktop"></i>
+          <div class="content">
+            <h4 class="tf">Responsive layout</h4>
+            <p>Compatible with various desktop, tablet, and mobile devices</p>
+          </div>
+          </a></div>
+      </div>
+      <div class="col-md-3">
+        <div class="icon clearfix  "><a href="#"><i class="circle fa fa-pencil-square-o"></i>
+          <div class="content">
+            <h4 class="tf">Customization</h4>
+            <p>Clear code and documentation, build with Bootstrap 3</p>
+          </div>
+          </a></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="Experiences">
+      <div class="col-md-6">
+        <h4 class="tf">Experiences</h4>
+        <div class="exp-detail">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+      </div>
+    </div>
+    <div class="skill">
+      <div class="col-md-6">
+        <h4 class="tf">Skills</h4>
+        <ul>
+          <li>
+            <h3>78% Graphic design</h3>
+            <div id="progress1"> </div>
+          </li>
+          <li>
+            <h3>92% web design</h3>
+            <div id="progress2"> </div>
+          </li>
+          <li>
+            <h3>76% Marketing</h3>
+            <div id="progress3"> </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 team">
+      <h4 class="tf">Our Team </h4>
+    </div>
+  </div>
+  <div class="row team">
+    <div class="col-md-3 col-sm-3 team1 ">
+      <div class="photo">
+        <div class="imageblock"> <img alt="#" src="image/team1.jpg" class="img-responsive"> </div>
+        <div class="name"> <a href="#">IBRAHIM ISTALIK</a> </div>
+        <h3>Founder and CEO</h3>
+        <p>Page editors now use Lorem Ipsum as their default modelum sites</p>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-3 team1 ">
+      <div class="photo">
+        <div class="imageblock"> <img alt="#" src="image/team2.jpg" class="img-responsive"> </div>
+        <div class="name"> <a href="#">IBRAHIM ISTALIK</a> </div>
+        <h3>Founder and CEO</h3>
+        <p>Page editors now use Lorem Ipsum as their default modelum sites</p>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-3 team1 ">
+      <div class="photo">
+        <div class="imageblock"> <img alt="#" src="image/team3.jpg" class="img-responsive"> </div>
+        <div class="name"> <a href="#">IBRAHIM ISTALIK</a> </div>
+        <h3>Founder and CEO</h3>
+        <p>Page editors now use Lorem Ipsum as their default modelum sites</p>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-3 team1 ">
+      <div class="photo">
+        <div class="imageblock"> <img alt="#" src="image/team4.jpg" class="img-responsive"> </div>
+        <div class="name"> <a href="#">IBRAHIM ISTALIK</a> </div>
+        <h3>Founder and CEO</h3>
+        <p>Page editors now use Lorem Ipsum as their default modelum sites</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer block Start  -->
+<footer>
+    <div class="container">
+        <div class="row">
+        	<div class="footer-top-cms">
+            <div class="col-sm-7">
+                    <div class="newslatter">
+                        <form>
+                            <h5>Newsletter</h5>
+                            <div class="input-group">
+                                <input type="text" class=" form-control" placeholder="Email Here......">
+                                <button type="submit" value="Sign up" class="btn btn-large btn-primary">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            <div class="col-sm-5">
+            <div class="footer-social">
+                <h5>Social</h5>
+                <ul>
+                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li class="gplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li class="youtube"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 footer-block">
+                <h5 class="footer-title">Information</h5>
+                <ul class="list-unstyled ul-wrapper">
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="checkout.html">Delivery Information</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3 footer-block">
+                <h5 class="footer-title">Customer Service</h5>
+                <ul class="list-unstyled ul-wrapper">
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Site Map</a></li>
+                    <li><a href="#">Wish List</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3 footer-block">
+                <h5 class="footer-title">Extras</h5>
+                <ul class="list-unstyled ul-wrapper">
+                    <li><a href="#">Brands</a></li>
+                    <li><a href="gift.html">Gift Vouchers</a></li>
+                    <li><a href="affiliate.html">Affiliates</a></li>
+                    <li><a href="#">Specials</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3 footer-block">
+                <div class="content_footercms_right">
+                    <div class="footer-contact">
+                        <h5 class="contact-title footer-title">Contact Us</h5>
+                        <ul class="ul-wrapper">
+                            <li><i class="fa fa-map-marker"></i><span class="location2"> Warehouse & Offices,<br>
+                                12345 Street name, California<br>
+                                USA</span></li>
+                            <li><i class="fa fa-envelope"></i><span class="mail2"><a href="#">info@localhost.com</a></span></li>
+                            <li><i class="fa fa-mobile"></i><span class="phone2">+91 0987-654-321</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a id="scrollup">Scroll</a> </footer>
+<div class="footer-bottom">
+  <div class="container">
+    <div class="copyright">Powered By<a class="yourstore" href="http://www.lionode.com/">lionode &copy; 2016 </a> </div>
+    <div class="footer-bottom-cms">
+      <div class="footer-payment">
+        <ul>
+          <li class="mastero"><a href="#"><img alt="" src="image/payment/mastero.jpg"></a></li>
+          <li class="visa"><a href="#"><img alt="" src="image/payment/visa.jpg"></a></li>
+          <li class="currus"><a href="#"><img alt="" src="image/payment/currus.jpg"></a></li>
+          <li class="discover"><a href="#"><img alt="" src="image/payment/discover.jpg"></a></li>
+          <li class="bank"><a href="#"><img alt="" src="image/payment/bank.jpg"></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Footer block End  -->
+
+
+<script >
+		$( "#progress1" ).appendSimpleProgressBar();
+		$( "#progress1" ).slow( { width:"78" } );
+
+		$( "#progress2" ).appendSimpleProgressBar();
+		$( "#progress2" ).slow( { width:"92" } );
+
+		$( "#progress3" ).appendSimpleProgressBar();
+		$( "#progress3" ).slow( { width:"76" } );
+
+		$( "#progress4" ).appendSimpleProgressBar();
+		$( "#progress4" ).slow( { width:"98" } );
+
+
+</script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+<script src="js/jQuery.html"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.html"></script>
+</body>
+
+<!-- Mirrored from html.lionode.com/freshfood/about-us.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 24 Mar 2020 08:40:01 GMT -->
+</html>
