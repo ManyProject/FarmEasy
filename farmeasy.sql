@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2020 at 07:19 PM
+-- Generation Time: Mar 26, 2020 at 01:09 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.27
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,37 +25,60 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `delivery`
+-- Table structure for table `buyer`
 --
 
-CREATE TABLE `delivery` (
-  `delivery_id` int(10) NOT NULL,
-  `pickup_time` datetime NOT NULL,
-  `drop_time` datetime NOT NULL,
-  `user_id` int(10) NOT NULL
+CREATE TABLE `buyer` (
+  `buyer_id` varchar(36) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login`
+-- Table structure for table `delivery`
 --
 
-CREATE TABLE `login` (
-  `user_id` int(10) NOT NULL,
-  `login_name` varchar(25) NOT NULL,
-  `login_password` varchar(25) NOT NULL
+CREATE TABLE `delivery` (
+  `delivery_id` varchar(36) NOT NULL,
+  `pickup_time` datetime NOT NULL,
+  `drop_time` datetime NOT NULL,
+  `user_id` varchar(36) NOT NULL,
+  `delivery_status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `login`
+-- Table structure for table `delivery_agency`
 --
 
-INSERT INTO `login` (`user_id`, `login_name`, `login_password`) VALUES
-(2, 'aniket15b', 'aniket'),
-(5, 'jigar03', 'jigar'),
-(3, 'manasgandhi', 'manas'),
-(1, 'urvinb', 'urvi');
+CREATE TABLE `delivery_agency` (
+  `agency_id` varchar(36) NOT NULL,
+  `intracity_rates` float NOT NULL,
+  `intercity_rates` float NOT NULL,
+  `agency_name` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery_agent`
+--
+
+CREATE TABLE `delivery_agent` (
+  `delivery_agent_id` varchar(36) NOT NULL,
+  `agency_id` varchar(36) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `farmer`
+--
+
+CREATE TABLE `farmer` (
+  `farmer_id` varchar(36) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -64,12 +87,12 @@ INSERT INTO `login` (`user_id`, `login_name`, `login_password`) VALUES
 --
 
 CREATE TABLE `orders` (
-  `user_id` int(10) NOT NULL,
-  `order_id` int(10) NOT NULL,
+  `user_id` varchar(36) NOT NULL,
+  `order_id` varchar(36) NOT NULL,
   `order_quantity` int(11) NOT NULL,
   `order_date` datetime NOT NULL,
   `order_price` float NOT NULL,
-  `delivery_id` int(10) NOT NULL
+  `delivery_id` varchar(36) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -79,22 +102,13 @@ CREATE TABLE `orders` (
 --
 
 CREATE TABLE `produce` (
-  `Produce_id` int(10) NOT NULL,
-  `farmer_id` int(10) NOT NULL,
-  `Produce_name` varchar(25) NOT NULL,
-  `Produce_price` float NOT NULL,
-  `Produce_quantity` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `product`
---
-
-CREATE TABLE `product` (
-  `user_id` int(10) NOT NULL,
-  `produce_id` int(10) NOT NULL
+  `produce_id` varchar(36) NOT NULL,
+  `farmer_id` varchar(36) NOT NULL,
+  `produce_name` varchar(100) NOT NULL,
+  `produce_price` float NOT NULL,
+  `produce_quantity` int(11) NOT NULL,
+  `produce_image` varchar(100) NOT NULL,
+  `produce_category` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -104,29 +118,24 @@ CREATE TABLE `product` (
 --
 
 CREATE TABLE `user` (
-  `user_id` int(10) NOT NULL,
+  `user_id` varchar(36) NOT NULL,
   `user_name` varchar(25) NOT NULL,
   `user_email` varchar(160) NOT NULL,
   `user_phone` int(10) NOT NULL,
   `user_address` varchar(160) NOT NULL,
-  `user_role` varchar(25) NOT NULL
+  `user_password` varchar(60) NOT NULL,
+  `user_image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`user_id`, `user_name`, `user_email`, `user_phone`, `user_address`, `user_role`) VALUES
-(1, 'Urvi', 'urvi.bheda@somaiya.edu', 981561232, 'Ghatkopar', 'Customer'),
-(2, 'Aniket', 'aniket15b@gmail.com', 456132084, 'dxfcghgjijhbgv', 'Farmer'),
-(3, 'Manas', 'manas@somaiya.edu', 897495616, 'Mulund', 'delivery'),
-(4, 'Unnati', 'unnati@gmail.com', 214748364, 'Alibaug', 'Buyer'),
-(5, 'Jigar', 'jigar@gmail.com', 2147483647, 'Africa', 'None'),
-(6, 'bhakti', 'bhakti@gmail.com', 2147483647, 'simla', 'user');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `buyer`
+--
+ALTER TABLE `buyer`
+  ADD PRIMARY KEY (`buyer_id`);
 
 --
 -- Indexes for table `delivery`
@@ -136,11 +145,23 @@ ALTER TABLE `delivery`
   ADD KEY `c3` (`user_id`);
 
 --
--- Indexes for table `login`
+-- Indexes for table `delivery_agency`
 --
-ALTER TABLE `login`
-  ADD UNIQUE KEY `login_name` (`login_name`),
-  ADD KEY `c7` (`user_id`);
+ALTER TABLE `delivery_agency`
+  ADD PRIMARY KEY (`agency_id`);
+
+--
+-- Indexes for table `delivery_agent`
+--
+ALTER TABLE `delivery_agent`
+  ADD PRIMARY KEY (`delivery_agent_id`),
+  ADD KEY `agency_agent` (`agency_id`);
+
+--
+-- Indexes for table `farmer`
+--
+ALTER TABLE `farmer`
+  ADD PRIMARY KEY (`farmer_id`);
 
 --
 -- Indexes for table `orders`
@@ -155,14 +176,8 @@ ALTER TABLE `orders`
 -- Indexes for table `produce`
 --
 ALTER TABLE `produce`
-  ADD PRIMARY KEY (`Produce_id`,`farmer_id`),
+  ADD PRIMARY KEY (`produce_id`,`farmer_id`),
   ADD KEY `c6` (`farmer_id`);
-
---
--- Indexes for table `product`
---
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`user_id`,`produce_id`);
 
 --
 -- Indexes for table `user`
@@ -176,16 +191,29 @@ ALTER TABLE `user`
 --
 
 --
+-- Constraints for table `buyer`
+--
+ALTER TABLE `buyer`
+  ADD CONSTRAINT `user_buyer` FOREIGN KEY (`buyer_id`) REFERENCES `user` (`user_id`);
+
+--
 -- Constraints for table `delivery`
 --
 ALTER TABLE `delivery`
   ADD CONSTRAINT `c3` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
--- Constraints for table `login`
+-- Constraints for table `delivery_agent`
 --
-ALTER TABLE `login`
-  ADD CONSTRAINT `c7` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+ALTER TABLE `delivery_agent`
+  ADD CONSTRAINT `agency_agent` FOREIGN KEY (`agency_id`) REFERENCES `delivery_agency` (`agency_id`),
+  ADD CONSTRAINT `user_delivery_agent` FOREIGN KEY (`delivery_agent_id`) REFERENCES `user` (`user_id`);
+
+--
+-- Constraints for table `farmer`
+--
+ALTER TABLE `farmer`
+  ADD CONSTRAINT `user_farmer` FOREIGN KEY (`farmer_id`) REFERENCES `user` (`user_id`);
 
 --
 -- Constraints for table `orders`
