@@ -8,7 +8,13 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 
 def index():
-    return authenticate(app)
+    if(request.method == 'POST'):
+        
+    return render_template('category.html')
+
+def cart():
+    print('Done')
+    return "Hello"
 
 if __name__ == '__main__':
     app.run(debug=True)
