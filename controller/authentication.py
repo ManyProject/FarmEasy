@@ -1,58 +1,84 @@
-from flask import render_template, request, session
+from flask import render_template, request, session, redirect, url_for
 import mysql.connector
 from flask_bcrypt import Bcrypt
+from functools import wraps
+import re 
 
 def connect():
-    return mysql.connector.connect(host="localhost",database='farmeasy', user="root", passwd="")
+    return mysql.connector.connect(host="localhost",
+    database='farmeasy', user="root", passwd="")
 
-def authenticate(app):
-    if request.method == 'GET' :
-        return render_template('login.html')
-    if request.method == 'POST' :
-        form = request.form
-        if form['active-log-panel'] == 'register':
-            register(app)
-            return render_template('login.html')
+def authentication_check(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'email' in session:
+            if(request.endpoint == 'login' or request.endpoint == 'register'):
+                return redirect(url_for('index'))
+            return f(*args, **kwargs)
         else:
-            bcrypt = Bcrypt(app)
-            email = form['email']
-            password = form['password']
-            query = "SELECT user_pass, user_role FROM user WHERE user_email = '%s'"
-            try:
-                connection = connect()
-                cur = connection.cursor()
-                cur.execute(query, (email, ))
-                connection.commit()
-                role = cur.fetchall()
-                if len(role) > 0:
-                    if bcrypt.check_password_hash(role[0][0], password):
-                        session['email'] = email
-                        session['role'] = role[0][1]
-                        return render_template('market.html')
-                    else:
-                        return render_template('login.html', 'pwd-incorrect')
-                else:
-                    return render_template('login.html', 'email-incorrect')
-            except mysql.connector.Error as err:
-                print("Something went wrong: {}".format(err))
-            cur.close()    
+            return redirect(url_for('auth'))
+    return decorated_function
+    
+def login(app):
+    form = request.form
+    bcrypt = Bcrypt(app)
+    email = form['email']
+    password = form['password']
+    query = "SELECT user_password, user_role FROM user WHERE user_email = %s"
+    try:
+        connection = connect()
+        cur = connection.cursor()
+        cur.execute(query, (email, ))
+        results = cur.fetchall()
+        if len(results) > 0:
+            results = results[0]
+            if bcrypt.check_password_hash(results[0], password):
+                session['email'] = email
+                session['role'] = results[1]
+                return redirect(url_for('index'))
+            else:
+                return redirect(url_for('auth'))
+        else:
+            return redirect(url_for('auth'))
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+        return "SQL ERROR"
+    finally:
+        cur.close()
+        connection.close()
 
 def register(app):
     form = request.form
-    name = form['name']
+    fname = form['firstname']
+    lname = form['lastname']
+    name = fname + " " + lname
     email = form['email']
     phone = form['phone']
-    addr = form['addr']
+    addr = form['address']
     role = form['role']
     pwd = form['password']
+    pwd_repeat = form['confirm']
+
+    ip_vars = [fname, lname, email, phone, addr, role, pwd, pwd_repeat]
+
+    if(None in ip_vars):
+        return "Incomplete form"
+    if(pwd != pwd_repeat):
+        return redirect(url_for('registration'))
+    regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
+    if(not re.search(regex,email)):  
+        return redirect(url_for('registration'))
     try:
         connection = connect()
         bcrypt = Bcrypt(app)
         pw_hash = bcrypt.generate_password_hash(pwd).decode('utf-8')
         cur = connection.cursor()
-        query = "INSERT INTO user(user_id, user_name, user_email, user_phone, user_address, user_role, user_pass) VALUES(UUID(), '%s', '%s', '%s', '%s', '%s', '%s')"
-        cur.execute(query, (name, email, phone, addr, role, pwd, ))
+        query = "INSERT INTO user(user_id, user_name, user_email, user_phone, user_address, user_role, user_password) VALUES(UUID(), %s, %s, %s, %s, %s, %s)"
+        cur.execute(query, (name, email, phone, addr, role, pw_hash, ))
         connection.commit()
-        cur.close()
     except expression as identifier:
         pass
+    finally:
+        cur.close()
+        connection.close()
+    return redirect(url_for('index'))
