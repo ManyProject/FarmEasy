@@ -345,7 +345,7 @@ header {
 	z-index: 1001;
 }
 #cart .dropdown-menu {
-	width: 300px;
+	width: max-content;
 	padding: 10px;
 }
 #cart .dropdown-menu table {

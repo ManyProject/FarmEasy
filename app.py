@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import mysql.connector
-
 from controller.authentication import login, register, authentication_check
-from controller.producedetails import productdetail
+from controller.produce import productdetail, addproduct
+from controller.cart import cart_data
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super secret key'
@@ -10,17 +10,21 @@ app.config['SECRET_KEY'] = 'super secret key'
 @app.route('/', methods=['GET', 'POST'])
 
 def index():
-    return render_template('category.html')
+    return "hello"
 
-@app.route('/category')
+@app.route('/cart')
+@authentication_check
+def cart():
+    return cart_data()
 
-def category():
-    return render_template('category.html')
-
-@app.route('/product/<pname>')
-
-def product(pname):
-    return productdetail(pname)
+@app.route('/product/<produce_id>')
+@authentication_check
+def product(produce_id):
+    if request.method == 'POST':
+        quantity = request.form['quantity']
+        produce_id = request.form['produce_id']
+        return addproduct(quantity, produce_id)
+    return productdetail(produce_id)
 
 @app.route('/login', methods=['GET', 'POST'])
 @authentication_check
@@ -42,12 +46,9 @@ def registration():
 
 def logout():
     session.pop('email', None)
+    session.pop('role', None)
+    session.pop('id', None)
     return redirect(url_for('index'))
-
-@app.route('/main', methods=['GET'])
-@authentication_check
-def main():
-    return "logged in"
 
 if __name__ == '__main__':
     app.run(debug=True)

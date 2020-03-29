@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2020 at 11:52 AM
+-- Generation Time: Mar 29, 2020 at 11:10 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -122,7 +122,8 @@ CREATE TABLE `produce` (
   `produce_price` float NOT NULL,
   `produce_quantity` int(11) NOT NULL,
   `produce_image` varchar(100) NOT NULL,
-  `produce_category` varchar(20) NOT NULL
+  `produce_category` varchar(20) NOT NULL,
+  `produce_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -141,13 +142,6 @@ CREATE TABLE `user` (
   `user_image` varchar(100) NOT NULL,
   `user_role` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`user_id`, `user_name`, `user_email`, `user_phone`, `user_address`, `user_password`, `user_image`, `user_role`) VALUES
-('5f00b9f4-7009-11ea-a169-8c16456f9bb2', 'aniket', 'user@mail.com', 0, 'Mumbai', '$2y$12$ch.L0rZG9vYKs0RS/iU1Z.XFAqONAf2RvcAEgwmzbTZouAkK04fnG', '', 'buyer');
 
 --
 -- Indexes for dumped tables
@@ -170,7 +164,8 @@ ALTER TABLE `cart_items`
 -- Indexes for table `delivery`
 --
 ALTER TABLE `delivery`
-  ADD PRIMARY KEY (`delivery_id`);
+  ADD PRIMARY KEY (`delivery_id`),
+  ADD KEY `c3` (`buyer_id`);
 
 --
 -- Indexes for table `delivery_agency`
@@ -195,8 +190,7 @@ ALTER TABLE `farmer`
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`order_id`), 
-  ADD UNIQUE KEY `order_date` (`order_date`),
+  ADD PRIMARY KEY (`order_id`),
   ADD KEY `c1` (`buyer_id`),
   ADD KEY `c2` (`delivery_id`);
 

@@ -4,21 +4,25 @@ from random import randrange
 import datetime 
 import time
 import bcrypt
+from db_connection import connect
 
-mydb = mysql.connector.connect(
-  host = "localhost",
-  user = "root",
-  passwd = "",
-  database = "farmeasy"
-)
+mydb = connect()
 
 names = ['Yash','Harshit','Aman','Amar','Shadab']
-role = ['farmer','buyer','delivery agent']
+role = ['Farmer','Buyer','Delivery Agent']
 address = ['Mumbai','Delhi','Pune','Banglore','Kolkata']
-produce_name = ['tomato','apple','chanadal','wheat','cloves']
+produce_name = ['Tomato','Apple','Chana Dal','Wheat','Cloves']
 produce_price = [50,247,358,140,174]
-produce_quantity = random.randint(1,10)
-produce_category = ['vegetable','fruit','pulse','grains','spices']
+produce_category = ['Vegetables','Fruits','Pulses','Grains','Spices']
+user_image = "https://www.google.co.in/search?q=profile+image+&tbm=isch&ved=2ahUKEwisupSF9rroAhWGZSsKHbheCZIQ2-cCegQIABAA&oq=profile+image+&gs_lcp=CgNpbWcQAzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCABQ9BxYzUtg5FVoA3AAeACAAZsBiAGMFZIBBTExLjE1mAEAoAEBqgELZ3dzLXdpei1pbWc&sclient=img&ei=TxV-XuzWAYbLrQG4vaWQCQ&authuser=1&bih=610&biw=1280#imgrc=L1-qFJ4VKpwwwM"
+passwd = b'abcde'
+salt = bcrypt.gensalt()
+hashed = bcrypt.hashpw(passwd, salt)
+agency_name = ['Indian Post','FedX','Shipping Corp.','iThink Logistics']
+intercity_rates = [200,314,155,266]
+intracity_rates = [50,35,42,37]
+delivery_status = ['Delivered','Shipping','Pending']
+produce_image = ["https://www.naturefresh.ca/wp-content/uploads/NFF-health-benefits-of-Tomatoes.jpg","https://www.dw.com/image/47429859_303.jpg","https://sastapasal.com/wp-content/uploads/2019/11/chana-dal.jpg","https://organicexpressmart.com/media/image/268/organic-khapali-wheat-whole-1-kg.jpg","https://cdn.britannica.com/s:700x500/27/171027-050-7F7889C9/flower-buds-clove-tree.jpg"]
 
 def strTimeProp(start, end, format, prop):
     stime = time.mktime(time.strptime(start, format))
@@ -56,12 +60,8 @@ for i in range (0,100):
 
     sql = "INSERT INTO user(user_id,user_name,user_email,user_phone,user_address,user_password,user_image,user_role) VALUES (UUID(), %s, %s, %s, %s, %s, %s, %s)"
     x = random.randint(0,len(names)-1)
-    y = random.randint(0,2)    
-    phone = random.randrange(1000000000, 9999999999)
-    user_image = "https://www.google.co.in/search?q=profile+image+&tbm=isch&ved=2ahUKEwisupSF9rroAhWGZSsKHbheCZIQ2-cCegQIABAA&oq=profile+image+&gs_lcp=CgNpbWcQAzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCABQ9BxYzUtg5FVoA3AAeACAAZsBiAGMFZIBBTExLjE1mAEAoAEBqgELZ3dzLXdpei1pbWc&sclient=img&ei=TxV-XuzWAYbLrQG4vaWQCQ&authuser=1&bih=610&biw=1280#imgrc=L1-qFJ4VKpwwwM"
-    passwd = b'abcde'
-    salt = bcrypt.gensalt()
-    hashed = bcrypt.hashpw(passwd, salt)
+    y = random.randint(0,len(role)-1)  
+    phone = random.randrange(9000000000, 9999999999)  
     val = (names[x],names[x]+str(i)+'@gmail.com',phone,address[x],hashed,user_image,role[y])
     mycursor.execute(sql, val)
     mydb.commit()
@@ -69,14 +69,10 @@ for i in range (0,100):
     mycursor.execute(sql)
     uid = mycursor.fetchall()
 
-for i in range (0,4):
+for i in range (0,len(agency_name)-1):
     
-    agency_id = ['0834f5d1-70d0-11ea-b18a-544810dacaa5','0810ccab-70d0-11ea-b18a-544810dacaa5','0910cca0-70d0-11ea-b18a-544810dacaa5','07d5ecda-70d0-11ea-b18a-544810dacaa5']
-    sql = "INSERT INTO delivery_agency(agency_id,intracity_rates,intercity_rates,agency_name) VALUES (%s, %s, %s, %s)"
-    agency_name = ['Indian Post','FedX','Shipping Corp.','iThink Logistics']
-    intercity_rates = [200,314,155,266]
-    intracity_rates = [50,35,42,37]
-    val = (agency_id[i],intracity_rates[i],intercity_rates[i],agency_name[i])
+    sql = "INSERT INTO delivery_agency(agency_id,intracity_rates,intercity_rates,agency_name) VALUES (UUID(), %s, %s, %s)"
+    val = (intracity_rates[i],intercity_rates[i],agency_name[i])
     mycursor.execute(sql, val)
     mydb.commit()
     sql = "SELECT agency_id FROM delivery_agency"
@@ -88,7 +84,7 @@ print(aid)
 for i in uid :
     print(i)
 
-    if i[1] == 'farmer':
+    if i[1] == 'Farmer':
         fid = i[0]
         sql = "INSERT INTO farmer(farmer_id) VALUES (%s)"
         val = fid
@@ -96,7 +92,7 @@ for i in uid :
         mycursor.execute(sql, params) 
         mydb.commit() 
 
-    if i[1] == 'buyer':
+    if i[1] == 'Buyer':
         buid = i[0]
         sql = "INSERT INTO buyer(buyer_id) VALUES (%s)"
         val = buid
@@ -105,9 +101,9 @@ for i in uid :
         mydb.commit() 
 
 
-    if i[1] == 'delivery agent':
+    if i[1] == 'Delivery Agent':
         daid = i[0]
-        x = random.randint(0,3)
+        x = random.randint(0,len(aid)-1)
         sql = "INSERT INTO delivery_agent(delivery_agent_id,agency_id) VALUES (%s , %s)"
         val = daid
         val1 = str(aid[x][0])
@@ -125,9 +121,7 @@ for i in buid:
     sql = "INSERT INTO delivery(delivery_id,pickup_time,drop_time,buyer_id,delivery_status) VALUES (UUID(), %s, %s, %s, %s)"
     pickup = (randomDate("2020/03/27 8:00", "2020/03/27 20:00", random.random()))
     drop = (randomDate("2020/03/28 8:00", "2020/03/28 20:00", random.random()))
-
-    delivery_status = ['delivered','shipping','pending']
-    x = random.randint(0,2)
+    x = random.randint(0,len(delivery_status)-1)
     if delivery_status[x] == 'delivered':
         params = (pickup,drop,i[0],delivery_status[x],)
         mycursor.execute(sql, params)
@@ -140,15 +134,6 @@ for i in buid:
         params = ("NA","NA",i[0],delivery_status[x],)
         mycursor.execute(sql, params)
         mydb.commit()
-    
-    sql = "INSERT INTO cart_items(item_id,item_price,item_quantity,item_name,buyer_id) VALUES (UUID(), %s, %s, %s, %s)"
-    x = random.randint(0,len(produce_name)-1)
-    item_quantity = random.randint(1,10)
-    item_name = produce_name[x]
-    item_price = item_quantity*produce_price[x]
-    params = (item_price,item_quantity,item_name,i[0],)
-    mycursor.execute(sql, params)
-    mydb.commit()
 
 sql = "SELECT delivery_id,buyer_id FROM delivery"
 mycursor.execute(sql)
@@ -160,12 +145,11 @@ for i in did:
     sql = "INSERT INTO orders(buyer_id,order_id,order_quantity,order_date,order_price,delivery_id) VALUES (%s, UUID(), %s, %s, %s, %s)"
     order_quantity = random.randint(1,10)
     order_price = random.randint(1000,9999)
-    order_date = (randomDate("2020/03/23 8:00", "2020/03/26 23:00", random.random()))
+    order_date = (randomDate("2020/03/22 08:00", "2020/03/26 23:00", random.random()))
     params = (i[1],order_quantity,order_date,order_price,i[0],)
     mycursor.execute(sql, params)
     mydb.commit()
 
- 
 sql = "SELECT farmer_id FROM farmer"
 mycursor.execute(sql)
 fid = mycursor.fetchall()    
@@ -173,21 +157,30 @@ print(fid)
 
 for i in fid  :
     
-    sql = "INSERT INTO produce(produce_id,farmer_id,produce_name,produce_price,produce_quantity,produce_image,produce_category) VALUES (UUID(), %s, %s, %s, %s, %s, %s)"
+    sql = "INSERT INTO produce(produce_id,farmer_id,produce_name,produce_price,produce_quantity,produce_image,produce_category,produce_date) VALUES (UUID(), %s, %s, %s, %s, %s, %s, %s)"
     x = random.randint(0,len(produce_name)-1)
     y = random.randint(0,(len(fid)-1))
-    params = (str(fid[y][0]),produce_name[x],produce_price[x],produce_quantity,produce_price[x],produce_category[x],)
+    produce_quantity = random.randint(1,10)
+    produce_date = (randomDate("2020/03/01 08:00", "2020/03/20 23:00", random.random()))
+    params = (str(fid[y][0]),produce_name[x],produce_price[x],produce_quantity,produce_image[x],produce_category[x],produce_date,)
     mycursor.execute(sql, params)
     mydb.commit()
 
+sql = "SELECT produce_id FROM produce"
+mycursor.execute(sql)
+pid = mycursor.fetchall()    
+print(pid)
 
+for i in buid:
+    sql = "INSERT INTO cart_items(item_id, item_price, item_quantity, item_name, buyer_id, produce_id)\
+         VALUES (UUID(), %s, %s, %s, %s, %s)"
+    x = random.randint(0,len(produce_name)-1)
+    item_quantity = random.randint(1,10)
+    item_name = produce_name[x]
+    item_price = item_quantity*produce_price[x]
+    params = (item_price,item_quantity,item_name,i[0],pid[random.randint(0, len(pid)-1)][0],)
+    mycursor.execute(sql, params)
+    mydb.commit()
 
-
-    
-
-    
-
-
-
-
-
+mycursor.close()
+mydb.close()

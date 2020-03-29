@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
-<!-- Mirrored from html.lionode.com/freshfood/product.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 24 Mar 2020 08:40:01 GMT -->
 <head>
 <title>Fresh Food</title><meta http-equiv="content-type" content="text/html;charset=utf-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,37 +28,6 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <!-- <div class="top-left pull-left">
-            <div class="language">
-              <form action="#" method="post" enctype="multipart/form-data" id="language">
-                <div class="btn-group">
-                  <button class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="/static/image/flags/gb.png" alt="English" title="English">English <i class="fa fa-caret-down"></i></button>
-                  <ul class="dropdown-menu">
-                    <li><a href="#"><img src="/static/image/flags/lb.png" alt="Arabic" title="Arabic"> Arabic</a></li>
-                    <li><a href="#"><img src="/static/image/flags/gb.png" alt="English" title="English"> English</a></li>
-                  </ul>
-                </div>
-              </form>
-            </div>
-            <div class="currency">
-              <form action="#" method="post" enctype="multipart/form-data" id="currency">
-                <div class="btn-group">
-                  <button class="btn btn-link dropdown-toggle" data-toggle="dropdown"> <strong>$</strong> <i class="fa fa-caret-down"></i> </button>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <button class="currency-select btn btn-link btn-block" type="button" name="EUR">€ Euro</button>
-                    </li>
-                    <li>
-                      <button class="currency-select btn btn-link btn-block" type="button" name="GBP">£ Pound Sterling</button>
-                    </li>
-                    <li>
-                      <button class="currency-select btn btn-link btn-block" type="button" name="USD">$ US Dollar</button>
-                    </li>
-                  </ul>
-                </div>
-              </form>
-            </div>
-          </div> -->
           <div class="top-right pull-right">
             <div id="top-links" class="nav pull-right">
               <ul class="list-inline">
@@ -149,157 +117,32 @@
           <div class="category_block">
             <ul class="box-category treeview-list treeview">
               {% for i in categories %}
-                <li><a href="{{url_for('category')}}">{{i[0]}}</a></li>
+                <li><a href="#">{{i[0]}}</a></li>
               {% endfor %}
             </ul>
           </div>
         </div>
-        <!--<h3 class="productblock-title">Bestsellers</h3>
-        <div class="row bestseller-grid product-grid">
-          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-grid-item">
-            <div class="product-thumb transition">
-              <div class="image product-imageblock"> <a href="#"> <img src="/static/image/product/2product50x59.jpg" alt="women's clothing" title="women's clothing" class="img-responsive" /> </a>
-                <div class="button-group">
-                  <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart-o"></i></button>
-                  <button type="button" class="addtocart-btn">Add to Cart</button>
-                  <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-exchange"></i></button>
-                </div>
-              </div>
-              <div class="caption product-detail">
-                <h4 class="product-name"> <a href="product.html" title="women's clothing">Clothing</a> </h4>
-                <p class="price product-price"> <span class="price-new">$254.00</span><span class="price-tax">Ex Tax: $210.00</span> </p>
-              </div>
-              <div class="button-group">
-                <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart-o"></i></button>
-                <button type="button" class="addtocart-btn">Add to Cart</button>
-                <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-exchange"></i></button>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-grid-item">
-            <div class="product-thumb transition">
-              <div class="image product-imageblock"> <a href="#"> <img src="/static/image/product/3product50x59.jpg" alt="women's clothing" title="women's clothing" class="img-responsive" /> </a>
-                <div class="button-group">
-                  <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart-o"></i></button>
-                  <button type="button" class="addtocart-btn">Add to Cart</button>
-                  <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-exchange"></i></button>
-                </div>
-              </div>
-              <div class="caption product-detail">
-                <h4 class="product-name"> <a href="product.html" title="women's clothing">Clothing</a> </h4>
-                <p class="price product-price"> <span class="price-new">$254.00</span><span class="price-tax">Ex Tax: $210.00</span> </p>
-              </div>
-              <div class="button-group">
-                <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart-o"></i></button>
-                <button type="button" class="addtocart-btn">Add to Cart</button>
-                <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-exchange"></i></button>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-grid-item">
-            <div class="product-thumb transition">
-              <div class="image product-imageblock"> <a href="#"> <img src="/static/image/product/4product50x59.jpg" alt="women's clothing" title="women's clothing" class="img-responsive" /> </a>
-                <div class="button-group">
-                  <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart-o"></i></button>
-                  <button type="button" class="addtocart-btn">Add to Cart</button>
-                  <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-exchange"></i></button>
-                </div>
-              </div>
-              <div class="caption product-detail">
-                <h4 class="product-name"> <a href="product.html" title="women's clothing">Clothing</a> </h4>
-                <p class="price product-price"> <span class="price-new">$254.00</span><span class="price-tax">Ex Tax: $210.00</span> </p>
-              </div>
-              <div class="button-group">
-                <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart-o"></i></button>
-                <button type="button" class="addtocart-btn">Add to Cart</button>
-                <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-exchange"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>-->
         <h3 class="productblock-title">Latest</h3>
         <div class="row latest-grid product-grid">
           {% for li in latestitems %}
           <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-grid-item">
             <div class="product-thumb transition">
               <div class="image product-imageblock">
-              <a href="{{li[2]}}">
+              <a href="{{url_for('product', produce_id = li[3])}}">
               <img src="{{li[2]}}" style="height: 60px; width: 50px;" alt="{{li[0]}}" title="{{li[0]}}" class="img-responsive" />
               </a>
               </div>
               <div class="caption product-detail">
                 <h4 class="product-name">
-                <a href="{{url_for('product', pname = li[0])}}" title="{{li[0]}}">{{li[0]}}</a>
+                <a href="{{url_for('product', produce_id = li[3])}}" title="{{li[0]}}">{{li[0]}}</a>
                 </h4>
                 <p class="price product-price">{{li[1]}} Rs.</p>
+                <h4 class = "product-name">{{li[4]}}</h4>
               </div>
             </div>
           </div>
           {% endfor %}
         </div>
-        <!-- <h3 class="productblock-title">Specials</h3>
-          <div class="row special-grid product-grid">
-          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-grid-item">
-            <div class="product-thumb transition">
-              <div class="image product-imageblock"> <a href="#"><img src="/static/image/product/5product50x59.jpg" alt="women's clothing" title="women's clothing" class="img-responsive" /></a>
-              </div>
-              <div class="caption product-detail">
-                <h4 class="product-name"><a href="#" title="lorem ippsum dolor dummy">Clothing</a></h4>
-                <p class="price product-price"> <span class="price-new">$254.00</span> <span class="price-tax">Ex Tax: $210.00</span> </p>
-              </div>
-              <div class="button-group">
-                <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart-o"></i></button>
-                <button type="button" class="addtocart-btn">Add to Cart</button>
-                <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-exchange"></i></button>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-grid-item">
-            <div class="product-thumb transition">
-              <div class="image product-imageblock"> <a href="#"><img src="/static/image/product/6product50x59.jpg" alt="women's clothing" title="women's clothing" class="img-responsive" /></a>
-              </div>
-              <div class="caption product-detail">
-                <h4 class="product-name"><a href="#" title="lorem ippsum dolor dummy">Clothing</a></h4>
-                <p class="price product-price"> <span class="price-new">$254.00</span> <span class="price-tax">Ex Tax: $210.00</span> </p>
-              </div>
-              <div class="button-group">
-                <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart-o"></i></button>
-                <button type="button" class="addtocart-btn">Add to Cart</button>
-                <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-exchange"></i></button>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-grid-item">
-            <div class="product-thumb transition">
-              <div class="image product-imageblock"> <a href="#"><img src="/static/image/product/7product50x59.jpg" alt="women's clothing" title="women's clothing" class="img-responsive" /></a>
-              </div>
-              <div class="caption product-detail">
-                <h4 class="product-name"><a href="#" title="lorem ippsum dolor dummy">Clothing</a></h4>
-                <p class="price product-price"> <span class="price-new">$254.00</span> <span class="price-tax">Ex Tax: $210.00</span> </p>
-              </div>
-              <div class="button-group">
-                <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart-o"></i></button>
-                <button type="button" class="addtocart-btn">Add to Cart</button>
-                <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-exchange"></i></button>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-grid-item">
-            <div class="product-thumb transition">
-              <div class="image product-imageblock"> <a href="#"><img src="/static/image/product/6product50x59.jpg" alt="women's clothing" title="women's clothing" class="img-responsive" /></a>
-              </div>
-              <div class="caption product-detail">
-                <h4 class="product-name"><a href="#" title="lorem ippsum dolor dummy">Clothing</a></h4>
-                <p class="price product-price"> <span class="price-new">$254.00</span> <span class="price-tax">Ex Tax: $210.00</span> </p>
-              </div>
-              <div class="button-group">
-                <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart-o"></i></button>
-                <button type="button" class="addtocart-btn">Add to Cart</button>
-                <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-exchange"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>-->
       </div>
     </div>
     <div id="content" class="col-sm-9">
@@ -307,65 +150,18 @@
         <div class="col-sm-6">
           <div class="thumbnails">
             <div><a class="thumbnail" href="{{data[8]}}" title="{{data[0]}}"><img src="{{data[8]}}" style="height: 300px;" title="{{data[0]}}" alt="{{data[0]}}" /></a></div>
-            <!--<div id="product-thumbnail" class="owl-carousel">
-              <div class="item">
-                <div class="image-additional"><a class="thumbnail  " href="/static/image/product/product1.jpg" title="lorem ippsum dolor dummy"> <img src="/static/image/product/pro-1-220x294.jpg" title="lorem ippsum dolor dummy" alt="lorem ippsum dolor dummy" /></a></div>
-              </div>
-              <div class="item">
-                <div class="image-additional"><a class="thumbnail  " href="/static/image/product/product2.jpg" title="lorem ippsum dolor dummy"> <img src="/static/image/product/pro-2-220x294.jpg" title="lorem ippsum dolor dummy" alt="lorem ippsum dolor dummy" /></a></div>
-              </div>
-              <div class="item">
-                <div class="image-additional"><a class="thumbnail  " href="/static/image/product/product3.jpg" title="lorem ippsum dolor dummy"> <img src="/static/image/product/pro-3-220x294.jpg" title="lorem ippsum dolor dummy" alt="lorem ippsum dolor dummy" /></a></div>
-              </div>
-              <div class="item">
-                <div class="image-additional"><a class="thumbnail  " href="/static/image/product/product4.jpg" title="lorem ippsum dolor dummy"> <img src="/static/image/product/pro-4-220x294.jpg" title="lorem ippsum dolor dummy" alt="lorem ippsum dolor dummy" /></a></div>
-              </div>
-              <div class="item">
-                <div class="image-additional"><a class="thumbnail  " href="/static/image/product/product5.jpg" title="lorem ippsum dolor dummy"> <img src="/static/image/product/pro-5-220x294.jpg" title="lorem ippsum dolor dummy" alt="lorem ippsum dolor dummy" /></a></div>
-              </div>
-              <div class="item">
-                <div class="image-additional"><a class="thumbnail  " href="/static/image/product/product6.jpg" title="lorem ippsum dolor dummy"> <img src="/static/image/product/pro-6-220x294.jpg" title="lorem ippsum dolor dummy" alt="lorem ippsum dolor dummy" /></a></div>
-              </div>
-              <div class="item">
-                <div class="image-additional"><a class="thumbnail  " href="/static/image/product/product7.jpg" title="lorem ippsum dolor dummy"> <img src="/static/image/product/pro-7-220x294.jpg" title="lorem ippsum dolor dummy" alt="lorem ippsum dolor dummy" /></a></div>
-              </div>
-            </div>-->
           </div>
         </div>
         <div class="col-sm-6">
           <h1 class="productpage-title">{{data[0]}}</h1>
           <div class="rating product"> 
-          <!--<span class="fa fa-stack">
-              <i class="fa fa-star fa-stack-1x"></i>
-              <i class="fa fa-star-o fa-stack-1x"></i>
-            </span> 
-            <span class="fa fa-stack">
-              <i class="fa fa-star fa-stack-1x"></i>
-              <i class="fa fa-star-o fa-stack-1x"></i>
-            </span> 
-            <span class="fa fa-stack">
-              <i class="fa fa-star fa-stack-1x"></i>
-              <i class="fa fa-star-o fa-stack-1x"></i>
-            </span> 
-            <span class="fa fa-stack">
-              <i class="fa fa-star-o fa-stack-1x"></i>
-            </span> 
-            <span class="fa fa-stack">
-              <i class="fa fa-star-o fa-stack-1x"></i>
-            </span> 
-            <span class="review-count"> 
-              <a href="#" onClick="$('a[href=\'#tab-review\']').trigger('click'); return false;">1 reviews</a> / <a href="#" onClick="$('a[href=\'#tab-review\']').trigger('click'); return false;">Write a review</a>
-            </span> -->
             <hr>
-            <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style"><a class="addthis_button_facebook_like" ></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a></div>
-            <!-- AddThis Button END -->
           </div>
           <ul class="list-unstyled productinfo-details-top">
             <li>
               <h2 class="productpage-price">Product Rate : {{data[1]}} Rs.</h2>
             </li>
-            <!-- <li><span class="productinfo-tax">Delivery Rate : {{data[1]}}</span></li> -->
           </ul>
           <hr>
           <ul class="list-unstyled product_info">
@@ -394,10 +190,11 @@
           <hr>
           <div id="product">
             <div class="form-group">
-              <form action="{}" method="POST">
-              <label class="control-label qty-label" for="input-quantity">Qty</label>
-              <input type="text" name="quantity" value="1" size="4" id="input-quantity" class="form-control productpage-qty" />
-                <button type="submi" id="button-cart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block addtocart">Add to Cart</button>
+              <form action="" method="POST">
+                <input type="hidden" name="produce_id" value="{{data[3]}}">
+                <label class="control-label qty-label" for="input-quantity">Qty</label>
+                <input type="text" name="quantity" value="1" size="4" id="input-quantity" class="form-control productpage-qty" />
+                <button type="submit" id="button-cart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block addtocart">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -405,53 +202,12 @@
       <div class="productinfo-tab">
         <ul class="nav nav-tabs">
           <li class="active"><a href="#tab-description" data-toggle="tab">Description</a></li>
-          <!-- <li><a href="#tab-review" data-toggle="tab">Reviews (1)</a></li> -->
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="tab-description">
             <div class="cpt_product_description ">
                 <h5>{{data[7]}}</h5>
             </div>
-            <!-- cpt_container_end --></div>
-          <!--<div class="tab-pane" id="tab-review">
-            <form class="form-horizontal">
-              <div id="review"></div>
-              <h2>Write a review</h2>
-              <div class="form-group required">
-                <div class="col-sm-12">
-                  <label class="control-label" for="input-name">Your Name</label>
-                  <input type="text" name="name" value="" id="input-name" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <div class="col-sm-12">
-                  <label class="control-label" for="input-review">Your Review</label>
-                  <textarea name="text" rows="5" id="input-review" class="form-control"></textarea>
-                  <div class="help-block"><span class="text-danger">Note:</span> HTML is not translated!</div>
-                </div>
-              </div>
-              <div class="form-group required">
-                <div class="col-sm-12">
-                  <label class="control-label">Rating</label>
-                  &nbsp;&nbsp;&nbsp; Bad&nbsp;
-                  <input type="radio" name="rating" value="1" />
-                  &nbsp;
-                  <input type="radio" name="rating" value="2" />
-                  &nbsp;
-                  <input type="radio" name="rating" value="3" />
-                  &nbsp;
-                  <input type="radio" name="rating" value="4" />
-                  &nbsp;
-                  <input type="radio" name="rating" value="5" />
-                  &nbsp;Good</div>
-              </div>
-              <div class="buttons clearfix">
-                <div class="pull-right">
-                  <button type="button" id="button-review" data-loading-text="Loading..." class="btn btn-primary">Continue</button>
-                </div>
-              </div>
-            </form>
-          </div>-->
         </div>
       </div>
       <h3 class="productblock-title">Related Products</h3>
@@ -460,16 +216,12 @@
         {% for ri in relateditems %}
           <div class="item">
             <div class="product-thumb transition">
-              <div class="image product-imageblock"> <a href="{{ri[2]}}"> <img src="{{ri[2]}}" style="height : 250px; width : 200px" alt="{{ri[0]}}" title="{{ri[0]}}" class="img-responsive" /> </a>
-                <!-- <div class="button-group">
-                  <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart-o"></i></button>
-                  <button type="button" class="addtocart-btn">Add to Cart</button>
-                  <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-exchange"></i></button>
-                </div> -->
+              <div class="image product-imageblock"> <a href="{{url_for('product', produce_id = ri[3])}}"> <img src="{{ri[2]}}" style="height : 250px; width : 200px" alt="{{ri[0]}}" title="{{ri[0]}}" class="img-responsive" /> </a>
               </div>
               <div class="caption product-detail">
-                <h4 class="product-name"><a href="{{url_for('product', pname = ri[0])}}" title="{{ri[0]}}">{{ri[0]}}</a></h4>
-                <span class="price product-price">{{ri[1]}} Rs.</span>
+                <h4 class="product-name"><a href="{{url_for('product', produce_id = ri[3])}}" title="{{ri[0]}}">{{ri[0]}}</a></h4>
+                <span class="price product-price">{{ri[1]}} Rs.</span><br>
+                <h4 class = "product-name">{{ri[4]}}</h4>
               </div>
             </div>
           </div>
@@ -477,6 +229,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </div>
 <footer>
@@ -571,6 +324,5 @@
 </div>
 </body>
 
-<!-- Mirrored from html.lionode.com/freshfood/product.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 24 Mar 2020 08:40:03 GMT -->
 </html>
 

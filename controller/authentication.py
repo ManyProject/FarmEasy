@@ -4,9 +4,7 @@ from flask_bcrypt import Bcrypt
 from functools import wraps
 import re 
 
-def connect():
-    return mysql.connector.connect(host="localhost",
-    database='farmeasy', user="root", passwd="")
+from db_connection import connect
 
 def authentication_check(f):
     @wraps(f)
@@ -26,7 +24,7 @@ def login(app):
     bcrypt = Bcrypt(app)
     email = form['email']
     password = form['password']
-    query = "SELECT user_password, user_role FROM user WHERE user_email = %s"
+    query = "SELECT user_password, user_role, user_id FROM user WHERE user_email = %s"
     try:
         connection = connect()
         cur = connection.cursor()
@@ -37,6 +35,7 @@ def login(app):
             if bcrypt.check_password_hash(results[0], password):
                 session['email'] = email
                 session['role'] = results[1]
+                session['id'] = results[2]
                 return redirect(url_for('index'))
             else:
                 return redirect(url_for('auth'))
