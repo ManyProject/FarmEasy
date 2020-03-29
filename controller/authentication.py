@@ -12,10 +12,12 @@ def authentication_check(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if 'email' in session:
-            if(request.endpoint == 'login' or request.endpoint == 'register'):
+            if(request.endpoint == 'auth' or request.endpoint == 'registration'):
                 return redirect(url_for('index'))
             return f(*args, **kwargs)
         else:
+            if(request.endpoint == 'auth' or request.endpoint == 'registration'):
+                return f(*args, **kwargs)
             return redirect(url_for('auth'))
     return decorated_function
     

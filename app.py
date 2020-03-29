@@ -12,7 +12,7 @@ def index():
     return "Hello"
 
 @app.route('/login', methods=['GET', 'POST'])
-
+@authentication_check
 def auth():
     if request.method == 'GET' :
         return render_template('login.html')
@@ -20,7 +20,7 @@ def auth():
         return login(app)
 
 @app.route('/register', methods=['GET', 'POST'])
-
+@authentication_check
 def registration():
     if request.method == 'GET' :
         return render_template('register.html')
@@ -32,6 +32,11 @@ def registration():
 def logout():
     session.pop('email', None)
     return redirect(url_for('index'))
+
+@app.route('/main', methods=['GET'])
+@authentication_check
+def main():
+    return "logged in"
 
 if __name__ == '__main__':
     app.run(debug=True)

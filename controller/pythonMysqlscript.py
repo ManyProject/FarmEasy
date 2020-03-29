@@ -3,7 +3,7 @@ import random
 from random import randrange
 import datetime 
 import time
-from cryptography.fernet import Fernet
+import bcrypt
 
 mydb = mysql.connector.connect(
   host = "localhost",
@@ -59,17 +59,15 @@ for i in range (0,100):
     y = random.randint(0,2)    
     phone = random.randrange(1000000000, 9999999999)
     user_image = "https://www.google.co.in/search?q=profile+image+&tbm=isch&ved=2ahUKEwisupSF9rroAhWGZSsKHbheCZIQ2-cCegQIABAA&oq=profile+image+&gs_lcp=CgNpbWcQAzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCABQ9BxYzUtg5FVoA3AAeACAAZsBiAGMFZIBBTExLjE1mAEAoAEBqgELZ3dzLXdpei1pbWc&sclient=img&ei=TxV-XuzWAYbLrQG4vaWQCQ&authuser=1&bih=610&biw=1280#imgrc=L1-qFJ4VKpwwwM"
-    passw = ['testPass','hello','12345','852369']
-    key = b'PCHl_MjGyEyBxLYha3S-cWg_SDDmjT4YYaKYh4Z7Yug='
-    cipher_suite = Fernet(key)
-    user_password = cipher_suite.encrypt(b'12345')   
-    val = (names[x],names[x]+str(i)+'@gmail.com',phone,address[x],user_password,user_image,role[y])
+    passwd = b'abcde'
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(passwd, salt)
+    val = (names[x],names[x]+str(i)+'@gmail.com',phone,address[x],hashed,user_image,role[y])
     mycursor.execute(sql, val)
     mydb.commit()
     sql = "SELECT user_id,user_role FROM user"
     mycursor.execute(sql)
     uid = mycursor.fetchall()
-    # val = (names[x],names[x].split()[0]+str(i)+names[x].split()[1]+'@gmail.com',phone,address[x],role[y])
 
 for i in range (0,4):
     
