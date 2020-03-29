@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import mysql.connector
 
 from controller.authentication import login, register, authentication_check
+from controller.producedetails import productdetail
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super secret key'
