@@ -1,108 +1,7 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
-
-<head>
-<title>Fresh Food</title><meta http-equiv="content-type" content="text/html;charset=utf-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="e-commerce site well design with responsive view." />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-<link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<link href='https://fonts.googleapis.com/css?family=Work+Sans:100,300,400,500,700,900' rel='stylesheet' type='text/css'>
-<link href="/static/css/stylesheet.css" rel="stylesheet">
-<link href="/static/css/responsive.css" rel="stylesheet">
-<link href="/static/owl-carousel/owl.carousel.css" type="text/css" rel="stylesheet" media="screen" />
-<link href="/static/owl-carousel/owl.transitions.css" type="text/css" rel="stylesheet" media="screen" />
-<script src="/static/javascript/jquery-2.1.1.min.js" ></script>
-<script src="/static/bootstrap/js/bootstrap.min.js" ></script>
-<script src="/static/javascript/jstree.min.js"></script>
-<script src="/static/javascript/template.js"></script>
-<script src="/static/javascript/common.js" ></script>
-<script src="/static/javascript/global.js" ></script>
-<script src="/static/owl-carousel/owl.carousel.min.js" ></script>
-</head>
-<body class="product col-2 left-col">
-<div class="preloader loader" style="display: block; background:#f2f2f2;"> <img src="/static/image/loader.gif"  alt="#"/></div>
-<header>
-  <div class="header-top">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="top-right pull-right">
-            <div id="top-links" class="nav pull-right">
-              <ul class="list-inline">
-                <li class="dropdown"><a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-user"></i><span>My Account</span> <span class="caret"></span></a>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="register.html">Register</a></li>
-                    <li><a href="login.html">Login</a></li>
-                  </ul>
-                </li>
-              </ul>
-              <div class="search-box">
-                <input class="input-text" placeholder="search.." type="text">
-                <button class="search-btn"><i class="fa fa-search"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="header-inner">
-      <div class="col-sm-4 col-xs-6 header-left">
-        <div class="shipping">
-          <div class="shipping-img"></div>
-          <div class="shipping-text">Contact : +91 9999999999<span class="shipping-detail">Week From 9:00am To 7:00pm</span></div>
-        </div>
-      </div>
-      <div class="col-sm-4 col-xs-12 header-middle">
-        <div class="header-middle-top">
-          <div id="logo"> <a href="index-2.html"><img src="/static/image/logo.png" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
-        </div>
-      </div>
-      <div class="col-sm-4 col-xs-6 header-right">
-        <div class="shipping">
-          <div class="shipping-text">Warehouse & Offices,
-            12345 Street name, Mumbai,
-            Maharashtra</div>
-            <span class="shipping-detail">info@farmeasy.com</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-<nav id="menu" class="navbar">
-    <div class="nav-inner container">
-        <div class="navbar-header"><span id="category" class="visible-xs">Categories</span>
-            <button type="button" class="btn btn-navbar navbar-toggle" ><i class="fa fa-bars"></i></button>
-        </div>
-        <div class="navbar-collapse">
-            <ul class="main-navigation">
-                <li><a href="index-2.html"   class="parent"  >Home</a> </li>
-                <li><a href="category.html"   class="parent"  >Fruits</a> </li>
-                <li><a href="category.html"   class="parent"  >Vegetables</a> </li>
-                <li><a href="category.html"   class="parent"  >Exotica</a> </li>
-                <li><a href="category.html"   class="parent"  >Groceries</a> </li>
-                <li><a href="category.html"   class="parent"  >Health & Beauty</a> </li>
-                <li><a href="#" class="active parent">Page</a>
-                    <ul>
-                        <li><a href="category.html">Category Page</a></li>
-                        <li><a href="cart.html">Cart Page</a></li>
-                        <li><a href="checkout.html">Checkout Page</a></li>
-                        <li><a href="blog.html" >Blog Page</a></li>
-                        <li><a href="singale-blog.html" >Singale Blog Page</a></li>
-                        <li><a href="register.html">Register Page</a></li>
-                        <li><a href="contact.html">Contact Page</a></li>
-                    </ul>
-                </li>
-                <li><a href="blog.html" class="parent"  >Blog</a></li>
-                <li><a href="about-us.html" >About us</a></li>
-                <li><a href="contact.html" >Contact Us</a> </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<html lang="en">
+{% include "header.html" %}
+{% block body %}
 <div class="container">
   <ul class="breadcrumb">
     <li><a href="index-2.html"><i class="fa fa-home"></i></a></li>
@@ -117,7 +16,7 @@
           <div class="category_block">
             <ul class="box-category treeview-list treeview">
               {% for i in categories %}
-                <li><a href="#">{{i[0]}}</a></li>
+                <li><a href="#">{{ i[0] }}</a></li>
               {% endfor %}
             </ul>
           </div>
@@ -128,16 +27,16 @@
           <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-grid-item">
             <div class="product-thumb transition">
               <div class="image product-imageblock">
-              <a href="{{url_for('product', produce_id = li[3])}}">
-              <img src="{{li[2]}}" style="height: 60px; width: 50px;" alt="{{li[0]}}" title="{{li[0]}}" class="img-responsive" />
+              <a href="{{ url_for('product', produce_id = li[3]) }}">
+              <img src="{{ li[2] }}" style="height: 60px; width: 50px;" alt="{{ li[0] }}" title="{{ li[0] }}" class="img-responsive" />
               </a>
               </div>
               <div class="caption product-detail">
                 <h4 class="product-name">
-                <a href="{{url_for('product', produce_id = li[3])}}" title="{{li[0]}}">{{li[0]}}</a>
+                <a href="{{ url_for('product', produce_id = li[3]) }}" title="{{ li[0] }}">{{ li[0] }}</a>
                 </h4>
-                <p class="price product-price">{{li[1]}} Rs.</p>
-                <h4 class = "product-name">{{li[4]}}</h4>
+                <p class="price product-price">{{ li[1] }} Rs.</p>
+                <h4 class = "product-name">{{ li[4] }}</h4>
               </div>
             </div>
           </div>
@@ -149,52 +48,52 @@
       <div class="row">
         <div class="col-sm-6">
           <div class="thumbnails">
-            <div><a class="thumbnail" href="{{data[8]}}" title="{{data[0]}}"><img src="{{data[8]}}" style="height: 300px;" title="{{data[0]}}" alt="{{data[0]}}" /></a></div>
+            <div><a class="thumbnail" href="{{ data[8] }}" title="{{ data[0] }}"><img src="{{ data[8] }}" style="height: 300px;" title="{{ data[0] }}" alt="{{ data[0] }}" /></a></div>
           </div>
         </div>
         <div class="col-sm-6">
-          <h1 class="productpage-title">{{data[0]}}</h1>
+          <h1 class="productpage-title">{{ data[0] }}</h1>
           <div class="rating product"> 
             <hr>
             <div class="addthis_toolbox addthis_default_style"><a class="addthis_button_facebook_like" ></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a></div>
           </div>
           <ul class="list-unstyled productinfo-details-top">
             <li>
-              <h2 class="productpage-price">Product Rate : {{data[1]}} Rs.</h2>
+              <h2 class="productpage-price">Product Rate : {{ data[1] }} Rs.</h2>
             </li>
           </ul>
           <hr>
           <ul class="list-unstyled product_info">
             <li>
               <label>Farmer : </label>
-              <span> {{data[2]}}</span></li>
+              <span> {{ data[2] }}</span></li>
             <li>
               <label>ProductCode: </label>
-              <span>{{data[3]}}</span></li>
+              <span>{{ data[3] }}</span></li>
             <li>
               <label>Availability: </label>
-              <span> {{data[4]}} Kg Available</span></li>
+              <span> {{ data[4] }} Kg Available</span></li>
           </ul>
           <hr>
             <ul>
               <li>
                 <label>Farm Location : </label>
-                <span>{{data[5]}}</span>
+                <span>{{ data[5] }}</span>
               </li>
               <li>
                 <label>Farmer contact : </label>
-                <span>{{data[6]}}</span>
+                <span>{{ data[6] }}</span>
               </li>
               
             </ul>
           <hr>
           <div id="product">
             <div class="form-group">
-              <form action="" method="POST">
-                <input type="hidden" name="produce_id" value="{{data[3]}}">
+              <form action="{{ url_for('item') }}" method="POST">
+                <input type="hidden" name="produce_id" value="{{ data[3] }}">
                 <label class="control-label qty-label" for="input-quantity">Qty</label>
-                <input type="text" name="quantity" value="1" size="4" id="input-quantity" class="form-control productpage-qty" />
-                <button type="submit" id="button-cart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block addtocart">Add to Cart</button>
+                <input type="number" name="quantity" value="1" min="1" id="input-quantity" class="form-control productpage-qty" />
+                <button type="submit" name="type" value="add" id="button-cart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block addtocart">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -206,7 +105,7 @@
         <div class="tab-content">
           <div class="tab-pane active" id="tab-description">
             <div class="cpt_product_description ">
-                <h5>{{data[7]}}</h5>
+                <h5>{{ data[7] }}</h5>
             </div>
         </div>
       </div>
@@ -216,12 +115,12 @@
         {% for ri in relateditems %}
           <div class="item">
             <div class="product-thumb transition">
-              <div class="image product-imageblock"> <a href="{{url_for('product', produce_id = ri[3])}}"> <img src="{{ri[2]}}" style="height : 250px; width : 200px" alt="{{ri[0]}}" title="{{ri[0]}}" class="img-responsive" /> </a>
+              <div class="image product-imageblock"> <a href="{{ url_for('product', produce_id = ri[3]) }}"> <img src="{{ ri[2] }}" style="height : 190px; width : 200px" alt="{{ ri[0] }}" title="{{ ri[0] }}" class="img-responsive" /> </a>
               </div>
               <div class="caption product-detail">
-                <h4 class="product-name"><a href="{{url_for('product', produce_id = ri[3])}}" title="{{ri[0]}}">{{ri[0]}}</a></h4>
-                <span class="price product-price">{{ri[1]}} Rs.</span><br>
-                <h4 class = "product-name">{{ri[4]}}</h4>
+                <h4 class="product-name"><a href="{{ url_for('product', produce_id = ri[3]) }}" title="{{ ri[0] }}">{{ ri[0] }}</a></h4>
+                <span class="price product-price">{{ ri[1] }} Rs.</span><br>
+                <h4 class = "product-name">{{ ri[4] }}</h4>
               </div>
             </div>
           </div>
@@ -232,97 +131,8 @@
   </div>
   </div>
 </div>
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="footer-top-cms">
-            <div class="col-sm-7">
-                    <div class="newslatter">
-                        <form>
-                            <h5>Newsletter</h5>
-                            <div class="input-group">
-                                <input type="text" class=" form-control" placeholder="Email Here......">
-                                <button type="submit" value="Sign up" class="btn btn-large btn-primary">Subscribe</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            <div class="col-sm-5">
-            <div class="footer-social">
-                <h5>Social</h5>
-                <ul>
-                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li class="gplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    <li class="youtube"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-                </ul>
-            </div>
-            </div>
-        </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3 footer-block">
-                <h5 class="footer-title">Information</h5>
-                <ul class="list-unstyled ul-wrapper">
-                    <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="checkout.html">Delivery Information</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms &amp; Conditions</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-3 footer-block">
-                <h5 class="footer-title">Customer Service</h5>
-                <ul class="list-unstyled ul-wrapper">
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="#">Returns</a></li>
-                    <li><a href="#">Site Map</a></li>
-                    <li><a href="#">Wish List</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-3 footer-block">
-                <h5 class="footer-title">Extras</h5>
-                <ul class="list-unstyled ul-wrapper">
-                    <li><a href="#">Brands</a></li>
-                    <li><a href="gift.html">Gift Vouchers</a></li>
-                    <li><a href="affiliate.html">Affiliates</a></li>
-                    <li><a href="#">Specials</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-3 footer-block">
-                <div class="content_footercms_right">
-                    <div class="footer-contact">
-                        <h5 class="contact-title footer-title">Contact Us</h5>
-                        <ul class="ul-wrapper">
-                            <li><i class="fa fa-map-marker"></i><span class="location2"> Warehouse & Offices,<br>
-                                12345 Street name, California<br>
-                                USA</span></li>
-                            <li><i class="fa fa-envelope"></i><span class="mail2"><a href="#">info@localhost.com</a></span></li>
-                            <li><i class="fa fa-mobile"></i><span class="phone2">+91 0987-654-321</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <a id="scrollup">Scroll</a> </footer>
-<div class="footer-bottom">
-  <div class="container">
-    <div class="copyright">Powered By<a class="yourstore" href="http://www.lionode.com/">lionode &copy; 2016 </a> </div>
-    <div class="footer-bottom-cms">
-      <div class="footer-payment">
-        <ul>
-          <li class="mastero"><a href="#"><img alt="" src="/static/image/payment/mastero.jpg"></a></li>
-          <li class="visa"><a href="#"><img alt="" src="/static/image/payment/visa.jpg"></a></li>
-          <li class="currus"><a href="#"><img alt="" src="/static/image/payment/currus.jpg"></a></li>
-          <li class="discover"><a href="#"><img alt="" src="/static/image/payment/discover.jpg"></a></li>
-          <li class="bank"><a href="#"><img alt="" src="/static/image/payment/bank.jpg"></a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
 </body>
-
+{% endblock %}
+{% include "footer.html" %}
 </html>
 

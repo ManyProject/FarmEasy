@@ -1,0 +1,138 @@
+<head>
+    <title>Fresh Food</title><meta http-equiv="content-type" content="text/html;charset=utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="e-commerce site well design with responsive view." />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+    <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href='https://fonts.googleapis.com/css?family=Work+Sans:100,300,400,500,700,900' rel='stylesheet' type='text/css'>
+    <link href="/static/css/stylesheet.css" rel="stylesheet">
+    <link href="/static/css/responsive.css" rel="stylesheet">
+    <link href="/static/owl-carousel/owl.carousel.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="/static/owl-carousel/owl.transitions.css" type="text/css" rel="stylesheet" media="screen" />
+    <script src="/static/javascript/jquery-2.1.1.min.js" ></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js" ></script>
+    <script src="/static/javascript/jstree.min.js"></script>
+    <script src="/static/javascript/template.js"></script>
+    <script src="/static/javascript/common.js" ></script>
+    <script src="/static/javascript/global.js" ></script>
+    <script src="/static/owl-carousel/owl.carousel.min.js" ></script>
+</head>
+<body class="cart col-2">
+    <div class="preloader loader" style="display: block; background:#f2f2f2;"> <img src="/static/image/loader.gif"  alt="#"/></div>
+    <header>
+      <div class="header-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="top-right pull-right">
+                <div id="top-links" class="nav pull-right">
+                  <ul class="list-inline">
+                    <li class="dropdown"><a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-user"></i><span>My Account</span> <span class="caret"></span></a>
+                      <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="{{ url_for('registration') }}">My Profile</a></li>
+                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                      </ul>
+                    </li>
+                  </ul>              
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="header-inner">
+          <div class="col-sm-4 col-xs-6 header-left">
+            <div class="shipping">
+              <div class="shipping-img"></div>
+              <div class="shipping-text">+91(000)1234-1234<span class="shipping-detail">Week From 9:00am To 7:00pm</span></div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-xs-12 header-middle">
+            <div class="header-middle-top">
+              <div id="logo"> <a href="index-2.html"><img src="/static/image/logo.png" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-xs-12 header-right">
+            <div id="cart" class="btn-group btn-block">
+              <button type="button" class="btn btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button"> <span id="cart-total"><span class="cart-title">Shopping Cart</span><br>
+              {{ number }} item(s) - {{ '%0.2f'| format(subtotal*1.2|float) }} Rs.</span> </button>
+              <ul class="dropdown-menu pull-right cart-dropdown-menu">
+                {% for item in items %}
+                <li>
+                  <table class="table table-striped">
+                    <tbody>
+                      <tr>
+                        <td class="text-center"><a href="{{url_for('product', produce_id = item[5])}}"><img style="height: 50px; width: 50px" class="img-thumbnail" title="Product Image" alt="Product Image" src="{{item[4]}}"></a></td>
+                        <td class="text-left"><a href="{{url_for('product', produce_id = item[5])}}">{{ item[3] }}</a></td>
+                        <td class="text-right">x{{ item[2] }}</td>
+                        <td class="text-right">{{ item[1]*item[2] }} Rs.</td>
+                        <form action="{{ url_for('item') }}" method="post">
+                          <input type="hidden" value="cart" name="endpoint">
+                            <input type="hidden" value="{{ item[0] }}" name="item_id">
+                            <td class="text-center"><button class="btn btn-danger btn-xs" data-toggle="tooltip" value="delete" name="type" data-original-title="Remove" type="submit"><i class="fa fa-times"></i></button></td>
+                        </form>
+                      </tr>
+                    </tbody>
+                  </table>
+                </li>
+                {% endfor %}
+                <li>
+                  <div>
+                    <table class="table table-bordered">
+                      <tbody>
+                        <tr>
+                          <td class="text-right"><strong>Sub-Total</strong></td>
+                          <td class="text-right">{{ subtotal }} Rs.</td>
+                        </tr>
+                        <tr>
+                          <td class="text-right"><strong>GST (20%)</strong></td>
+                          <td class="text-right">{{ '%0.2f'| format(subtotal*0.2|float) }} Rs.</td>
+                        </tr>
+                        <tr>
+                          <td class="text-right"><strong>Total</strong></td>
+                          <td class="text-right">{{ '%0.2f'| format(subtotal*1.2|float) }} Rs.</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p class="text-right"> <span class="btn-viewcart"><a href=""><strong><i class="fa fa-shopping-cart"></i> View Cart</strong></a></span> <span class="btn-checkout"><a href="checkout.html"><strong><i class="fa fa-share"></i> Checkout</strong></a></span> </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <nav id="menu" class="navbar">
+        <div class="nav-inner container">
+            <div class="navbar-header"><span id="category" class="visible-xs">Categories</span>
+                <button type="button" class="btn btn-navbar navbar-toggle" ><i class="fa fa-bars"></i></button>
+            </div>
+            <div class="navbar-collapse">
+                <ul class="main-navigation">
+                    <li><a href="index-2.html"   class="parent"  >Home</a> </li>
+                    <li><a href="category.html"   class="parent"  >Fruits</a> </li>
+                    <li><a href="category.html"   class="parent"  >Vegetables</a> </li>
+                    <li><a href="category.html"   class="parent"  >Exotica</a> </li>
+                    <li><a href="category.html"   class="parent"  >Groceries</a> </li>
+                    <li><a href="category.html"   class="parent"  >Health & Beauty</a> </li>
+                    <li><a href="#" class="active parent">Page</a>
+                        <ul>
+                            <li><a href="category.html">Category Page</a></li>
+                            <li><a href="cart.html">Cart Page</a></li>
+                            <li><a href="checkout.html">Checkout Page</a></li>
+                            <li><a href="blog.html" >Blog Page</a></li>
+                            <li><a href="singale-blog.html" >Singale Blog Page</a></li>
+                            <li><a href="register.html">Register Page</a></li>
+                            <li><a href="contact.html">Contact Page</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blog.html" class="parent"  >Blog</a></li>
+                    <li><a href="about-us.html" >About us</a></li>
+                    <li><a href="contact.html" >Contact Us</a> </li>
+                </ul>
+            </div>
+        </div>
+    </nav>

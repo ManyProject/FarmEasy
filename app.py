@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import mysql.connector
+
 from controller.authentication import login, register, authentication_check
-from controller.produce import productdetail, addproduct
-from controller.cart import cart_data
+from controller.produce import product_detail
+from controller.cart import cart_data, delete_item, update_item, add_item
+from controller.checkout import checkout_page, checkout_func
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super secret key'
@@ -15,16 +17,30 @@ def index():
 @app.route('/cart')
 @authentication_check
 def cart():
-    return cart_data()
+    items, latestitems, categories, subtotal, items_len =  cart_data()
+    return render_template('cart.html', items=items, latestitems=latestitems, categories=categories, subtotal=subtotal, number=items_len)
 
-@app.route('/product/<produce_id>')
+@app.route('/cart_item', methods = ['POST'])
+@authentication_check
+def item():
+    if(request.form.get('type', None) == 'delete'):
+        delete_item(request.form.get('item_id'))
+        return redirect(url_for(request.form.get('endpoint', 'cart'))) 
+    elif(request.form.get('type', None) == 'update'):
+        msg = update_item(request.form.get('item_id', None), request.form.get('quantity', None), request.form.get('produce_id', None),)
+        flash(msg)
+        return redirect(url_for(request.form.get('endpoint', 'cart'))) 
+    elif(request.form.get('type', None) == 'add'):
+        add_item(request.form.get('produce_id', None), request.form.get('quantity', None))
+        return redirect(url_for(request.form.get('endpoint', 'cart'))) 
+
+@app.route('/product/<produce_id>', methods = ['GET', 'POST'])
 @authentication_check
 def product(produce_id):
-    if request.method == 'POST':
-        quantity = request.form['quantity']
-        produce_id = request.form['produce_id']
-        return addproduct(quantity, produce_id)
-    return productdetail(produce_id)
+    items, latestitems, categories, subtotal, items_len = cart_data()
+    data, relateditems, latestitems, categories = product_detail(produce_id) 
+    return render_template('product.html', data=data, relateditems=relateditems, latestitems=latestitems, categories=categories,
+                            subtotal=subtotal, items=items)
 
 @app.route('/login', methods=['GET', 'POST'])
 @authentication_check
@@ -49,6 +65,14 @@ def logout():
     session.pop('role', None)
     session.pop('id', None)
     return redirect(url_for('index'))
+
+@app.route('/checkout',methods=['GET', 'POST'])
+@authentication_check
+def checkout():
+    if(request.method == 'GET'):
+        return checkout_page()
+    else:
+        return checkout_func()
 
 if __name__ == '__main__':
     app.run(debug=True)

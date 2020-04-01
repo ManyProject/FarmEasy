@@ -62,6 +62,8 @@ def register(app):
 
     ip_vars = [fname, lname, email, phone, addr, role, pwd, pwd_repeat]
 
+    address = ['Mumbai','Delhi','Pune','Banglore','Kolkata']
+
     if(None in ip_vars):
         return "Incomplete form"
     if(pwd != pwd_repeat):
@@ -74,10 +76,15 @@ def register(app):
         bcrypt = Bcrypt(app)
         pw_hash = bcrypt.generate_password_hash(pwd).decode('utf-8')
         cur = connection.cursor()
-        query = "INSERT INTO user(user_id, user_name, user_email, user_phone, user_address, user_role, user_password) VALUES(UUID(), %s, %s, %s, %s, %s, %s)"
+        query = "INSERT INTO user(user_id, user_name, user_email, user_phone, user_role, user_password) VALUES(UUID(), %s, %s, %s, %s, %s)"
         cur.execute(query, (name, email, phone, addr, role, pw_hash, ))
         connection.commit()
-    except expression as identifier:
+        sql = "INSERT INTO address VALUES (%s, UUID(), %s)"
+        x = random.randint(0, len(address)-1)
+        params = (uid, address[x],)
+        cur.execute(sql, params) 
+        cur.commit() 
+    except Exception as identifier:
         pass
     finally:
         cur.close()

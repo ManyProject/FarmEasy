@@ -1,329 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-<title>Fresh Food</title><meta http-equiv="content-type" content="text/html;charset=utf-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="e-commerce site well design with responsive view." />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-<link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<link href='static/https://fonts.googleapis.com/css?family=Work+Sans:100,300,400,500,700,900' rel='stylesheet' type='text/css'>
-<link href="/static/css/stylesheet.css" rel="stylesheet">
-<link href="/static/css/responsive.css" rel="stylesheet">
-<link href="/static/owl-carousel/owl.carousel.css" type="text/css" rel="stylesheet" media="screen" />
-<link href="/static/owl-carousel/owl.transitions.css" type="text/css" rel="stylesheet" media="screen" />
-<script src="/static/javascript/jquery-2.1.1.min.js" ></script>
-<script src="/static/bootstrap/js/bootstrap.min.js" ></script>
-<script src="/static/javascript/jstree.min.js"></script>
-<script src="/static/javascript/template.js"></script>
-<script src="/static/javascript/common.js" ></script>
-<script src="/static/javascript/global.js" ></script>
-<script src="/static/owl-carousel/owl.carousel.min.js" ></script>
-</head>
-<body class="cart col-2">
-<div class="preloader loader" style="display: block; background:#f2f2f2;"> <img src="/static/image/loader.gif"  alt="#"/></div>
-<header>
-  <div class="header-top">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="top-right pull-right">
-            <div id="top-links" class="nav pull-right">
-              <ul class="list-inline">
-                <li class="dropdown"><a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-user"></i><span>My Account</span> <span class="caret"></span></a>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="{{ url_for('registration') }}">My Profile</a></li>
-                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                  </ul>
-                </li>
-              </ul>              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="header-inner">
-      <div class="col-sm-4 col-xs-6 header-left">
-        <div class="shipping">
-          <div class="shipping-img"></div>
-          <div class="shipping-text">+91(000)1234-1234<span class="shipping-detail">Week From 9:00am To 7:00pm</span></div>
-        </div>
-      </div>
-      <div class="col-sm-4 col-xs-12 header-middle">
-        <div class="header-middle-top">
-          <div id="logo"> <a href="index-2.html"><img src="/static/image/logo.png" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
-        </div>
-      </div>
-      <div class="col-sm-4 col-xs-12 header-right">
-        <div id="cart" class="btn-group btn-block">
-          <button type="button" class="btn btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button"> <span id="cart-total"><span class="cart-title">Shopping Cart</span><br>
-          {{ number }} item(s) - {{ subtotal*1.2 }} Rs.</span> </button>
-          <ul class="dropdown-menu pull-right cart-dropdown-menu">
-            {% for item in items %}
-            <li>
-              <table class="table table-striped">
-                <tbody>
-                  <tr>
-                    <td class="text-center"><a href="{{url_for('product', produce_id = item[5])}}"><img style="height: 50px" class="img-thumbnail" title="Product Image" alt="Product Image" src="{{item[4]}}"></a></td>
-                    <td class="text-left"><a href="{{url_for('product', produce_id = item[5])}}">{{ item[3] }}</a></td>
-                    <td class="text-right">x{{ item[2] }}</td>
-                    <td class="text-right">{{ item[1]*item[2] }} Rs.</td>
-                    <td class="text-center"><button class="btn btn-danger btn-xs" title="Remove" type="button"><i class="fa fa-times"></i></button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </li>
-            {% endfor %}
-            <li>
-              <div>
-                <table class="table table-bordered">
-                  <tbody>
-                    <tr>
-                      <td class="text-right"><strong>Sub-Total</strong></td>
-                      <td class="text-right">{{ subtotal }} Rs.</td>
-                    </tr>
-                    <tr>
-                      <td class="text-right"><strong>GST (20%)</strong></td>
-                      <td class="text-right">{{ subtotal*0.2 }} Rs.</td>
-                    </tr>
-                    <tr>
-                      <td class="text-right"><strong>Total</strong></td>
-                      <td class="text-right">{{ subtotal*1.2 }} Rs.</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p class="text-right"> <span class="btn-viewcart"><a href=""><strong><i class="fa fa-shopping-cart"></i> View Cart</strong></a></span> <span class="btn-checkout"><a href="checkout.html"><strong><i class="fa fa-share"></i> Checkout</strong></a></span> </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-<nav id="menu" class="navbar">
-    <div class="nav-inner container">
-        <div class="navbar-header"><span id="category" class="visible-xs">Categories</span>
-            <button type="button" class="btn btn-navbar navbar-toggle" ><i class="fa fa-bars"></i></button>
-        </div>
-        <div class="navbar-collapse">
-            <ul class="main-navigation">
-                <li><a href="index-2.html"   class="parent"  >Home</a> </li>
-                <li><a href="category.html"   class="parent"  >Fruits</a> </li>
-                <li><a href="category.html"   class="parent"  >Vegetables</a> </li>
-                <li><a href="category.html"   class="parent"  >Exotica</a> </li>
-                <li><a href="category.html"   class="parent"  >Groceries</a> </li>
-                <li><a href="category.html"   class="parent"  >Health & Beauty</a> </li>
-                <li><a href="#" class="active parent">Page</a>
-                    <ul>
-                        <li><a href="category.html">Category Page</a></li>
-                        <li><a href="cart.html">Cart Page</a></li>
-                        <li><a href="checkout.html">Checkout Page</a></li>
-                        <li><a href="blog.html" >Blog Page</a></li>
-                        <li><a href="singale-blog.html" >Singale Blog Page</a></li>
-                        <li><a href="register.html">Register Page</a></li>
-                        <li><a href="contact.html">Contact Page</a></li>
-                    </ul>
-                </li>
-                <li><a href="blog.html" class="parent"  >Blog</a></li>
-                <li><a href="about-us.html" >About us</a></li>
-                <li><a href="contact.html" >Contact Us</a> </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+{% include "header.html" %}
+{% block body %}
 <div class="container">
-  <ul class="breadcrumb">
-    <li><a href="index-2.html"><i class="fa fa-home"></i></a></li>
-    <li><a href="cart.html">Shopping Cart</a></li>
-  </ul>
-  <div class="row">
-    <div id="column-left" class="col-sm-3 hidden-xs column-left">
-      <div class="column-block">
+    <ul class="breadcrumb">
+      <li><a href="index-2.html"><i class="fa fa-home"></i></a></li>
+      <li><a href="cart.html">Shopping Cart</a></li>
+    </ul>
+    <div class="row">
+      <div id="column-left" class="col-sm-3 hidden-xs column-left">
         <div class="column-block">
-          <div class="columnblock-title">Categories</div>
-          <div class="category_block">
-            <ul class="box-category treeview-list treeview">
-              {% for i in categories %}
-                <li><a href="#">{{i[0]}}</a></li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
-        <h3 class="productblock-title">Latest </h3>
-        <div class="row bestseller-grid product-grid">
-          {% for li in latestitems %}
-          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-grid-item">
-            <div class="product-thumb transition">
-              <div class="image product-imageblock"> <a href="{{url_for('product',produce_id = li[3])}}"> <img src="{{li[2]}}" alt="" title="" class="img-responsive" style="height: 60px; width: 50px;"/> </a>
-              </div>
-              <div class="caption product-detail">
-                <h4 class="product-name"> <a href="{{url_for('product',produce_id = li[3])}}" title=""> {{li[0]}} </a> </h4>
-                <p class="price product-price"> <span class="price-new">{{li[1]}}</span></p>
-                <h4 class="product-name"> {{li[4]}} </h4>
-              </div>
+          <div class="column-block">
+            <div class="columnblock-title">Categories</div>
+            <div class="category_block">
+              <ul class="box-category treeview-list treeview">
+                {% for i in categories %}
+                  <li><a href="#">{{i[0]}}</a></li>
+                {% endfor %}
+              </ul>
             </div>
           </div>
-          {% endfor %}
+          <h3 class="productblock-title">Latest </h3>
+          <div class="row bestseller-grid product-grid">
+            {% for li in latestitems %}
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-grid-item">
+              <div class="product-thumb transition">
+                <div class="image product-imageblock"> <a href="{{url_for('product',produce_id = li[3])}}"> <img src="{{li[2]}}" alt="" title="" class="img-responsive" style="height: 60px; width: 60px;"/> </a>
+                </div>
+                <div class="caption product-detail">
+                  <h4 class="product-name"> <a href="{{url_for('product',produce_id = li[3])}}" title=""> {{li[0]}} </a> </h4>
+                  <p class="price product-price"> <span class="price-new">{{li[1]}}</span></p>
+                  <h4 class="product-name"> {{li[4]}} </h4>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-sm-9" id="content">
-      <h1>Shopping Cart</h1>
-      <form enctype="multipart/form-data" method="post" action="#">
-        <div class="table-responsive">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <td class="text-center">Image</td>
-                <td class="text-left">Product Name</td>
-                <td class="text-left">Farmer</td>
-                <td class="text-left">Quantity</td>
-                <td class="text-right">Unit Price</td>
-                <td class="text-right">Total</td>
-              </tr>
-            </thead>
-            <tbody>
-              {% for item in items %}
-              <tr>
-                <td class="text-center"><a href="{{ url_for('product', produce_id=item[5]) }}"><img class="img-thumbnail" title="" alt="" src="{{item[4]}}" style = "height: 75px;"></a></td>
-                <td class="text-left"><a href="{{ url_for('product', produce_id=item[5]) }}">{{item[3]}}</a></td>
-                <td class="text-left">{{item[6]}}</td>
-                <td class="text-left"><div style="max-width: 200px;" class="input-group btn-block">
-                    <input type="text" class="form-control quantity" size="1" value="{{item[2]}}" name="quantity">
-                    <span class="input-group-btn">
-                    <button class="btn btn-primary" title="" data-toggle="tooltip" type="submit" data-original-title="Update"><i class="fa fa-refresh"></i></button>
-                    <button  class="btn btn-danger" title="" data-toggle="tooltip" type="button" data-original-title="Remove"><i class="fa fa-times-circle"></i></button>
-                    </span></div></td>
-                <td class="text-right">{{item[1]}} Rs.</td>
-                <td class="text-right">{{item[1]*item[2]}} Rs.</td>
-              </tr>
+      <div class="col-sm-9" id="content">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-success text-center">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                      </button>
+                  <strong>{{ message }}</strong>
+              </div>
               {% endfor %}
-            </tbody>
-          </table>
+            {% endif %}
+          {% endwith %}
+        <h1>Shopping Cart</h1>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <td class="text-center">Image</td>
+                  <td class="text-left">Product Name</td>
+                  <td class="text-left">Farmer</td>
+                  <td class="text-left">Quantity</td>
+                  <td class="text-right">Unit Price</td>
+                  <td class="text-right">Total</td>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                <tr>
+                  <td class="text-center"><a href="{{ url_for('product', produce_id=item[5]) }}"><img class="img-thumbnail" title="" alt="" src="{{item[4]}}" style = "height: 75px; width: 75px;"></a></td>
+                  <td class="text-left"><a href="{{ url_for('product', produce_id=item[5]) }}">{{item[3]}}</a></td>
+                  <td class="text-left">{{item[6]}}</td>
+                  <td class="text-left"><div style="max-width: 200px;" class="input-group btn-block">
+                    <form action="{{ url_for('item') }}" method="post">
+                      <input type="text" class="form-control quantity" size="1" value="{{ item[2] }}" name="quantity" type="submit">
+                      <span class="input-group-btn">
+                        <input type="hidden" value="{{ item[0] }}" name="item_id">
+                        <input type="hidden" value="{{ item[5] }}" name="produce_id">
+                        <button class="btn btn-primary" title="" data-toggle="tooltip" value="update" name="type" data-original-title="Update" type="submit"><i class="fa fa-refresh"></i></button>
+                        <button class="btn btn-danger" title="" data-toggle="tooltip" value="delete" name="type" data-original-title="Remove" type="submit"><i class="fa fa-times-circle"></i></button>
+                      </span></div>
+                    </form>
+                  </td>
+                  <td class="text-right">{{ item[1] }} Rs.</td>
+                  <td class="text-right">{{ item[1]*item[2] }} Rs.</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>     
+        <div class="row">
+          <div class="col-sm-4 col-sm-offset-8">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <td class="text-right"><strong>Sub-Total:</strong></td>
+                  <td class="text-right">{{ subtotal }} Rs.</td>
+                </tr>
+                <tr>
+                  <td class="text-right"><strong>GST (20%):</strong></td>
+                  <td class="text-right">{{ '%0.2f'| format(subtotal*0.2|float) }} Rs.</td>
+                </tr>
+                <tr>
+                  <td class="text-right"><strong>Total:</strong></td>
+                  <td class="text-right">{{ '%0.2f'| format(subtotal*1.2|float) }} Rs.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </form>
-     
-      <div class="row">
-        <div class="col-sm-4 col-sm-offset-8">
-          <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <td class="text-right"><strong>Sub-Total:</strong></td>
-                <td class="text-right">{{ subtotal }} Rs.</td>
-              </tr>
-              <tr>
-                <td class="text-right"><strong>GST (20%):</strong></td>
-                <td class="text-right">{{ subtotal*0.2 }} Rs.</td>
-              </tr>
-              <tr>
-                <td class="text-right"><strong>Total:</strong></td>
-                <td class="text-right">{{ subtotal*1.2 }} Rs.</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="buttons">
+          <div class="pull-left"><a class="btn btn-default" href="index-2.html">Continue Shopping</a></div>
+          <div class="pull-right"><a class="btn btn-primary" href="checkout.html">Checkout</a></div>
         </div>
-      </div>
-      <div class="buttons">
-        <div class="pull-left"><a class="btn btn-default" href="index-2.html">Continue Shopping</a></div>
-        <div class="pull-right"><a class="btn btn-primary" href="checkout.html">Checkout</a></div>
       </div>
     </div>
   </div>
-</div>
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="footer-top-cms">
-            <div class="col-sm-7">
-                    <div class="newslatter">
-                        <form>
-                            <h5>Newsletter</h5>
-                            <div class="input-group">
-                                <input type="text" class=" form-control" placeholder="Email Here......">
-                                <button type="submit" value="Sign up" class="btn btn-large btn-primary">Subscribe</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            <div class="col-sm-5">
-            <div class="footer-social">
-                <h5>Social</h5>
-                <ul>
-                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li class="gplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    <li class="youtube"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-                </ul>
-            </div>
-            </div>
-        </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3 footer-block">
-                <h5 class="footer-title">Information</h5>
-                <ul class="list-unstyled ul-wrapper">
-                    <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="checkout.html">Delivery Information</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms &amp; Conditions</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-3 footer-block">
-                <h5 class="footer-title">Customer Service</h5>
-                <ul class="list-unstyled ul-wrapper">
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="#">Returns</a></li>
-                    <li><a href="#">Site Map</a></li>
-                    <li><a href="#">Wish List</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-3 footer-block">
-                <h5 class="footer-title">Extras</h5>
-                <ul class="list-unstyled ul-wrapper">
-                    <li><a href="#">Brands</a></li>
-                    <li><a href="gift.html">Gift Vouchers</a></li>
-                    <li><a href="affiliate.html">Affiliates</a></li>
-                    <li><a href="#">Specials</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-3 footer-block">
-                <div class="content_footercms_right">
-                    <div class="footer-contact">
-                        <h5 class="contact-title footer-title">Contact Us</h5>
-                        <ul class="ul-wrapper">
-                            <li><i class="fa fa-map-marker"></i><span class="location2"> Warehouse & Offices,<br>
-                                12345 Street name, California<br>
-                                USA</span></li>
-                            <li><i class="fa fa-envelope"></i><span class="mail2"><a href="#">info@localhost.com</a></span></li>
-                            <li><i class="fa fa-mobile"></i><span class="phone2">+91 0987-654-321</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <a id="scrollup">Scroll</a> </footer>
-<div class="footer-bottom">
-  <div class="container">
-    <div class="copyright">Powered By<a class="yourstore" href="http://www.lionode.com/">lionode &copy; 2016 </a> </div>
-    <div class="footer-bottom-cms">
-      <div class="footer-payment">
-        <ul>
-          <li class="mastero"><a href="#"><img alt="" src="static/image/payment/mastero.jpg"></a></li>
-          <li class="visa"><a href="#"><img alt="" src="static/image/payment/visa.jpg"></a></li>
-          <li class="currus"><a href="#"><img alt="" src="static/image/payment/currus.jpg"></a></li>
-          <li class="discover"><a href="#"><img alt="" src="static/image/payment/discover.jpg"></a></li>
-          <li class="bank"><a href="#"><img alt="" src="static/image/payment/bank.jpg"></a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
 </body>
-
+{% endblock %}
+{% include "footer.html" %}
 </html>
