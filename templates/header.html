@@ -66,8 +66,8 @@
                       <tr>
                         <td class="text-center"><a href="{{url_for('product', produce_id = item[5])}}"><img style="height: 50px; width: 50px" class="img-thumbnail" title="Product Image" alt="Product Image" src="{{item[4]}}"></a></td>
                         <td class="text-left"><a href="{{url_for('product', produce_id = item[5])}}">{{ item[3] }}</a></td>
-                        <td class="text-right">x{{ item[2] }}</td>
-                        <td class="text-right">{{ item[1]*item[2] }} Rs.</td>
+                        <td class="text-right">x{{ '%0.2f'| format(item[1]|float) }} Rs.</td>
+                        <td class="text-right">{{ '%0.2f'| format(item[1]*item[2]|float) }} Rs.</td>
                         <form action="{{ url_for('item') }}" method="post">
                           <input type="hidden" value="cart" name="endpoint">
                             <input type="hidden" value="{{ item[0] }}" name="item_id">
@@ -84,7 +84,7 @@
                       <tbody>
                         <tr>
                           <td class="text-right"><strong>Sub-Total</strong></td>
-                          <td class="text-right">{{ subtotal }} Rs.</td>
+                          <td class="text-right">{{ '%0.2f'| format(subtotal|float) }} Rs.</td>
                         </tr>
                         <tr>
                           <td class="text-right"><strong>GST (20%)</strong></td>
@@ -96,7 +96,7 @@
                         </tr>
                       </tbody>
                     </table>
-                    <p class="text-right"> <span class="btn-viewcart"><a href=""><strong><i class="fa fa-shopping-cart"></i> View Cart</strong></a></span> <span class="btn-checkout"><a href="checkout.html"><strong><i class="fa fa-share"></i> Checkout</strong></a></span> </p>
+                    <p class="text-right"> <span class="btn-viewcart"><a href="{{ url_for('cart') }}"><strong><i class="fa fa-shopping-cart"></i> View Cart</strong></a></span> <span class="btn-checkout"><a href="{{ url_for('checkout') }}"><strong><i class="fa fa-share"></i> Checkout</strong></a></span> </p>
                   </div>
                 </li>
               </ul>

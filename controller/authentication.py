@@ -84,8 +84,8 @@ def register(app):
         params = (uid, address[x],)
         cur.execute(sql, params) 
         cur.commit() 
-    except Exception as identifier:
-        pass
+    except mysql.connector.Error as err:
+        print(err)
     finally:
         cur.close()
         connection.close()

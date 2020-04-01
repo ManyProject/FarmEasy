@@ -8,7 +8,8 @@ def get_categories():
         cur = connection.cursor()
         cur.execute(query)
         categories = cur.fetchall()
-    except:
+    except mysql.connector.Error as err:
+        print(err)
         return []
     finally:
         cur.close()
@@ -16,17 +17,18 @@ def get_categories():
     return categories
 
 def get_related_items(produce_category):
-    query = "SELECT produce_name, produce_price, produce_image,produce_id , user_name \
+    query = "SELECT produce_name, produce_price, produce_image, produce_id , user_name \
         FROM produce INNER JOIN user ON farmer_id = user_id WHERE produce_category = %s LIMIT 7"
     try:
         connection = connect()
         cur = connection.cursor()
-        params = (produce_category, produce_id,)
+        params = (produce_category,)
         cur.execute(query, params)
         related_items = cur.fetchall()
-        if(not relateditems):
+        if(not related_items):
             related_items = []
-    except:
+    except mysql.connector.Error as err:
+        print(err)
         return []
     finally:
         cur.close()
@@ -39,12 +41,12 @@ def get_latest_items():
     try:
         connection = connect()
         cur = connection.cursor()
-        params = (produce_id,)
-        cur.execute(query, params)
+        cur.execute(query)
         latest_items = cur.fetchall()
         if(not latest_items):
             latest_items = []
-    except:
+    except mysql.connector.Error as err:
+        print(err)
         return []
     finally:
         cur.close()

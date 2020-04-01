@@ -80,8 +80,8 @@
                       </span></div>
                     </form>
                   </td>
-                  <td class="text-right">{{ item[1] }} Rs.</td>
-                  <td class="text-right">{{ item[1]*item[2] }} Rs.</td>
+                  <td class="text-right">{{ '%0.2f'| format(item[1]|float) }} Rs.</td>
+                  <td class="text-right">{{ '%0.2f'| format(item[1]*item[2]|float) }} Rs.</td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -93,7 +93,7 @@
               <tbody>
                 <tr>
                   <td class="text-right"><strong>Sub-Total:</strong></td>
-                  <td class="text-right">{{ subtotal }} Rs.</td>
+                  <td class="text-right">{{ '%0.2f'| format(subtotal|float) }} Rs.</td>
                 </tr>
                 <tr>
                   <td class="text-right"><strong>GST (20%):</strong></td>

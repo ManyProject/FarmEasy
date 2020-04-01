@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2020 at 11:10 AM
+-- Generation Time: Apr 01, 2020 at 02:39 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -25,6 +25,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `address`
+--
+
+CREATE TABLE `address` (
+  `buyer_id` varchar(36) NOT NULL,
+  `address_id` varchar(36) NOT NULL,
+  `buyer_address` varchar(160) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `buyer`
 --
 
@@ -40,10 +52,9 @@ CREATE TABLE `buyer` (
 
 CREATE TABLE `cart_items` (
   `item_id` varchar(36) NOT NULL,
-  `item_price` float NOT NULL,
-  `item_quantity` float NOT NULL,
-  `item_name` varchar(50) NOT NULL,
-  `buyer_id` varchar(36) NOT NULL
+  `item_quantity` int(11) NOT NULL,
+  `buyer_id` varchar(36) NOT NULL,
+  `produce_id` varchar(36) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -137,8 +148,8 @@ CREATE TABLE `user` (
   `user_name` varchar(25) NOT NULL,
   `user_email` varchar(160) NOT NULL,
   `user_phone` bigint(10) NOT NULL,
-  `user_address` varchar(160) NOT NULL,
   `user_password` varchar(60) NOT NULL,
+  `user_address` varchar(60) NOT NULL,
   `user_image` varchar(100) NOT NULL,
   `user_role` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -146,6 +157,13 @@ CREATE TABLE `user` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `address`
+--
+ALTER TABLE `address`
+  ADD PRIMARY KEY (`address_id`),
+  ADD KEY `buyer_address` (`buyer_id`);
 
 --
 -- Indexes for table `buyer`
@@ -158,7 +176,8 @@ ALTER TABLE `buyer`
 --
 ALTER TABLE `cart_items`
   ADD PRIMARY KEY (`item_id`),
-  ADD KEY `buyer_cart` (`buyer_id`);
+  ADD KEY `buyer_cart` (`buyer_id`),
+  ADD KEY `produce_item` (`produce_id`);
 
 --
 -- Indexes for table `delivery`
@@ -212,6 +231,12 @@ ALTER TABLE `user`
 --
 
 --
+-- Constraints for table `address`
+--
+ALTER TABLE `address`
+  ADD CONSTRAINT `buyer_address` FOREIGN KEY (`buyer_id`) REFERENCES `buyer` (`buyer_id`);
+
+--
 -- Constraints for table `buyer`
 --
 ALTER TABLE `buyer`
@@ -221,7 +246,8 @@ ALTER TABLE `buyer`
 -- Constraints for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  ADD CONSTRAINT `buyer_cart` FOREIGN KEY (`buyer_id`) REFERENCES `buyer` (`buyer_id`);
+  ADD CONSTRAINT `buyer_cart` FOREIGN KEY (`buyer_id`) REFERENCES `buyer` (`buyer_id`),
+  ADD CONSTRAINT `produce_item` FOREIGN KEY (`produce_id`) REFERENCES `produce` (`produce_id`);
 
 --
 -- Constraints for table `delivery`
