@@ -90,10 +90,13 @@
           <div id="product">
             <div class="form-group">
               <form action="{{ url_for('item') }}" method="POST">
+                <label class="control-label qty-label" for="input-quantity">Select Quantity</label>
                 <input type="hidden" name="produce_id" value="{{ data[3] }}">
-                <label class="control-label qty-label" for="input-quantity">Qty</label>
-                <input type="number" name="quantity" value="1" min="1" id="input-quantity" class="form-control productpage-qty" />
-                <button type="submit" name="type" value="add" id="button-cart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block addtocart">Add to Cart</button>
+                <input type="number" name="quantity" value="1" min="1" max="{{ data[4] }}" id="input-quantity" class="form-control" style="height: 35px; width: auto;"/>
+                <div class="btn-group">
+                  <button type="submit" name="type" value="add" id="button-cart" data-loading-text="Loading..." class="btn btn-primary btn-lg addtocart">Add to Cart</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

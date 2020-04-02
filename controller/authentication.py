@@ -24,7 +24,7 @@ def login(app):
     bcrypt = Bcrypt(app)
     email = form['email']
     password = form['password']
-    query = "SELECT user_password, user_role, user_id FROM user WHERE user_email = %s"
+    query = "SELECT user_password, user_role, user_id, user_email FROM user WHERE user_email = %s"
     try:
         connection = connect()
         cur = connection.cursor()
@@ -33,7 +33,7 @@ def login(app):
         if len(results) > 0:
             results = results[0]
             if bcrypt.check_password_hash(results[0], password):
-                session['email'] = email
+                session['email'] = results[3]
                 session['role'] = results[1]
                 session['id'] = results[2]
                 return redirect(url_for('index'))
@@ -76,7 +76,8 @@ def register(app):
         bcrypt = Bcrypt(app)
         pw_hash = bcrypt.generate_password_hash(pwd).decode('utf-8')
         cur = connection.cursor()
-        query = "INSERT INTO user(user_id, user_name, user_email, user_phone, user_role, user_password) VALUES(UUID(), %s, %s, %s, %s, %s)"
+        query = "INSERT INTO user(user_id, user_name, user_email, user_phone, user_role, user_password)\
+             VALUES(UUID(), %s, %s, %s, %s, %s)"
         cur.execute(query, (name, email, phone, addr, role, pw_hash, ))
         connection.commit()
         sql = "INSERT INTO address VALUES (%s, UUID(), %s)"

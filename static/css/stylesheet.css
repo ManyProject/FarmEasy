@@ -1151,6 +1151,7 @@ h2.price {
 }
 .productpage-qty {
 	width: 50px;
+
 }
 .productpage-title {
 	font-weight: bold;
@@ -1843,8 +1844,9 @@ span.review-count, span.review-edit {
 	overflow: hidden;
 }
 #input-quantity {
-	float: left;
+	float: right;
 	margin-right: 10px;
+	
 }
 #product {
 	clear: both;
@@ -2348,7 +2350,7 @@ video {
 }
 #submit {
 	background: #ef8829none repeat scroll 0 0;
-	height: 32px;
+	height : 32px;
 	border: none;
 	color: #fff;
 	width: 100px;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2020 at 02:39 PM
+-- Generation Time: Apr 02, 2020 at 03:28 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -60,20 +60,6 @@ CREATE TABLE `cart_items` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `delivery`
---
-
-CREATE TABLE `delivery` (
-  `delivery_id` varchar(36) NOT NULL,
-  `pickup_time` datetime NOT NULL,
-  `drop_time` datetime NOT NULL,
-  `buyer_id` varchar(36) NOT NULL,
-  `delivery_status` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `delivery_agency`
 --
 
@@ -117,7 +103,13 @@ CREATE TABLE `orders` (
   `order_quantity` int(11) NOT NULL,
   `order_date` datetime NOT NULL,
   `order_price` float NOT NULL,
-  `delivery_id` varchar(36) NOT NULL
+  `pickup_time` datetime NOT NULL,
+  `drop_time` datetime NOT NULL,
+  `delivery_status` varchar(20) NOT NULL,
+  `delivery_agency_id` varchar(36) NOT NULL,
+  `payment_method` varchar(20) NOT NULL,
+  `delivery_address` varchar(40) NOT NULL,
+  `produce_id` varchar(36) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -134,7 +126,8 @@ CREATE TABLE `produce` (
   `produce_quantity` int(11) NOT NULL,
   `produce_image` varchar(100) NOT NULL,
   `produce_category` varchar(20) NOT NULL,
-  `produce_date` datetime NOT NULL
+  `produce_date` datetime NOT NULL,
+  `delivery_agency_id` varchar(36) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -180,13 +173,6 @@ ALTER TABLE `cart_items`
   ADD KEY `produce_item` (`produce_id`);
 
 --
--- Indexes for table `delivery`
---
-ALTER TABLE `delivery`
-  ADD PRIMARY KEY (`delivery_id`),
-  ADD KEY `c3` (`buyer_id`);
-
---
 -- Indexes for table `delivery_agency`
 --
 ALTER TABLE `delivery_agency`
@@ -211,14 +197,16 @@ ALTER TABLE `farmer`
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
   ADD KEY `c1` (`buyer_id`),
-  ADD KEY `c2` (`delivery_id`);
+  ADD KEY `order_delivery` (`delivery_agency_id`),
+  ADD KEY `order_produce` (`produce_id`);
 
 --
 -- Indexes for table `produce`
 --
 ALTER TABLE `produce`
   ADD PRIMARY KEY (`produce_id`,`farmer_id`),
-  ADD KEY `c6` (`farmer_id`);
+  ADD KEY `c6` (`farmer_id`),
+  ADD KEY `produce_delivery` (`delivery_agency_id`);
 
 --
 -- Indexes for table `user`
@@ -250,12 +238,6 @@ ALTER TABLE `cart_items`
   ADD CONSTRAINT `produce_item` FOREIGN KEY (`produce_id`) REFERENCES `produce` (`produce_id`);
 
 --
--- Constraints for table `delivery`
---
-ALTER TABLE `delivery`
-  ADD CONSTRAINT `c3` FOREIGN KEY (`buyer_id`) REFERENCES `buyer` (`buyer_id`);
-
---
 -- Constraints for table `delivery_agent`
 --
 ALTER TABLE `delivery_agent`
@@ -272,14 +254,16 @@ ALTER TABLE `farmer`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `c1` FOREIGN KEY (`buyer_id`) REFERENCES `buyer` (`buyer_id`),
-  ADD CONSTRAINT `c2` FOREIGN KEY (`delivery_id`) REFERENCES `delivery` (`delivery_id`);
+  ADD CONSTRAINT `order_buyer` FOREIGN KEY (`buyer_id`) REFERENCES `buyer` (`buyer_id`),
+  ADD CONSTRAINT `order_delivery` FOREIGN KEY (`delivery_agency_id`) REFERENCES `delivery_agency` (`agency_id`),
+  ADD CONSTRAINT `order_produce` FOREIGN KEY (`produce_id`) REFERENCES `produce` (`produce_id`);
 
 --
 -- Constraints for table `produce`
 --
 ALTER TABLE `produce`
-  ADD CONSTRAINT `c6` FOREIGN KEY (`farmer_id`) REFERENCES `farmer` (`farmer_id`);
+  ADD CONSTRAINT `produce_delivery` FOREIGN KEY (`delivery_agency_id`) REFERENCES `delivery_agency` (`agency_id`),
+  ADD CONSTRAINT `produce_farmer` FOREIGN KEY (`farmer_id`) REFERENCES `farmer` (`farmer_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

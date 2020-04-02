@@ -22,6 +22,7 @@ agency_name = ['Indian Post','FedX','Shipping Corp.','iThink Logistics']
 intercity_rates = [200,314,155,266]
 intracity_rates = [50,35,42,37]
 delivery_status = ['Delivered','Shipping','Pending']
+method = ['Cash On Delivery', 'Credit/Debit Card', 'Net Banking']
 produce_image = ["https://www.naturefresh.ca/wp-content/uploads/NFF-health-benefits-of-Tomatoes.jpg",
 "https://www.dw.com/image/47429859_303.jpg","https://sastapasal.com/wp-content/uploads/2019/11/chana-dal.jpg",
 "https://organicexpressmart.com/media/image/268/organic-khapali-wheat-whole-1-kg.jpg",
@@ -30,11 +31,8 @@ produce_image = ["https://www.naturefresh.ca/wp-content/uploads/NFF-health-benef
 def strTimeProp(start, end, format, prop):
     stime = time.mktime(time.strptime(start, format))
     etime = time.mktime(time.strptime(end, format))
-
     ptime = stime + prop * (etime - stime)
-
     return time.strftime(format, time.localtime(ptime))
-
 
 def randomDate(start, end, prop):
     return strTimeProp(start, end, '%Y/%m/%d %H:%M', prop)
@@ -46,9 +44,9 @@ print("deleted orders")
 mycursor.execute("DELETE FROM cart_items")
 mydb.commit()
 print("deleted cart_items")
-mycursor.execute("DELETE FROM delivery")
+mycursor.execute("DELETE FROM address")
 mydb.commit()
-print("deleted cart_items")
+print("deleted address")
 mycursor.execute("DELETE FROM buyer")
 mydb.commit()
 print("deleted buyer")
@@ -64,9 +62,6 @@ print("deleted delivery_agent")
 mycursor.execute("DELETE FROM delivery_agency")
 mydb.commit()
 print("deleted delivery_agency")
-mycursor.execute("DELETE FROM address")
-mydb.commit()
-print("deleted address")
 mycursor.execute("DELETE FROM user")
 mydb.commit()
 print("deleted user")
@@ -138,44 +133,6 @@ for i in uid:
             mycursor.execute(sql, params) 
             mydb.commit() 
 
-sql = "SELECT buyer_id FROM buyer"
-mycursor.execute(sql)
-buid = mycursor.fetchall()    
-
-for i in buid:
-    sql = "INSERT INTO delivery(delivery_id, pickup_time, drop_time, buyer_id, delivery_status) VALUES (UUID(), %s, %s, %s, %s)"
-    pickup = (randomDate("2020/03/27 8:00", "2020/03/27 20:00", random.random()))
-    drop = (randomDate("2020/03/28 8:00", "2020/03/28 20:00", random.random()))
-    x = random.randint(0,len(delivery_status)-1)
-    if delivery_status[x] == 'Delivered':
-        params = (pickup, drop, i[0], delivery_status[x],)
-        mycursor.execute(sql, params)
-        mydb.commit()
-    if delivery_status[x] == 'Shipping':
-        params = (pickup,"NA",i[0],delivery_status[x],)
-        mycursor.execute(sql, params)
-        mydb.commit()
-    if delivery_status[x] == 'Pending':
-        params = ("NA","NA",i[0],delivery_status[x],)
-        mycursor.execute(sql, params)
-        mydb.commit()
-
-sql = "SELECT delivery_id,buyer_id FROM delivery"
-mycursor.execute(sql)
-did = mycursor.fetchall()    
-
-values = []
-for i in did:
-    order_quantity = random.randint(1,10)
-    order_price = random.randint(1000,9999)
-    order_date = (randomDate("2020/03/22 08:00", "2020/03/26 23:00", random.random()))
-    val = (i[1],order_quantity,order_date,order_price,i[0],)
-    values.append(val)
-
-sql = "INSERT INTO orders(buyer_id,order_id,order_quantity,order_date,order_price,delivery_id) VALUES (%s, UUID(), %s, %s, %s, %s)"
-mycursor.executemany(sql, values)
-mydb.commit()
-
 sql = "SELECT farmer_id FROM farmer"
 mycursor.execute(sql)
 fid = mycursor.fetchall()    
@@ -186,16 +143,49 @@ for i in fid:
     y = random.randint(0,(len(fid)-1))
     produce_quantity = random.randint(1,10)
     produce_date = (randomDate("2020/03/01 08:00", "2020/03/20 23:00", random.random()))
-    val = (str(fid[y][0]),produce_name[x],round(random.uniform(produce_price[x]*0.8,produce_price[x]*1.2), 2),produce_quantity,produce_image[x],produce_category[x],produce_date,)
+    val = (str(fid[y][0]),produce_name[x],round(random.uniform(produce_price[x]*0.8,produce_price[x]*1.2), 2),
+    produce_quantity,produce_image[x],produce_category[x],produce_date,aid[random.randint(0, len(aid)-1)][0],)
     values.append(val)
 
-sql = "INSERT INTO produce(produce_id,farmer_id,produce_name,produce_price,produce_quantity,produce_image,produce_category,produce_date) VALUES (UUID(), %s, %s, %s, %s, %s, %s, %s)"
+sql = "INSERT INTO produce(produce_id,farmer_id,produce_name,produce_price,produce_quantity,\
+    produce_image,produce_category,produce_date,delivery_agency_id) VALUES (UUID(), %s, %s, %s, %s, %s, %s, %s, %s)"
 mycursor.executemany(sql, values)
 mydb.commit()
 
 sql = "SELECT produce_id, produce_name FROM produce"
 mycursor.execute(sql)
-pid = mycursor.fetchall()    
+pid = mycursor.fetchall() 
+
+sql = "SELECT buyer_id FROM buyer"
+mycursor.execute(sql)
+buid = mycursor.fetchall()  
+
+values = []
+for i in buid:
+    order_quantity = random.randint(1,5)
+    order_price = random.randint(1000,9999)
+    order_date = (randomDate("2020/03/22 08:00", "2020/03/26 23:00", random.random()))
+    delivery_agency_id = aid[random.randint(0, len(aid)-1)][0]
+    produce_id = pid[random.randint(0, len(aid)-1)][0]
+    x = random.randint(0, len(delivery_status)-1)
+    delivery_address = address[random.randint(0,len(names)-1)]
+    delivery_stat = delivery_status[x]
+    if delivery_stat == 'Delivered':
+        pickup = (randomDate("2020/03/27 8:00", "2020/03/27 20:00", random.random()))
+        drop = (randomDate("2020/03/28 8:00", "2020/03/28 20:00", random.random()))
+    if delivery_stat == 'Shipping':
+        pickup = (randomDate("2020/03/27 8:00", "2020/03/27 20:00", random.random()))
+        drop = "NA"
+    if delivery_stat == 'Pending':
+        pickup = "NA"
+        drop = "NA"
+    val = (i[0],order_quantity,order_date,order_price,delivery_agency_id,delivery_stat, pickup, drop, method[x],delivery_address, produce_id,)
+    values.append(val)
+
+sql = "INSERT INTO orders(buyer_id,order_id,order_quantity,order_date,order_price,delivery_agency_id,\
+    delivery_status,pickup_time, drop_time, payment_method, delivery_address, produce_id) VALUES (%s, UUID(), %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+mycursor.executemany(sql, values)
+mydb.commit()
 
 values = []
 for i in buid:

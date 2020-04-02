@@ -71,7 +71,7 @@
                   <td class="text-left">{{item[6]}}</td>
                   <td class="text-left"><div style="max-width: 200px;" class="input-group btn-block">
                     <form action="{{ url_for('item') }}" method="post">
-                      <input type="text" class="form-control quantity" size="1" value="{{ item[2] }}" name="quantity" type="submit">
+                      <input type="number" class="form-control quantity" size="1" min="1" max="{{ item[9] }}" name="quantity" value="{{ item[2] }}" type="submit">
                       <span class="input-group-btn">
                         <input type="hidden" value="{{ item[0] }}" name="item_id">
                         <input type="hidden" value="{{ item[5] }}" name="produce_id">
@@ -109,7 +109,7 @@
         </div>
         <div class="buttons">
           <div class="pull-left"><a class="btn btn-default" href="index-2.html">Continue Shopping</a></div>
-          <div class="pull-right"><a class="btn btn-primary" href="checkout.html">Checkout</a></div>
+          <div class="pull-right"><a class="btn btn-primary" href="{{url_for('checkout')}}">Checkout</a></div>
         </div>
       </div>
     </div>

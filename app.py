@@ -3,8 +3,10 @@ import mysql.connector
 
 from controller.authentication import login, register, authentication_check
 from controller.produce import product_detail
-from controller.cart import cart_data, delete_item, update_item, add_item
+from controller.cart import cart_data, delete_item, update_item, add_item, cart_items
 from controller.checkout import checkout_page, checkout_func
+from controller.history import order_history
+from utilities import get_perm_address, get_buyer_address
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super secret key'
@@ -17,8 +19,10 @@ def index():
 @app.route('/cart')
 @authentication_check
 def cart():
+    print(session['email'])
     items, latestitems, categories, subtotal, items_len =  cart_data()
-    return render_template('cart.html', items=items, latestitems=latestitems, categories=categories, subtotal=subtotal, number=items_len)
+    return render_template('cart.html', items=items, latestitems=latestitems, categories=categories,
+                         subtotal=subtotal, number=items_len)
 
 @app.route('/cart_item', methods = ['POST'])
 @authentication_check
@@ -39,8 +43,32 @@ def item():
 def product(produce_id):
     items, latestitems, categories, subtotal, items_len = cart_data()
     data, relateditems, latestitems, categories = product_detail(produce_id) 
-    return render_template('product.html', data=data, relateditems=relateditems, latestitems=latestitems, categories=categories,
-                            subtotal=subtotal, items=items)
+    return render_template('product.html', data=data, relateditems=relateditems, latestitems=latestitems,
+     categories=categories, subtotal=subtotal, items=items)
+
+@app.route('/checkout',methods=['GET', 'POST'])
+@authentication_check
+def checkout():
+    if(request.method == 'GET'):
+        return checkout_page()  
+    if(request.method == 'POST'):
+        return checkout_func()
+
+@app.route('/history')
+@authentication_check
+def history():
+    items, subtotal, items_len = cart_items()
+    perm_address = get_perm_address()
+    buyer_address = get_buyer_address()
+    purchased_items = order_history()
+    return render_template('orderhistory.html', items = items, subtotal = subtotal,
+         items_len = items_len, purchased_items = purchased_items, 
+         perm_address = perm_address, buyer_address = buyer_address) 
+
+@app.route('/delivery_status')
+@authentication_check
+def delivery_details():
+    return render_template('delivery.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 @authentication_check
@@ -65,14 +93,6 @@ def logout():
     session.pop('role', None)
     session.pop('id', None)
     return redirect(url_for('index'))
-
-@app.route('/checkout',methods=['GET', 'POST'])
-@authentication_check
-def checkout():
-    if(request.method == 'GET'):
-        return checkout_page()
-    else:
-        return checkout_func()
 
 if __name__ == '__main__':
     app.run(debug=True)
