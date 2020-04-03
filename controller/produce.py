@@ -1,6 +1,7 @@
 from flask import render_template, request, session
 import mysql.connector
 from flask_bcrypt import Bcrypt
+
 from db_connection import connect
 from utilities import get_categories, get_related_items, get_latest_items
 

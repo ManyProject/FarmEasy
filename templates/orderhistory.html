@@ -11,10 +11,8 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 	<link href="/static/css/bootstrap-iso.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 	<script>
 		$(document).ready(function(){
 			$("#search").on("keyup", function() {
@@ -96,7 +94,7 @@
 							<select class="form-control" id="status">
 								<option>Any</option>								
 								<option>Delivered</option>
-								<option>Shipped</option>
+								<option>Shipping</option>
 								<option>Pending</option>
 							</select>
 						</div>
@@ -128,7 +126,7 @@
 							<td>{{item[2]}}</td>
 							<td>{{item[3]}}</td>
 							<td><span class="status text-success">&bull;</span>{{item[4]}}</td>                        
-							<td>{{item[5]}}</td>
+							<td>{{item[5]}} Kg</td>
 							<td>{{item[6]}}</td>
 							<td>{{item[7]}}</td>
 						</tr>

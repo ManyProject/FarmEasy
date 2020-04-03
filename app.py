@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import mysql.connector
 
-from controller.authentication import login, register, authentication_check
+from controller.authentication import login, register, authentication_check, farmer_check, buyer_check, agent_check
 from controller.produce import product_detail
 from controller.cart import cart_data, delete_item, update_item, add_item, cart_items
 from controller.checkout import checkout_page, checkout_func
-from controller.history import order_history
+from controller.orderhistory import order_history
+from controller.delivery import get_status, set_status
+from controller.producehistory import get_produce
 from utilities import get_perm_address, get_buyer_address
 
 app = Flask(__name__)
@@ -18,6 +20,7 @@ def index():
 
 @app.route('/cart')
 @authentication_check
+@buyer_check
 def cart():
     print(session['email'])
     items, latestitems, categories, subtotal, items_len =  cart_data()
@@ -26,6 +29,7 @@ def cart():
 
 @app.route('/cart_item', methods = ['POST'])
 @authentication_check
+@buyer_check
 def item():
     if(request.form.get('type', None) == 'delete'):
         delete_item(request.form.get('item_id'))
@@ -40,6 +44,7 @@ def item():
 
 @app.route('/product/<produce_id>', methods = ['GET', 'POST'])
 @authentication_check
+@buyer_check
 def product(produce_id):
     items, latestitems, categories, subtotal, items_len = cart_data()
     data, relateditems, latestitems, categories = product_detail(produce_id) 
@@ -48,6 +53,7 @@ def product(produce_id):
 
 @app.route('/checkout',methods=['GET', 'POST'])
 @authentication_check
+@buyer_check
 def checkout():
     if(request.method == 'GET'):
         return checkout_page()  
@@ -56,6 +62,7 @@ def checkout():
 
 @app.route('/history')
 @authentication_check
+@buyer_check
 def history():
     items, subtotal, items_len = cart_items()
     perm_address = get_perm_address()
@@ -65,10 +72,20 @@ def history():
          items_len = items_len, purchased_items = purchased_items, 
          perm_address = perm_address, buyer_address = buyer_address) 
 
-@app.route('/delivery_status')
+@app.route('/delivery', methods=['GET', 'POST'])
 @authentication_check
-def delivery_details():
-    return render_template('delivery.html')
+@agent_check
+def delivery():
+    if request.method == 'GET':
+        return get_status()
+    if request.method == 'POST':
+        return set_status(request.form.get('order_id', None), request.form.get('delivery_status', None))
+
+@app.route('/produce-history')
+@authentication_check
+@farmer_check
+def producehistory():
+    return get_produce()
 
 @app.route('/login', methods=['GET', 'POST'])
 @authentication_check

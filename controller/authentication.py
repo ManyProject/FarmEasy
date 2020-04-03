@@ -18,7 +18,34 @@ def authentication_check(f):
                 return f(*args, **kwargs)
             return redirect(url_for('auth'))
     return decorated_function
+
+def farmer_check(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session['role'] == 'Farmer' :
+            return f(*args, **kwargs)
+        else:
+            return "404 page"
+    return decorated_function
     
+def buyer_check(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session['role'] == 'Buyer' :
+            return f(*args, **kwargs)
+        else:
+            return "404 page"
+    return decorated_function
+
+def agent_check(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session['role'] == 'Delivery Agent' :
+            return f(*args, **kwargs)
+        else:
+            return "404 page"
+    return decorated_function
+
 def login(app):
     form = request.form
     bcrypt = Bcrypt(app)

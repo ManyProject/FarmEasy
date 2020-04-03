@@ -55,6 +55,7 @@
             </div>
           </div>
           <div class="col-sm-4 col-xs-12 header-right">
+            {% if session['role'] == 'Buyer' %}
             <div id="cart" class="btn-group btn-block">
               <button type="button" class="btn btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button"> <span id="cart-total"><span class="cart-title">Shopping Cart</span><br>
               {{ number }} item(s) - {{ '%0.2f'| format(subtotal*1.2|float) }} Rs.</span> </button>
@@ -101,10 +102,12 @@
                 </li>
               </ul>
             </div>
+            {% endif %}
           </div>
         </div>
       </div>
     </header>
+    {% if session['role'] == 'Buyer' %}
     <nav id="menu" class="navbar">
         <div class="nav-inner container">
             <div class="navbar-header"><span id="category" class="visible-xs">Categories</span>
@@ -140,3 +143,25 @@
             </div>
         </div>
     </nav>
+    {% elif session['role'] == 'Farmer' %}
+    <nav id="menu" class="navbar">
+      <div class="nav-inner container">
+          <div class="navbar-collapse pull-left">
+              <ul class="main-navigation">
+                  <li><a href="redirect(url_for('add-produce'))" class="parent">Add Produce</a> </li>
+                  <li><a href="#" class="parent">Produce History</a></li>
+              </ul>
+          </div>
+      </div>
+    </nav>
+    {% else %}
+    <nav id="menu" class="navbar">
+      <div class="nav-inner container">
+          <div class="navbar-collapse">
+              <ul class="main-navigation">
+                  <li><a href="#" class="parent">Delivery Status</a></li>
+              </ul>
+          </div>
+      </div>
+    </nav>
+    {% endif %}
