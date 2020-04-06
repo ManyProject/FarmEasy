@@ -18,7 +18,7 @@ def get_produce_page():
     # finally:
     #     cur.close()
     #     connection.close()
-    return render_template('pages-ecommerce-product-add.html')
+    return render_template('addproduct.html')
 
 def set_produce():
     return 0

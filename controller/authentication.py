@@ -1,4 +1,4 @@
-from flask import render_template, request, session, redirect, url_for
+from flask import render_template, request, session, redirect, url_for, abort
 import mysql.connector
 from flask_bcrypt import Bcrypt
 from functools import wraps
@@ -34,7 +34,7 @@ def buyer_check(f):
         if session['role'] == 'Buyer' :
             return f(*args, **kwargs)
         else:
-            return "404 page"
+            return abort(403)
     return decorated_function
 
 def agent_check(f):
@@ -43,7 +43,7 @@ def agent_check(f):
         if session['role'] == 'Delivery Agent' :
             return f(*args, **kwargs)
         else:
-            return "404 page"
+            return abort(403)
     return decorated_function
 
 def login(app):
