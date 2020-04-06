@@ -25,7 +25,7 @@ def product_detail(produce_id):
         cur.close()
         connection.close()
         
-    produce_category = data[6]
+    produce_category = data[7]
     related_items = get_related_items(produce_category)
     latest_items = get_latest_items()
     categories = get_categories()

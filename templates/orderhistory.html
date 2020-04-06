@@ -2,6 +2,7 @@
 <html lang="en">
 {% include "header.html" %}
 {% block body %}
+</body>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,7 +51,7 @@
 	</script>
 </head>
 <body>
-	<div class="bootstrap-iso">
+	<div class="bootstrap-iso ">
 		<div class="table-wrapper container">
 			{% with messages = get_flashed_messages() %}
 				{% if messages %}
@@ -65,9 +66,9 @@
 					{% endfor %}
 				{% endif %}
 			{% endwith %}
-			<div class="table-title" style = "padding: 0%; padding-left: 15px;">
+			<div class="table-title" >
 				<div class="row">
-					<div class="col-sm-9">
+					<div class="col-sm-6" style="padding: 0%; padding-left: 15px;">
 						<h2>Order <b>Details</b></h2>
 					</div>
 				</div>
@@ -102,37 +103,38 @@
 					</div>
 				</div>
 			</div>
-			<table class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Order Image</th>
-						<th>Order Name</th>
-						<th>Order Date</th>
-						<th>Farmer Name</th>
-						<th>Delivery Status</th>
-						<th>Order Quantity</th>
-						<th>Order Price</th>
-						<th>Shipping Address</th>											
-					</tr>
-				</thead>
-				
-				<tbody id="order_details">
-					{% for item in purchased_items %}
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<thead>
 						<tr>
-							<td>{{loop.index}}</td>
-							<td><a href="#"><img src="{{item[0]}}" style="height: 52px; width: 80px;" class="img-thumbnail" alt="Avatar"></a></td>
-							<td><span class="text-center"></span>{{item[1]}}</td>
-							<td>{{item[2]}}</td>
-							<td>{{item[3]}}</td>
-							<td><span class="status text-success">&bull;</span>{{item[4]}}</td>                        
-							<td>{{item[5]}} Kg</td>
-							<td>{{item[6]}}</td>
-							<td>{{item[7]}}</td>
+							<th>#</th>
+							<th>Order Image</th>
+							<th>Order Name</th>
+							<th>Order Date</th>
+							<th>Farmer Name</th>
+							<th>Delivery Status</th>
+							<th>Order Quantity</th>
+							<th>Order Price</th>
+							<th>Shipping Address</th>											
 						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+					</thead>
+					<tbody id="order_details">
+						{% for item in purchased_items %}
+							<tr>
+								<td>{{loop.index}}</td>
+								<td><a href="#"><img src="{{item[0]}}" style="height: 52px; width: 80px;" class="img-thumbnail" alt="Avatar"></a></td>
+								<td><span class="text-center"></span>{{item[1]}}</td>
+								<td>{{item[2]}}</td>
+								<td>{{item[3]}}</td>
+								<td><span class="status text-success">&bull;</span>{{item[4]}}</td>                        
+								<td>{{item[5]}} Kg</td>
+								<td>{{item[6]}}</td>
+								<td>{{item[7]}}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>  
 </body>

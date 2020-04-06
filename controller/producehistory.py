@@ -6,7 +6,7 @@ from controller.cart import cart_items
 from utilities import get_categories
 from db_connection import connect
 
-def get_produce():
+def get_history():
     query = "SELECT produce_image, produce_name, produce_quantity, produce_date, produce_price, produce_category\
             FROM produce \
             WHERE produce.farmer_id = %s ORDER BY produce_date"

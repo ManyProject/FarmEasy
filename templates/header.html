@@ -30,7 +30,8 @@
                   <ul class="list-inline">
                     <li class="dropdown"><a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-user"></i><span>My Account</span> <span class="caret"></span></a>
                       <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="{{ url_for('registration') }}">My Profile</a></li>
+                        <li><a href="{{ url_for('profile') }}">My Profile</a></li>
+                        <li><a href="{{ url_for('updatepassword') }}">Change Password</a></li>
                         <li><a href="{{ url_for('logout') }}">Logout</a></li>
                       </ul>
                     </li>
@@ -149,7 +150,7 @@
           <div class="navbar-collapse pull-left">
               <ul class="main-navigation">
                   <li><a href="redirect(url_for('add-produce'))" class="parent">Add Produce</a> </li>
-                  <li><a href="#" class="parent">Produce History</a></li>
+                  <li><a href="{{ url_for('producehistory') }}" class="parent">Produce History</a></li>
               </ul>
           </div>
       </div>

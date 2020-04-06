@@ -7,11 +7,14 @@ from controller.cart import cart_data, delete_item, update_item, add_item, cart_
 from controller.checkout import checkout_page, checkout_func
 from controller.orderhistory import order_history
 from controller.delivery import get_status, set_status
-from controller.producehistory import get_produce
+from controller.producehistory import get_history
+from controller.profile import get_profile, set_profile, get_update_page, set_pass
+from controller.addproduce import get_produce_page, set_produce
 from utilities import get_perm_address, get_buyer_address
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super secret key'
+app.config['UPLOAD_FOLDER'] = '/static/user_profile_images'
 
 @app.route('/', methods=['GET', 'POST'])
 
@@ -22,7 +25,6 @@ def index():
 @authentication_check
 @buyer_check
 def cart():
-    print(session['email'])
     items, latestitems, categories, subtotal, items_len =  cart_data()
     return render_template('cart.html', items=items, latestitems=latestitems, categories=categories,
                          subtotal=subtotal, number=items_len)
@@ -42,7 +44,7 @@ def item():
         add_item(request.form.get('produce_id', None), request.form.get('quantity', None))
         return redirect(url_for(request.form.get('endpoint', 'cart'))) 
 
-@app.route('/product/<produce_id>', methods = ['GET', 'POST'])
+@app.route('/product/<produce_id>', methods=['GET', 'POST'])
 @authentication_check
 @buyer_check
 def product(produce_id):
@@ -85,7 +87,31 @@ def delivery():
 @authentication_check
 @farmer_check
 def producehistory():
-    return get_produce()
+    return get_history()
+
+@app.route('/profile', methods=['GET', 'POST'])
+@authentication_check
+def profile():
+    if(request.method == 'GET'):
+        return get_profile()
+    if request.method == 'POST':
+        return set_profile()
+
+@app.route('/add-produce')
+@authentication_check
+def add_produce():
+    if request.method == 'GET':
+        return get_produce_page() 
+    if request.method == 'POST':
+        return set_produce()
+
+@app.route('/update-password', methods=['GET', 'POST'])
+@authentication_check
+def updatepassword():
+    if request.method == 'GET':
+        return get_update_page()
+    if request.method == 'POST':
+        return set_pass(app)
 
 @app.route('/login', methods=['GET', 'POST'])
 @authentication_check
