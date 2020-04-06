@@ -59,7 +59,7 @@
                   <select class="form-control" name="address">
                       <option selected="selected">{{user_address[0]}}</option>
                     {% for address in buyer_address %}
-                      <option value="{{ loop.index0 }}">{{ address[0] }}</option>
+                      <option value="{{ address[0] }}">{{ address[0] }}</option>
                     {% endfor %}
                   </select>
                 </div>
