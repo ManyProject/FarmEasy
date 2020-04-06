@@ -1,5 +1,6 @@
 from flask import flash, session
 import mysql.connector
+
 from db_connection import connect
 
 def get_categories():

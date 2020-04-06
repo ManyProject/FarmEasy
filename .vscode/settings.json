@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\Jiten\\AppData\\Local\\Programs\\Python\\Python37\\python.exe"
+    "python.pythonPath": "c:\\STUDY\\Projects\\FarmEasy\\venv\\Scripts\\python.exe",
+    "python.linting.enabled": true
 }
