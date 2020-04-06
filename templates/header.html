@@ -147,10 +147,19 @@
     {% elif session['role'] == 'Farmer' %}
     <nav id="menu" class="navbar">
       <div class="nav-inner container">
-          <div class="navbar-collapse pull-left">
+          <div class="navbar-header"><span id="category" class="visible-xs">Categories</span>
+              <button type="button" class="btn btn-navbar navbar-toggle" ><i class="fa fa-bars"></i></button>
+          </div>
+          <div class="navbar-collapse">
               <ul class="main-navigation">
-                  <li><a href="redirect(url_for('add-produce'))" class="parent">Add Produce</a> </li>
-                  <li><a href="{{ url_for('producehistory') }}" class="parent">Produce History</a></li>
+                <li><a href="redirect(url_for('add-produce'))" class="parent">Add Produce</a> </li>
+                <li><a href="{{ url_for('producehistory') }}" class="parent">Produce History</a></li>
+                <li><a href="#" class="active parent">More</a>
+                  <ul>
+                    <li><a href="about-us.html" >About us</a></li>
+                    <li><a href="contact.html" >Contact Us</a> </li>
+                  </ul>
+                </li>
               </ul>
           </div>
       </div>
@@ -158,11 +167,20 @@
     {% else %}
     <nav id="menu" class="navbar">
       <div class="nav-inner container">
+          <div class="navbar-header"><span id="category" class="visible-xs">Categories</span>
+              <button type="button" class="btn btn-navbar navbar-toggle" ><i class="fa fa-bars"></i></button>
+          </div>
           <div class="navbar-collapse">
               <ul class="main-navigation">
-                  <li><a href="#" class="parent">Delivery Status</a></li>
+                  <li><a href="{{url_for('delivery')}}">Delivery Status</a></li>
+                  <li><a href="#" class="active parent">More</a>
+                    <ul>
+                      <li><a href="about-us.html" >About us</a></li>
+                      <li><a href="contact.html" >Contact Us</a> </li>
+                    </ul>
+                  </li>
               </ul>
           </div>
       </div>
-    </nav>
+    
     {% endif %}
