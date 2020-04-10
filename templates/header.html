@@ -1,6 +1,6 @@
 <head>
     <title>Fresh Food</title><meta http-equiv="content-type" content="text/html;charset=utf-8" />
-     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="e-commerce site well design with responsive view." />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
@@ -19,7 +19,9 @@
     <script src="/static/owl-carousel/owl.carousel.min.js"></script>
 </head>
 <body class="cart col-2">
-    <div class="preloader loader" style="display: block; background:#f2f2f2;"> <img src="/static/image/loader.gif"  alt="#"/></div>
+  <div class="preloader loader" style="display: block; background:#f2f2f2;"> <img src="/static/image/loader.gif"  alt="#"/></div>
+
+  <div class="bdyy">
     <header>
       <div class="header-top">
         <div class="container">
@@ -52,7 +54,7 @@
           </div>
           <div class="col-sm-4 col-xs-12 header-middle">
             <div class="header-middle-top">
-              <div id="logo"> <a href="index-2.html"><img src="/static/image/logo.png" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
+              <div id="logo"> <a href="{{url_for('index')}}"><img src="/static/image/logo.png" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
             </div>
           </div>
           <div class="col-sm-4 col-xs-12 header-right">
@@ -152,7 +154,7 @@
           </div>
           <div class="navbar-collapse">
               <ul class="main-navigation">
-                <li><a href="redirect(url_for('add-produce'))" class="parent">Add Produce</a> </li>
+                <li><a href="{{url_for('add_produce')}}" class="parent">Add Produce</a> </li>
                 <li><a href="{{ url_for('producehistory') }}" class="parent">Produce History</a></li>
                 <li><a href="#" class="active parent">More</a>
                   <ul>
@@ -164,7 +166,7 @@
           </div>
       </div>
     </nav>
-    {% else %}
+    {% elif session['role'] == 'Delivery Agent' %}
     <nav id="menu" class="navbar">
       <div class="nav-inner container">
           <div class="navbar-header"><span id="category" class="visible-xs">Categories</span>
@@ -182,5 +184,6 @@
               </ul>
           </div>
       </div>
-    
+    </nav>
+  </div>      
     {% endif %}

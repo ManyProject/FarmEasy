@@ -2,7 +2,7 @@ from flask import render_template, request, session
 import mysql.connector
 from flask_bcrypt import Bcrypt
 from db_connection import connect
-from utilities import get_categories,get_latest_items
+from utilities import get_categories, get_latest_items
 
 def cart_data():
     query = "SELECT item_id, produce_price, item_quantity, produce_name,\

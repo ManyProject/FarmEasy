@@ -6,8 +6,10 @@ from controller.cart import cart_items
 from utilities import get_categories
 from db_connection import connect
 
+
 def get_history():
-    query = "SELECT produce_image, produce_name, produce_quantity, produce_date, produce_price, produce_category\
+    query = "SELECT produce_image, produce_name, produce_quantity,\
+            produce_date, produce_price, produce_category\
             FROM produce \
             WHERE produce.farmer_id = %s ORDER BY produce_date"
     params = (session['id'],)
@@ -24,5 +26,7 @@ def get_history():
         cur.close()
         connection.close()
     items, subtotal, items_len = cart_items()
-    categories = get_categories() 
-    return render_template('producehistory.html', subtotal=subtotal, items=items, produce_details=produce_details, categories=categories)
+    categories = get_categories()
+    return render_template('producehistory.html', subtotal=subtotal,
+                           items=items, produce_details=produce_details,
+                           categories=categories)

@@ -30,7 +30,7 @@ $(document).ready(function() {
 		itemsMobile : [479, 1]
 	});
 
-	$('#latest-slidertab').owlCarousel({
+	$('#11').owlCarousel({
 		items: 4,
 		navigation: true,
 		pagination: false,
@@ -40,7 +40,7 @@ $(document).ready(function() {
 		itemsTabletSmall : false,
 		itemsMobile : [479, 1]
 	});
-	$('#special-slidertab').owlCarousel({
+	$('#22').owlCarousel({
 		items: 4,
 		navigation: true,
 		pagination: false,
@@ -50,7 +50,27 @@ $(document).ready(function() {
 		itemsTabletSmall : false,
 		itemsMobile : [479, 1]
 	});
-	$('#related-slidertab').owlCarousel({
+	$('#33').owlCarousel({
+		items: 4,
+		navigation: true,
+		pagination: false,
+		itemsDesktop : [1199, 3],
+		itemsDesktopSmall : [979, 2],
+		itemsTablet : [768, 2],
+		itemsTabletSmall : false,
+		itemsMobile : [479, 1]
+	});
+	$('#44').owlCarousel({
+		items: 4,
+		navigation: true,
+		pagination: false,
+		itemsDesktop : [1199, 3],
+		itemsDesktopSmall : [979, 2],
+		itemsTablet : [768, 2],
+		itemsTabletSmall : false,
+		itemsMobile : [479, 1]
+	});
+	$('#55').owlCarousel({
 		items: 4,
 		navigation: true,
 		pagination: false,
@@ -62,18 +82,7 @@ $(document).ready(function() {
 	});
 
 	$('#Weekly-slider').owlCarousel({
-		items: 4,
-		navigation: true,
-		pagination: false,
-		itemsDesktop : [1199, 3],
-		itemsDesktopSmall : [979, 2],
-		itemsTablet : [768, 2],
-		itemsTabletSmall : false,
-		itemsMobile : [479, 1]
-	});
-
-	$('#bestseller-slidertab').owlCarousel({
-		items: 4,
+		items: 3,
 		navigation: true,
 		pagination: false,
 		itemsDesktop : [1199, 3],
@@ -109,16 +118,7 @@ $(document).ready(function() {
 		itemsTabletSmall : false,
 		itemsMobile : [479, 1]
 	});
-	$('#related-slider').owlCarousel({
-		items: 4,
-		navigation: true,
-		pagination: false,
-		itemsDesktop : [1199, 3],
-		itemsDesktopSmall : [979, 2],
-		itemsTablet : [768, 2],
-		itemsTabletSmall : false,
-		itemsMobile : [479, 1]
-	});
+
 	$('#product-thumbnail').owlCarousel({
 		items: 4,
 		navigation: true,
@@ -165,9 +165,3 @@ $.fn.tabs = function() {
 	$(this).show();
 	$(this).first().click();
 };
-
-
-
-
-
-

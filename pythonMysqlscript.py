@@ -1,4 +1,4 @@
-import mysql.connector
+(import mysql.connector
 import random 
 from random import randrange
 import datetime 

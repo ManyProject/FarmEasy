@@ -1,0 +1,42 @@
+@media screen and (max-width: 992px)  {
+    .container {
+        width: calc(100% - 40px);
+        max-width: 100%;
+    }
+    .form-group-flex {
+        width: 310px;
+    }
+}
+//end 992px
+@media screen and (max-width: 768px) {
+
+    .steps ul , .form-row{
+        @include flex-direction(column);
+    }
+    .steps ul li {
+        width: 100%;
+    }
+    .content {
+        height: 550px;
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+    .form-file {
+        margin-bottom: 20px;
+    }
+    .form-flex {
+        padding: 0 40px;
+    }
+    .form-input, .form-group-flex {
+        width: 100%;
+    }
+}
+
+//end 575px
+@media screen and (max-width: 480px) {
+
+    .signup-form {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}

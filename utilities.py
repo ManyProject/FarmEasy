@@ -3,8 +3,10 @@ import mysql.connector
 
 from db_connection import connect
 
+
 def get_categories():
-    query = "SELECT DISTINCT produce_category FROM produce"
+    query = "SELECT DISTINCT produce_category FROM produce\
+             WHERE produce_quantity!=0 ORDER BY produce_category"
     try:
         connection = connect()
         cur = connection.cursor()
@@ -18,10 +20,12 @@ def get_categories():
         connection.close()
     return categories
 
+
 def get_related_items(produce_category):
-    query = "SELECT produce_name, produce_price, produce_image, produce_id , user_name \
-        FROM produce INNER JOIN user ON farmer_id = user_id \
-        WHERE produce_category = %s AND produce_quantity != 0 LIMIT 7"
+    query = "SELECT produce_name, produce_price, produce_image,\
+            produce_id , user_name FROM produce INNER JOIN user \
+            ON farmer_id = user_id \
+            WHERE produce_category = %s AND produce_quantity != 0 LIMIT 7"
     try:
         connection = connect()
         cur = connection.cursor()
@@ -38,9 +42,11 @@ def get_related_items(produce_category):
         connection.close()
     return related_items
 
+
 def get_latest_items():
-    query = "SELECT produce_name, produce_price, produce_image, produce_id, user_name \
-        FROM produce INNER JOIN user ON farmer_id = user_id WHERE produce_quantity <> 0 ORDER BY produce_date DESC LIMIT 5"
+    query = "SELECT produce_name, produce_price, produce_image, produce_id,\
+            user_name FROM produce INNER JOIN user ON farmer_id = user_id \
+            WHERE produce_quantity <> 0 ORDER BY produce_date DESC LIMIT 5"
     try:
         connection = connect()
         cur = connection.cursor()
@@ -55,6 +61,7 @@ def get_latest_items():
         cur.close()
         connection.close()
     return latest_items
+
 
 def get_perm_address():
     query = "SELECT user_address FROM user WHERE user_id = %s "
@@ -74,6 +81,7 @@ def get_perm_address():
         connection.close()
     return perm_address
 
+
 def get_buyer_address():
     query = "SELECT buyer_address FROM address WHERE buyer_id = %s "
     try:
@@ -90,3 +98,23 @@ def get_buyer_address():
         cur.close()
         connection.close()
     return buyer_address
+
+
+def category_items(category):
+    query = "SELECT produce_image, produce_name, produce_price, produce_id\
+             FROM produce WHERE produce_category = %s\
+             AND produce_quantity != 0 \
+             ORDER BY RAND() LIMIT 7"
+    try:
+        connection = connect()
+        cur = connection.cursor()
+        params = (category,)
+        cur.execute(query, params)
+        items = cur.fetchall()
+    except mysql.connector.Error as err:
+        print(err)
+        return []
+    finally:
+        cur.close()
+        connection.close()
+    return items

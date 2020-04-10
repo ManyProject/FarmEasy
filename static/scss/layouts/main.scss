@@ -1,0 +1,295 @@
+@mixin hideInput {width: 0; height: 0; position: absolute; left: -9999px;}
+@mixin focusOutline {outline: dotted 1px #CCC; outline-offset: .45rem;}
+.signup-form {
+    padding: 30px 0px 52px 0px;
+    position: relative;
+}
+input, select {
+    box-sizing: border-box;
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    padding: 15px 25px;
+    border: 1px solid $border-color;
+    font-family: 'Poppins';
+    @include border-radius(5px);
+    &:focus {
+        border: 1px solid $green-color;
+    }
+	&::-webkit-input-placeholder {
+        color: #999;
+	}
+	&::-moz-placeholder {
+        color: #999;
+	}
+	&:-ms-input-placeholder {
+        color: #999;
+	}
+	&:-moz-placeholder {
+        color: #999;
+	}
+}
+select > option {
+    color: $grey-color;
+}
+select {
+    position: relative;
+    background: 0 0;
+    z-index: 10;
+    cursor: pointer;
+    color: #999;
+}
+.select-icon {
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 20px;
+    @extend display-flex;
+    @include align-items(center);
+    @include justify-content(center);
+    i {
+        @extend display-flex;
+        @include align-items(center);
+        @include justify-content(center);
+        width: 70px;
+        height: 40px;
+        font-size: 30px;
+        color: #999;
+    }
+}
+input, label, select {
+    width: 100%;
+    display: block;
+}
+fieldset  {
+    border: none;
+    margin: 0px;
+    padding: 0px;
+}
+fieldset.current {
+    padding-top: 85px;
+}
+.form-radio {
+    margin-top: -25px;
+    width: 100%;
+    input {
+        @include hideInput;
+    }
+	input + label {
+        margin: 0px;
+        box-sizing: border-box;
+        position: relative; 
+        display: inline-block;
+        // width: auto;
+        text-align: center;
+        // border: 1px solid transparent;
+        // background-color: #f8f8f8;
+		transition: 	border-color .15s ease-out, 
+					background-color .15s ease-out,
+                    box-shadow .15s ease-out;
+        @include border-radius(5px);
+        figure {
+            width: 100px;
+            height: 100px;
+            @include border-radius(50%);
+            border: 2px solid $black-color;
+            @extend display-flex;
+            @include align-items(center);
+            @include justify-content(center);
+            img {
+                -webkit-filter: invert(30%) grayscale(100%) brightness(70%) contrast(4);
+                filter: invert(30%) grayscale(100%) brightness(70%) contrast(4);
+            }
+        }
+        span {
+            font-weight: bold;
+        }
+    }
+	input:checked + label {
+		// border-color: $green-color;
+        z-index: 1;
+        // background-color: #fff;
+        
+        figure {
+            border: 2px solid $green-color;
+            img {
+                -webkit-filter: none;
+                filter: none;
+            }
+        }
+        span {
+            color: $green-color;
+        }
+    }
+    input:focus + label {
+        outline: none;
+    }
+    input:hover {
+		background-color: $green-color;
+		border-color: $green-color;
+    }
+}
+
+.form-flex {
+    @extend display-flex;
+    @include justify-content(space-around);
+    padding: 0 140px;
+}
+
+.content {
+    // padding: 85px 100px 25px 81px;
+    padding-right: 100px;
+    padding-left: 81px;
+    height: 335px;
+    h3 {
+        display: none;
+    }
+}
+.steps {
+    ul {
+        @extend list-type-ulli;
+        @extend display-flex;
+        @include justify-content(space-between);
+        li {
+            width: 330px;
+            a{
+                text-decoration: none;
+                display: block;
+                background: $grey-light;
+                text-align: center;
+                padding: 8px 0;
+            }
+            &:hover {
+                a {
+                    background: $green-color;
+                    h3 {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+        .current {
+            a {
+                background: $green-color;
+                h3 {
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+.actions {
+    padding-right: 100px;
+    padding-left: 81px; 
+    ul {
+        @extend list-type-ulli;
+        display: inline-block;
+        width: 100%;
+        .disabled {
+            display: none;
+        }
+        li {
+            &:first-child {
+                float: left;
+                a {
+                    background: transparent;
+                    color: $grey-color;
+                    border: 1px solid $border-color;
+                }
+            }
+            &:nth-child(2), &:last-child {
+                float: right;
+            }
+            a {
+                width: 140px;
+                height: 50px;
+                color: #fff;
+                background: $green-color;
+                @extend display-flex;
+                @include align-items(center);
+                @include justify-content(center);
+                text-decoration: none;
+                @include border-radius(5px);
+            }
+        }
+    }
+}
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputfile + label {
+    text-transform: uppercase;
+}
+.inputfile + label {
+    max-width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    text-align: center;
+}
+.inputfile + label figure {
+    width: 154px;
+    height: 154px;
+    border-radius: 50%;
+    background-color: transparent;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 6px;
+}
+.inputfile + label figure img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.form-row {
+    @extend display-flex;
+    @include justify-content(space-between);
+    @include align-items(center);
+    // margin-top: 85px;
+}
+.form-group-flex {
+    width: 510px;;
+}
+.form-group {
+    padding-bottom: 20px;
+    position: relative;
+}
+
+.form-input {
+    width: 50%;
+    padding: 0 10px;
+    padding-bottom: 20px;
+    position: relative;
+}
+.form-input-flex {
+    margin: 0 -10px;
+}
+input.error {
+    border: 1px solid $red-color;
+    margin-bottom: 20px;
+}
+label.error {
+    font-size: 12px;
+    color: $red-color;
+    position: absolute;
+    bottom: 17px;
+    left: 0;
+}
+.label-radio {
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 70px;
+}
+  
