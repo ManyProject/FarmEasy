@@ -7,9 +7,9 @@
 <body style = "color: black;">
 <div class="container">
   <ul class="breadcrumb">
-    <li><a href="static/index-2.html"><i class="fa fa-home"></i></a></li>
-    <li><a href="static/cart.html">Shopping Cart</a></li>
-    <li><a href="static/checkout.html">Checkout</a></li>
+    <li><a href="{{url_for('index')}}"><i class="fa fa-home"></i></a></li>
+    <li><a href="{{url_for('cart')}}">Shopping Cart</a></li>
+    <li><a href="{{url_for('checkout')}}">Checkout</a></li>
   </ul>
   <div class="row">
     <div id="column-left" class="col-sm-3 hidden-xs column-left">
@@ -19,7 +19,7 @@
           <div class="category_block">
             <ul class="box-category treeview-list treeview">
               {% for i in categories %}
-                <li><a href="#">{{i[0]}}</a></li>
+                <li><a href="{{url_for('category',category=i[0])}}">{{i[0]}}</a></li>
               {% endfor %}
             </ul>
           </div>

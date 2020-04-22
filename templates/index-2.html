@@ -1,177 +1,44 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
-<head>
-<title>Fresh Food</title>
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="e-commerce site well design with responsive view." />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-<link href="static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-<link href="/static/css/stylesheet.css" rel="stylesheet">
-<link href="/static/css/responsive.css" rel="stylesheet">
-<link href="/static/owl-carousel/owl.carousel.css" type="text/css" rel="stylesheet" media="screen" />
-<link href="/static/owl-carousel/owl.transitions.css" type="text/css" rel="stylesheet" media="screen" />
-<script src="/static/javascript/jquery-2.1.1.min.js" ></script>
-<script src="/static/bootstrap/js/bootstrap.min.js" ></script>
-<script src="/static/javascript/jstree.min.js" ></script>
-<script src="/static/javascript/template.js"  ></script>
-<script src="/static/javascript/common.js" ></script>
-<script src="/static/javascript/global.js" ></script>
-<script src="/static/owl-carousel/owl.carousel.min.js" ></script>
-</head>
-<body>
-<div class="preloader loader" style="display: block; background:#f2f2f2;"> <img src="/static/image/loader.gif"  alt="#"/></div>
-<header>
-  <div class="header-top">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="top-left pull-left">
-           
-          </div>
-         
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="header-inner">
-      <div class="col-sm-4 col-xs-6 header-left">
-        <div class="shipping">
-          <div class="shipping-img"></div>
-          <div class="shipping-text">+91(000)1234-1234<br><span class="shipping-detail">Week From 9:00am To 7:00pm</span></div>
-        </div>
-      </div>
-      <div class="col-sm-4 col-xs-12 header-middle">
-        <div class="header-middle-top">
-          <div id="logo"> <a href="{{url_for('index')}}"><img src="/static/image/logo.png" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
-        </div>
-      </div>
-      <div class="col-sm-4 col-xs-12 header-right">
-        <div id="cart" class="btn-group btn-block">
-          {% if session.get('email', false) %}
-          <button type="button" class="btn btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button"> <span id="cart-total"><span class="cart-title">Shopping Cart</span><br>
-            {{ number }} item(s) - {{ '%0.2f'| format(subtotal*1.2|float) }} Rs.</span> </button>
-            <ul class="dropdown-menu pull-right cart-dropdown-menu">
-              {% for item in items %}
-              <li>
-                <table class="table table-striped">
-                  <tbody>
-                    <tr>
-                      <td class="text-center"><a href="{{url_for('product', produce_id = item[5])}}"><img style="height: 50px; width: 50px" class="img-thumbnail" title="Product Image" alt="Product Image" src="{{item[4]}}"></a></td>
-                      <td class="text-left"><a href="{{url_for('product', produce_id = item[5])}}">{{ item[3] }}</a></td>
-                      <td class="text-right">x{{ '%0.2f'| format(item[1]|float) }} Rs.</td>
-                      <td class="text-right">{{ '%0.2f'| format(item[1]*item[2]|float) }} Rs.</td>
-                      <form action="{{ url_for('item') }}" method="post">
-                        <input type="hidden" value="cart" name="endpoint">
-                          <input type="hidden" value="{{ item[0] }}" name="item_id">
-                          <td class="text-center"><button class="btn btn-danger btn-xs" data-toggle="tooltip" value="delete" name="type" data-original-title="Remove" type="submit"><i class="fa fa-times"></i></button></td>
-                      </form>
-                    </tr>
-                  </tbody>
-                </table>
-              </li>
-              {% endfor %}
-              <li>
-                <div>
-                  <table class="table table-bordered">
-                    <tbody>
-                      <tr>
-                        <td class="text-right"><strong>Sub-Total</strong></td>
-                        <td class="text-right">{{ '%0.2f'| format(subtotal|float) }} Rs.</td>
-                      </tr>
-                      <tr>
-                        <td class="text-right"><strong>GST (20%)</strong></td>
-                        <td class="text-right">{{ '%0.2f'| format(subtotal*0.2|float) }} Rs.</td>
-                      </tr>
-                      <tr>
-                        <td class="text-right"><strong>Total</strong></td>
-                        <td class="text-right">{{ '%0.2f'| format(subtotal*1.2|float) }} Rs.</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <p class="text-right"> <span class="btn-viewcart"><a href="{{ url_for('cart') }}"><strong><i class="fa fa-shopping-cart"></i> View Cart</strong></a></span> <span class="btn-checkout"><a href="{{ url_for('checkout') }}"><strong><i class="fa fa-share"></i> Checkout</strong></a></span> </p>
-                </div>
-              </li>
-            </ul>
-          </div>
-          {% else %}
-          <div class="buttons clearfix" >
-            <div class="pull-right" >
-              <ul>
-                <li><a href="{{url_for('registration')}}"><input type="button" class="btn btn-primary" data-loading-text="Loading..." value="Register" style="margin-bottom:8px;"></a></li>
-                <li><a href="{{url_for('auth')}}"><input type="button" class="btn btn-primary" data-loading-text="Loading..."  value="  Login   " style="margin-bottom:8px;"></a></li>
-              </ul>
-
-            </div>
-          </div>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-<nav id="menu" class="navbar">
-  <div class="nav-inner container">
-    <div class="navbar-header"><span id="category" class="visible-xs">Categories</span>
-      <button type="button" class="btn btn-navbar navbar-toggle" ><i class="fa fa-bars"></i></button>
-    </div>
-    <div class="navbar-collapse">
-      <ul class="main-navigation">
-        <li><a href="index-2.html"   class="parent"  >Home</a> </li>
-        <li><a href="category.html"   class="parent"  >Fruits</a> </li>
-        <li><a href="category.html"   class="parent"  >Vegetables</a> </li>
-        <li><a href="category.html"   class="parent"  >Exotica</a> </li>
-        <li><a href="category.html"   class="parent"  >Groceries</a> </li>
-        <li><a href="category.html"   class="parent"  >Health & Beauty</a> </li>
-        <li><a href="#" class="active parent">Page</a>
-          <ul>
-            <li><a href="category.html">Category Page</a></li>
-            <li><a href="cart.html">Cart Page</a></li>
-            <li><a href="checkout.html">Checkout Page</a></li>
-            <li><a href="blog.html" >Blog Page</a></li>
-            <li><a href="singale-blog.html" >Singale Blog Page</a></li>
-            <li><a href="register.html">Register Page</a></li>
-            <li><a href="contact.html">Contact Page</a></li>
-          </ul>
-        </li>
-        <li><a href="blog.html" class="parent"  >Blog</a></li>
-        <li><a href="about-us.html" >About us</a></li>
-        <li><a href="contact.html" >Contact Us</a> </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+{% include "header.html" %}
+{% block body %}
+<hr>
 <div class="mainbanner">
   <div id="main-banner" class="owl-carousel home-slider">
-    <div class="item"> <a href="#"><img src="/static/image/banners/Main-Banner1.jpg" alt="main-banner1" class="img-responsive" /></a> </div>
-    <div class="item"> <a href="#"><img src="/static/image/banners/Main-Banner2.jpg" alt="main-banner2" class="img-responsive" /></a> </div>
-    <div class="item"> <a href="#"><img src="/static/image/banners/Main-Banner3.jpg" alt="main-banner3" class="img-responsive" /></a> </div>
+    <div class="item"> <a href="javascript: void(0)"><img src="/static/image/banners/Main-Banner1.jpg" alt="main-banner1" class="img-responsive" /></a> </div>
+    <div class="item"> <a href="javascript: void(0)"><img src="/static/image/banners/Main-Banner2.jpg" alt="main-banner2" class="img-responsive" /></a> </div>
+    <div class="item"> <a href="javascript: void(0)"><img src="/static/image/banners/Main-Banner3.jpg" alt="main-banner3" class="img-responsive" /></a> </div>
   </div>
 </div>
 <div class="container">
   <div class="row">
-  
     <div class="cms_banner ">
-      <div class="col-md-4 cms-banner-left"> <a href="#"><img alt="#" src="/static/image/banners/subbanner1.jpg"></a> </div>
+      <div class="col-md-4 cms-banner-left"> <a href="javascript: void(0)"><img alt="#" src="/static/image/banners/subbanner1.jpg"></a> </div>
       <div class="col-md-4 cms-banner-middle">
-        <div class="md1"><a href="#"> <img alt="#" src="/static/image/banners/subbanner2.jpg"></a> </div>
-        <div class="md2"><a href="#"> <img alt="#" src="/static/image/banners/subbanner2.jpg"></a></div>
+        <div class="md1"><a href="javascript: void(0)"> <img alt="#" src="/static/image/banners/subbanner2.jpg"></a> </div>
+        <div class="md2"><a href="javascript: void(0)"> <img alt="#" src="/static/image/banners/subbanner2.jpg"></a></div>
       </div>
-      <div class="col-md-4 cms-banner-right"> <a href="#"><img alt="#" src="/static/image/banners/subbanner3.jpg"></a> </div>
+      <div class="col-md-4 cms-banner-right"> <a href="javascript: void(0)"><img alt="#" src="/static/image/banners/subbanner3.jpg"></a> </div>
     </div>
   </div>
   <div class="row">
-    <div id="content" class="col-sm-12">
+    <div id="content" class="col-md-12" style="width: 100%;">
+      {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-success text-center">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                      </button>
+                  <strong>{{ message }}</strong>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
       <div class="customtab">
         <div id="tabs" class="customtab-wrapper">
           <ul class='customtab-inner'>
             {% for category in categories %}
-            <li class='tab'><a href="#{{ loop.index }}">{{ category[0] }}</a></li>
+              <li class='tab'><a href="#{{ loop.index }}">{{ category[0] }}</a></li>
             {% endfor %}
           </ul>
         </div>
@@ -184,17 +51,23 @@
                   <div class="product-thumb transition">
                     <div class="image product-imageblock"> <a href="{{url_for('product',produce_id = item[3])}}"> <img src="{{item[0]}}" class="img-responsive" style="width: 352px;  "/> </a>
                       <div class="button-group">
-                        <button type="button" class="addtocart-btn" >Add To Cart</button>
-                        <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product" ><i class="fa fa-exchange"></i></button>
+                        <form action="{{ url_for('item') }}" method="POST">
+                          <input type="hidden" name="produce_id" value="{{ item[3] }}">
+                          <input type="hidden" name="quantity" value="1" id="input-quantity" class="form-control"/>
+                          <div class="btn-group">
+                            <button type="submit" name="type" value="add" class="addtocart-btn">Add to Cart</button>
+                          </div>
+                        </form>
+                        <!-- <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product" ><i class="fa fa-exchange"></i></button> -->
                       </div>
                     </div>
                     <div class="caption product-detail">
-                      <h4 class="product-name"><a href="{{url_for('product',produce_id = item[3])}}" title="lorem ippsum dolor dummy">{{item[1]}}</a></h4>
+                      <h4 class="product-name"><a href="{{url_for('product',produce_id = item[3])}}" title="{{item[1]}}">{{item[1]}}</a></h4>
                       <p class="price product-price"> <span class="price-new">Rs.{{item[2]}}</span><span class="price-tax"></span> </p>
                     </div>
                     <div class="button-group">
                       <button type="button" class="addtocart-btn" >Add To Cart</button>
-                      <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product" ><i class="fa fa-exchange"></i></button>
+                      <!-- <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product" ><i class="fa fa-exchange"></i></button> -->
                     </div>
                   </div>
                 </div>
@@ -202,26 +75,32 @@
               </div>
             </div>
           </div>
-        {% endfor %}
+        {% endfor %}  
         <h3 class="productblock-title">Latest Products</h3>
         <div class="box">
           <div id="Weekly-slider" class="row owl-carousel product-slider">
             {% for item in latest %}
               <div class="item product-slider-item">
                 <div class="product-thumb transition">
-                  <div class="image product-imageblock"> <a href="{{url_for('product',produce_id = item[3])}}"> <img src="{{ item[2] }}" alt="lorem ippsum dolor dummy" title="lorem ippsum dolor dummy" class="img-responsive" /> </a>
+                  <div class="image product-imageblock"> <a href="{{url_for('product',produce_id = item[3])}}"> <img src="{{ item[2] }}" alt="{{item[0]}}" title="{{item[0]}}" class="img-responsive" /> </a>
                     <div class="button-group">
-                      <button type="button" class="addtocart-btn" >Add To Cart</button>
-                      <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product" ><i class="fa fa-exchange"></i></button>
+                      <form action="{{ url_for('item') }}" method="POST">
+                        <input type="hidden" name="produce_id" value="{{ item[3] }}">
+                        <input type="hidden" name="quantity" value="1" id="input-quantity" class="form-control"/>
+                        <div class="btn-group">
+                          <button type="submit" name="type" value="add" class="addtocart-btn">Add to Cart</button>
+                        </div>
+                      </form>
+                      <!-- <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product" ><i class="fa fa-exchange"></i></button> -->
                     </div>
                   </div>
                   <div class="caption product-detail">
-                    <h4 class="product-name"><a href="{{url_for('product',produce_id = item[3])}}" title="lorem ippsum dolor dummy">{{item[0]}}</a></h4>
+                    <h4 class="product-name"><a href="{{url_for('product',produce_id = item[3])}}" title="{{item[0]}}">{{item[0]}}</a></h4>
                     <p class="price product-price"> <span class="price-new">Rs.{{item[1]}}</span><span class="price-tax"></span> </p>
                   </div>
                   <div class="button-group">
                     <button type="button" class="addtocart-btn" >Add To Cart</button>
-                    <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product" ><i class="fa fa-exchange"></i></button>
+                    <!-- <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product" ><i class="fa fa-exchange"></i></button> -->
                   </div>
                 </div>
               </div>
@@ -232,11 +111,10 @@
     </div>
   </div>
 </div>
+{% endblock %}
 {% include "footer.html" %}
 <script src="static/javascript/parally.js"></script> 
 <script>
 $('.parallax').parally({offset: -40});
 </script>
-</body>
-
 </html>

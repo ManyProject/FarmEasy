@@ -41,7 +41,6 @@ def checkout_page():
 
 
 def checkout_func():
-    # return render_template('delivery_status.html')
     if(request.form.get('payment_address') == 'existing_address'):
         address = request.form.get('address')
     elif(request.form.get('payment_address') == 'new_address'):

@@ -139,6 +139,56 @@ $(document).ready(function() {
 		itemsTabletSmall : false,
 		itemsMobile : [479, 1]
 	});
+	$('#related-slider').owlCarousel({
+		items: 4,
+		navigation: true,
+		pagination: false,
+		itemsDesktop : [1199, 3],
+		itemsDesktopSmall : [979, 2],
+		itemsTablet : [768, 2],
+		itemsTabletSmall : false,
+		itemsMobile : [479, 1]
+	});
+	$('#latest-slidertab').owlCarousel({
+		items: 4,
+		navigation: true,
+		pagination: false,
+		itemsDesktop : [1199, 3],
+		itemsDesktopSmall : [979, 2],
+		itemsTablet : [768, 2],
+		itemsTabletSmall : false,
+		itemsMobile : [479, 1]
+	});
+	$('#special-slidertab').owlCarousel({
+		items: 4,
+		navigation: true,
+		pagination: false,
+		itemsDesktop : [1199, 3],
+		itemsDesktopSmall : [979, 2],
+		itemsTablet : [768, 2],
+		itemsTabletSmall : false,
+		itemsMobile : [479, 1]
+	});
+	$('#related-slidertab').owlCarousel({
+		items: 4,
+		navigation: true,
+		pagination: false,
+		itemsDesktop : [1199, 3],
+		itemsDesktopSmall : [979, 2],
+		itemsTablet : [768, 2],
+		itemsTabletSmall : false,
+		itemsMobile : [479, 1]
+	});
+	$('#bestseller-slidertab').owlCarousel({
+		items: 4,
+		navigation: true,
+		pagination: false,
+		itemsDesktop : [1199, 3],
+		itemsDesktopSmall : [979, 2],
+		itemsTablet : [768, 2],
+		itemsTabletSmall : false,
+		itemsMobile : [479, 1]
+	});
 
 	
 });

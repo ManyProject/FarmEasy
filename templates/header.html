@@ -20,30 +20,8 @@
 </head>
 <body class="cart col-2">
   <div class="preloader loader" style="display: block; background:#f2f2f2;"> <img src="/static/image/loader.gif"  alt="#"/></div>
-
   <div class="bdyy">
     <header>
-      <div class="header-top">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="top-right pull-right">
-                <div id="top-links" class="nav pull-right">
-                  <ul class="list-inline">
-                    <li class="dropdown"><a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-user"></i><span>My Account</span> <span class="caret"></span></a>
-                      <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="{{ url_for('profile') }}">My Profile</a></li>
-                        <li><a href="{{ url_for('updatepassword') }}">Change Password</a></li>
-                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                      </ul>
-                    </li>
-                  </ul>              
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="container">
         <div class="header-inner">
           <div class="col-sm-4 col-xs-6 header-left">
@@ -105,6 +83,11 @@
                 </li>
               </ul>
             </div>
+            {% elif not session.get('email', false) %}
+              <ul>
+                <li><a href="{{url_for('registration')}}"><input type="button" class="btn btn-primary" data-loading-text="Loading..." value="Register" style="margin-bottom:8px;"></a></li>
+                <li><a href="{{url_for('auth')}}"><input type="button" class="btn btn-primary" data-loading-text="Loading..."  value="  Login   " style="margin-bottom:8px;"></a></li>
+              </ul>
             {% endif %}
           </div>
         </div>
@@ -113,33 +96,35 @@
     {% if session['role'] == 'Buyer' %}
     <nav id="menu" class="navbar">
         <div class="nav-inner container">
-            <div class="navbar-header"><span id="category" class="visible-xs">Categories</span>
+            <div class="navbar-header"><span id="category" class="visible-xs">Menu</span>
                 <button type="button" class="btn btn-navbar navbar-toggle" ><i class="fa fa-bars"></i></button>
             </div>
             <div class="navbar-collapse">
                 <ul class="main-navigation">
-                    <li><a href="index-2.html"   class="parent"  >Home</a> </li>
-                    <li><a href="category.html"   class="parent"  >Fruits</a> </li>
-                    <li><a href="category.html"   class="parent"  >Vegetables</a> </li>
-                    <li><a href="category.html"   class="parent"  >Exotica</a> </li>
-                    <li><a href="category.html"   class="parent"  >Groceries</a> </li>
-                    <li><a href="category.html"   class="parent"  >Health & Beauty</a> </li>
-                    <li><a href="#" class="active parent">Page</a>
-                        <ul>
-                            <li><a href="category.html">Category Page</a></li>
-                            <li><a href="cart.html">Cart Page</a></li>
-                            <li><a href="checkout.html">Checkout Page</a></li>
-                            <li><a href="blog.html" >Blog Page</a></li>
-                            <li><a href="singale-blog.html" >Singale Blog Page</a></li>
-                            <li><a href="register.html">Register Page</a></li>
-                            <li><a href="contact.html">Contact Page</a></li>
-                        </ul>
+                    <li><a href="{{url_for('index')}}" class="parent"  >Home</a> </li>
+                    <li><a href="#" class="active parent" class="parent">Categories</a>
+                      <ul>
+                        <li><a href="{{url_for('category', category='fruits')}}">Fruits</a> </li>
+                        <li><a href="{{url_for('category', category='grains')}}">Grains</a> </li>
+                        <li><a href="{{url_for('category', category='pulses')}}">Pulses</a> </li>
+                        <li><a href="{{url_for('category', category='spices')}}">Spices</a> </li>
+                        <li><a href="{{url_for('category', category='vegetables')}}">Vegetables</a> </li>                            
+                      </ul>
+                  </li>
+                    <li><a href="{{url_for('cart')}}" class="parent">Cart </a></li>
+                    <li><a href="{{url_for('checkout')}}" class="parent">Checkout </a></li>
+                    <li><a href="{{url_for('history')}}" class="parent">Order History </a></li>
+                    <li><a href="#" class="active parent">Account</a>
+                      <ul>
+                        <li><a href="{{ url_for('profile') }}" >My Profile</a></li>
+                        <li><a href="{{ url_for('updatepassword') }}" >Update Password</a> </li>
+                        <li><a href="{{ url_for('logout') }}" >Logout</a></li>
+                      </ul>
                     </li>
-                    <li><a href="blog.html" class="parent"  >Blog</a></li>
                     <li><a href="#" class="active parent">More</a>
                       <ul>
-                        <li><a href="about-us.html" >About us</a></li>
-                        <li><a href="contact.html" >Contact Us</a> </li>
+                        <li><a href="{{url_for('about')}}" >About Us</a></li>
+                        <li><a href="{{url_for('contact')}}" >Contact US</a> </li>
                       </ul>
                     </li>
                 </ul>
@@ -156,10 +141,17 @@
               <ul class="main-navigation">
                 <li><a href="{{url_for('add_produce')}}" class="parent">Add Produce</a> </li>
                 <li><a href="{{ url_for('producehistory') }}" class="parent">Produce History</a></li>
+                <li><a href="#" class="active parent">Account</a>
+                  <ul>
+                    <li><a href="{{ url_for('profile') }}" >My Profile</a></li>
+                    <li><a href="{{ url_for('updatepassword') }}" >Update Password</a> </li>
+                    <li><a href="{{ url_for('logout') }}" >Logout</a></li>
+                  </ul>
+                </li>
                 <li><a href="#" class="active parent">More</a>
                   <ul>
-                    <li><a href="about-us.html" >About us</a></li>
-                    <li><a href="contact.html" >Contact Us</a> </li>
+                    <li><a href="{{url_for('about')}}" >About us</a></li>
+                    <li><a href="{{url_for('contact')}}" >Contact Us</a> </li>
                   </ul>
                 </li>
               </ul>
@@ -175,15 +167,45 @@
           <div class="navbar-collapse">
               <ul class="main-navigation">
                   <li><a href="{{url_for('delivery')}}">Delivery Status</a></li>
+                  <li><a href="#" class="active parent">Account</a>
+                    <ul>
+                      <li><a href="{{ url_for('profile') }}" >My Profile</a></li>
+                      <li><a href="{{ url_for('updatepassword') }}" >Update Password</a></li>
+                      <li><a href="{{ url_for('logout') }}" >Logout</a></li>
+                    </ul>
+                  </li>
                   <li><a href="#" class="active parent">More</a>
                     <ul>
-                      <li><a href="about-us.html" >About us</a></li>
-                      <li><a href="contact.html" >Contact Us</a> </li>
+                      <li><a href="{{url_for('about')}}" >About us</a></li>
+                      <li><a href="{{url_for('contact')}}" >Contact Us</a> </li>
                     </ul>
                   </li>
               </ul>
           </div>
       </div>
     </nav>
-  </div>      
+    {% else %}
+    <nav id="menu" class="navbar">
+      <div class="nav-inner container">
+          <div class="navbar-header"><span id="category" class="visible-xs">Menu</span>
+              <button type="button" class="btn btn-navbar navbar-toggle" ><i class="fa fa-bars"></i></button>
+          </div>
+          <div class="navbar-collapse">
+              <ul class="main-navigation">
+                  <li><a href="{{url_for('index')}}" class="parent">Home</a> </li>
+                  <li><a href="{{url_for('category', category='fruits')}}" class="parent">Fruits</a> </li>
+                  <li><a href="{{url_for('category', category='grains')}}" class="parent">Grains</a> </li>
+                  <li><a href="{{url_for('category', category='pulses')}}" class="parent">Pulses</a> </li>
+                  <li><a href="{{url_for('category', category='spices')}}" class="parent">Spices</a> </li>
+                  <li><a href="{{url_for('category', category='vegetables')}}" class="parent">Vegetables</a> </li>                            
+                  <li><a href="#" class="active parent">More</a>
+                    <ul>
+                      <li><a href="{{url_for('about')}}" >About Us</a></li>
+                      <li><a href="{{url_for('contact')}}" >Contact Us</a> </li>
+                    </ul>
+                  </li>
+              </ul>
+          </div>
+      </div>
+    </nav>
     {% endif %}

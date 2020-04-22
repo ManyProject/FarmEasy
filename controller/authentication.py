@@ -18,7 +18,7 @@ def authentication_check(f):
         else:
             if(request.endpoint in ['auth', 'registration']):
                 return f(*args, **kwargs)
-            return redirect(url_for('index'))
+            return redirect(url_for('auth'))
     return decorated_function
 
 

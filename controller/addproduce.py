@@ -56,9 +56,7 @@ def set_produce():
         image_name = (form['produce_name'] + "-" +
                       str(datetime.now().strftime("%a%d%y %H%M%S"))
                       + "." + image_ext)
-        print(image_name)
         image_path = "./static/produce-images/" + image_name
-        print(image_path)
         request.files['produce_img'].save(image_path)
 
     query = "INSERT INTO produce(produce_id, farmer_id, produce_name,\

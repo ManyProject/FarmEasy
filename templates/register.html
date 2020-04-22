@@ -1,80 +1,8 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
-<!-- Mirrored from html.lionode.com/freshfood/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 24 Mar 2020 08:39:18 GMT -->
-<head>
-<title>Fresh Food</title><meta http-equiv="content-type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="e-commerce site well design with responsive view." />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-<link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<link href='https://fonts.googleapis.com/css?family=Work+Sans:100,300,400,500,700,900' rel='stylesheet' type='text/css'>
-<link href="/static/css/stylesheet.css" rel="stylesheet">
-<link href="/static/css/responsive.css" rel="stylesheet">
-<link href="/static/owl-carousel/owl.carousel.css" type="text/css" rel="stylesheet" media="screen" />
-<link href="/static/owl-carousel/owl.transitions.css" type="text/css" rel="stylesheet" media="screen" />
-<script src="/static/javascript/jquery-2.1.1.min.js" ></script>
-<script src="/static/bootstrap/js/bootstrap.min.js" ></script>
-<script src="/static/javascript/jstree.min.js"></script>
-<script src="/static/javascript/template.js"></script>
-<script src="/static/javascript/common.js" ></script>
-<script src="/static/javascript/global.js" ></script>
-<script src="/static/owl-carousel/owl.carousel.min.js" ></script>
-</head>
-<body class="account-register col-2">
-<div class="preloader loader" style="display: block; background:#f2f2f2;"> <img src="/static/image/loader.gif"  alt="#"/></div>
-<header>
-  <div class="container">
-    <div class="header-inner">
-      <div class="col-sm-4 col-xs-6 header-left">
-        <div class="shipping">
-          <div class="shipping-img"></div>
-          <div class="shipping-text">+91(000)1234-1234<span class="shipping-detail">Week From 9:00am To 7:00pm</span></div>
-        </div>
-      </div>
-      <div class="col-sm-4 col-xs-12 header-middle">
-        <div class="header-middle-top">
-          <div id="logo"> <a href="{{ url_for('index') }}"><img src="/static/image/logo.png" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
-        </div>
-      </div>
-      <div class="col-sm-4 col-xs-12 header-right">
-      </div>
-    </div>
-  </div>
-</header>
-<nav id="menu" class="navbar">
-    <div class="nav-inner container">
-        <div class="navbar-header"><span id="category" class="visible-xs">Categories</span>
-            <button type="button" class="btn btn-navbar navbar-toggle" ><i class="fa fa-bars"></i></button>
-        </div>
-        <div class="navbar-collapse">
-            <ul class="main-navigation">
-                <li><a href="{{ url_for('index') }}"   class="parent"  >Home</a> </li>
-                <li><a href="/static/category.html"   class="parent"  >Fruits</a> </li>
-                <li><a href="/static/category.html"   class="parent"  >Vegetables</a> </li>
-                <li><a href="/static/category.html"   class="parent"  >Exotica</a> </li>
-                <li><a href="/static/category.html"   class="parent"  >Groceries</a> </li>
-                <li><a href="/static/category.html"   class="parent"  >Health & Beauty</a> </li>
-                <li><a href="#" class="active parent">Page</a>
-                    <ul>
-                        <li><a href="/static/category.html">Category Page</a></li>
-                        <li><a href="/static/cart.html">Cart Page</a></li>
-                        <li><a href="/static/checkout.html">Checkout Page</a></li>
-                        <li><a href="/static/blog.html" >Blog Page</a></li>
-                        <li><a href="/static/singale-blog.html" >Singale Blog Page</a></li>
-                        <li><a href="{{ url_for('registration') }}">Register Page</a></li>
-                        <li><a href="/static/contact.html">Contact Page</a></li>
-                    </ul>
-                </li>
-                <li><a href="/static/blog.html" class="parent"  >Blog</a></li>
-                <li><a href="/static/about-us.html" >About us</a></li>
-                <li><a href="/static/contact.html" >Contact Us</a> </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+{% include "header.html" %}
+{% block body %}
 <div class="container">
     <ul class="breadcrumb">
         <li><a href="{{ url_for('index') }}"><i class="fa fa-home"></i></a></li>
@@ -85,12 +13,26 @@
         <div class="col-sm-3 hidden-xs column-left" id="column-left">
             <div class="column-block">
                 <div class="columnblock-title">Account</div>
-                <div class="account-block">
-                    <div class="list-group"> <a class="list-group-item" href="{{ url_for('auth') }}">Login</a> <a class="list-group-item" href="{{ url_for('registration') }}">Register</a> <a class="list-group-item" href="/static/forgetpassword.html">Forgotten Password</a> <a class="list-group-item" href="#">My Account</a> <a class="list-group-item" href="#">Address Book</a> <a class="list-group-item" href="#">Wish List</a> <a class="list-group-item" href="#">Order History</a> <a class="list-group-item" href="/static/download.html">Downloads</a> <a class="list-group-item" href="#">Reward Points</a> <a class="list-group-item" href="#">Returns</a> <a class="list-group-item" href="#">Transactions</a> <a class="list-group-item" href="#">Newsletter</a><a class="list-group-item last" href="#">Recurring payments</a> </div>
+                    <div class="account-block">
+                        <div class="list-group"> <a class="list-group-item" href="{{ url_for('auth') }}">Login</a> 
+                        <a class="list-group-item" href="{{ url_for('registration') }}">Register</a> 
+                        <a class="list-group-item" href="/static/forgetpassword.html">Forgotten Password</a> 
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-9" id="content">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-success text-center">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                      </button>
+                  <strong>{{ message }}</strong>
+              </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
             <h1>Register Account</h1>
             <p>If you already have an account with us, please login at the <a href="{{ url_for('auth') }}">login page</a>.</p>
             <form class="form-horizontal" enctype="multipart/form-data" method="post" action="{{ url_for('registration') }}">
@@ -165,97 +107,8 @@
         </div>
     </div>
 </div>
-<footer>
-    <div class="container">
-        <div class="row">
-        	<div class="footer-top-cms">
-            <div class="col-sm-7">
-                    <div class="newslatter">
-                        <form>
-                            <h5>Newsletter</h5>
-                            <div class="input-group">
-                                <input type="text" class=" form-control" placeholder="Email Here......">
-                                <button type="submit" value="Sign up" class="btn btn-large btn-primary">Subscribe</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            <div class="col-sm-5">
-            <div class="footer-social">
-                <h5>Social</h5>
-                <ul>
-                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li class="gplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    <li class="youtube"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-                </ul>
-            </div>
-            </div>
-        </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3 footer-block">
-                <h5 class="footer-title">Information</h5>
-                <ul class="list-unstyled ul-wrapper">
-                    <li><a href="/static/about-us.html">About Us</a></li>
-                    <li><a href="/static/checkout.html">Delivery Information</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms &amp; Conditions</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-3 footer-block">
-                <h5 class="footer-title">Customer Service</h5>
-                <ul class="list-unstyled ul-wrapper">
-                    <li><a href="/static/contact.html">Contact Us</a></li>
-                    <li><a href="#">Returns</a></li>
-                    <li><a href="#">Site Map</a></li>
-                    <li><a href="#">Wish List</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-3 footer-block">
-                <h5 class="footer-title">Extras</h5>
-                <ul class="list-unstyled ul-wrapper">
-                    <li><a href="#">Brands</a></li>
-                    <li><a href="/static/gift.html">Gift Vouchers</a></li>
-                    <li><a href="/static/affiliate.html">Affiliates</a></li>
-                    <li><a href="#">Specials</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-3 footer-block">
-                <div class="content_footercms_right">
-                    <div class="footer-contact">
-                        <h5 class="contact-title footer-title">Contact Us</h5>
-                        <ul class="ul-wrapper">
-                            <li><i class="fa fa-map-marker"></i><span class="location2"> Warehouse & Offices,<br>
-                                12345 Street name, California<br>
-                                USA</span></li>
-                            <li><i class="fa fa-envelope"></i><span class="mail2"><a href="#">info@localhost.com</a></span></li>
-                            <li><i class="fa fa-mobile"></i><span class="phone2">+91 0987-654-321</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <a id="scrollup">Scroll</a> </footer>
-<div class="footer-bottom">
-    <div class="container">
-        <div class="copyright">Powered By<a class="yourstore" href="/static/http://www.lionode.com/">lionode &copy; 2016 </a> </div>
-        <div class="footer-bottom-cms">
-            <div class="footer-payment">
-                <ul>
-                    <li class="mastero"><a href="#"><img alt="" src="/static/image/payment/mastero.jpg"></a></li>
-                    <li class="visa"><a href="#"><img alt="" src="/static/image/payment/visa.jpg"></a></li>
-                    <li class="currus"><a href="#"><img alt="" src="/static/image/payment/currus.jpg"></a></li>
-                    <li class="discover"><a href="#"><img alt="" src="/static/image/payment/discover.jpg"></a></li>
-                    <li class="bank"><a href="#"><img alt="" src="/static/image/payment/bank.jpg"></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+{% endblock %}
+{% include "footer.html" %}
 </body>
 
-<!-- Mirrored from html.lionode.com/freshfood/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 24 Mar 2020 08:39:20 GMT -->
 </html>

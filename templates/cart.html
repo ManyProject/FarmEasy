@@ -4,8 +4,8 @@
 {% block body %}
 <div class="container">
     <ul class="breadcrumb">
-      <li><a href="index-2.html"><i class="fa fa-home"></i></a></li>
-      <li><a href="cart.html">Shopping Cart</a></li>
+      <li><a href="{{url_for('index')}}"><i class="fa fa-home"></i></a></li>
+      <li><a href="{{url_for('cart')}}">Shopping Cart</a></li>
     </ul>
     <div class="row">
       <div id="column-left" class="col-sm-3 hidden-xs column-left">
@@ -15,7 +15,7 @@
             <div class="category_block">
               <ul class="box-category treeview-list treeview">
                 {% for i in categories %}
-                  <li><a href="#">{{i[0]}}</a></li>
+                  <li><a href="{{url_for('category',category=i[0])}}">{{i[0]}}</a></li>
                 {% endfor %}
               </ul>
             </div>
@@ -108,7 +108,7 @@
           </div>
         </div>
         <div class="buttons">
-          <div class="pull-left"><a class="btn btn-default" href="index-2.html">Continue Shopping</a></div>
+          <div class="pull-left"><a class="btn btn-default" href="{{url_for('index')}}">Continue Shopping</a></div>
           <div class="pull-right"><a class="btn btn-primary" href="{{url_for('checkout')}}">Checkout</a></div>
         </div>
       </div>

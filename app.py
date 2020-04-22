@@ -14,6 +14,7 @@ from controller.producehistory import get_history
 from controller.profile import (get_profile, set_profile,
                                 get_update_page, set_pass)
 from controller.addproduce import get_produce_page, set_produce
+from controller.category import category_page
 from utilities import (get_perm_address, get_buyer_address, category_items,
                        get_categories, get_latest_items)
 
@@ -23,7 +24,6 @@ app.config['UPLOAD_FOLDER'] = '/static/user_profile_images'
 
 
 @app.route('/', methods=['GET', 'POST'])
-@authentication_check
 def main():
     return redirect(url_for('index'))
 
@@ -48,6 +48,27 @@ def index():
                            category_items=cat_items, latest=latest)
 
 
+@app.route('/category/<category>')
+def category(category):
+    return category_page(category)
+
+
+@app.route('/about-us')
+def about():
+    items, subtotal, items_len = cart_items()
+    return render_template('about-us.html',  items=items,
+                           subtotal=subtotal,
+                           items_len=items_len)
+
+
+@app.route('/contact-us')
+def contact():
+    items, subtotal, items_len = cart_items()
+    return render_template('contact.html',  items=items,
+                           subtotal=subtotal,
+                           items_len=items_len)
+
+
 @app.route('/cart')
 @authentication_check
 @buyer_check
@@ -64,29 +85,22 @@ def cart():
 def item():
     if(request.form.get('type', None) == 'delete'):
         delete_item(request.form.get('item_id'))
-        return redirect(url_for(request.form.get('endpoint', 'cart')))
+        return redirect(request.referrer)
     elif(request.form.get('type', None) == 'update'):
         msg = update_item(request.form.get('item_id', None),
                           request.form.get('quantity', None),
                           request.form.get('produce_id', None),)
         flash(msg)
-        return redirect(url_for(request.form.get('endpoint', 'cart')))
+        return redirect(request.referrer)
     elif(request.form.get('type', None) == 'add'):
         add_item(request.form.get('produce_id', None),
                  request.form.get('quantity', None))
-        return redirect(url_for(request.form.get('endpoint', 'cart')))
+        return redirect(request.referrer)
 
 
 @app.route('/product/<produce_id>', methods=['GET', 'POST'])
-@authentication_check
-@buyer_check
 def product(produce_id):
-    items, latestitems, categories, subtotal, items_len = cart_data()
-    data, relateditems, latestitems, categories = product_detail(produce_id)
-    return render_template('product.html', data=data,
-                           relateditems=relateditems, latestitems=latestitems,
-                           categories=categories, subtotal=subtotal,
-                           items=items)
+    return product_detail(produce_id)
 
 
 @app.route('/checkout', methods=['GET', 'POST'])
@@ -94,9 +108,9 @@ def product(produce_id):
 @buyer_check
 def checkout():
     if(request.method == 'GET'):
-        return checkout_page()
-    if(request.method == 'POST'):
         return checkout_func()
+    if(request.method == 'POST'):
+        return checkout_page()
 
 
 @app.route('/history')
@@ -197,4 +211,4 @@ def page_not_found(e):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)

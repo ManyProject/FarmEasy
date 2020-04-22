@@ -16,21 +16,22 @@
           <div class="list-group"> 
             <a class="list-group-item" href="{{ url_for('auth') }}">Login</a>
             <a class="list-group-item" href="{{ url_for('registration') }}">Register</a> 
-            <a class="list-group-item" href="#">My Account</a> 
-            <a class="list-group-item" href="#">Address Book</a> 
-            <a class="list-group-item" href="#">Wish List</a> 
-            <a class="list-group-item" href="#">Order History</a> 
-            <a class="list-group-item" href="#">Downloads</a> 
-            <a class="list-group-item" href="#">Reward Points</a> 
-            <a class="list-group-item" href="#">Returns</a> 
-            <a class="list-group-item" href="#">Transactions</a> 
-            <a class="list-group-item" href="#">Newsletter</a>
-            <a class="list-group-item last" href="#">Recurring payments</a> 
           </div>
         </div>
       </div>
     </div>
     <div class="col-sm-9" id="content">
+      {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-success text-center">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                      </button>
+                  <strong>{{ message }}</strong>
+              </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
       <div class="row">
         <div class="col-sm-6">
           <div class="well">
@@ -51,8 +52,8 @@
               <div class="form-group">
                 <label for="input-password" class="control-label">Password</label>
                 <input type="password" class="form-control" id="input-password" placeholder="Password" value="" name="password">
-                <a href="/static/forgetpassword.html">Forgotten Password</a></div>
-              <input type="submit" class="btn btn-primary" value="Login">
+                <a href="#">Forgotten Password</a></div>
+                <input type="submit" class="btn btn-primary" value="Login">
             </form>
           </div>
         </div>

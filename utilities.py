@@ -6,7 +6,7 @@ from db_connection import connect
 
 def get_categories():
     query = "SELECT DISTINCT produce_category FROM produce\
-             WHERE produce_quantity!=0 ORDER BY produce_category"
+             WHERE produce_quantity <> 0 ORDER BY produce_category"
     try:
         connection = connect()
         cur = connection.cursor()
@@ -25,7 +25,7 @@ def get_related_items(produce_category):
     query = "SELECT produce_name, produce_price, produce_image,\
             produce_id , user_name FROM produce INNER JOIN user \
             ON farmer_id = user_id \
-            WHERE produce_category = %s AND produce_quantity != 0 LIMIT 7"
+            WHERE produce_category = %s AND produce_quantity <> 0 LIMIT 7"
     try:
         connection = connect()
         cur = connection.cursor()
