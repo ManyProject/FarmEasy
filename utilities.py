@@ -1,7 +1,19 @@
 from flask import flash, session
 import mysql.connector
+import urllib.request
+import urllib.parse
 
 from db_connection import connect
+
+
+def sendSMS(numbers, message):
+    data = urllib.parse.urlencode({'apikey': 'apikey', 'numbers': numbers,
+                                   'message': message, 'sender': 'FarmEasy'})
+    data = data.encode('utf-8')
+    request = urllib.request.Request("https://api.textlocal.in/send/?")
+    f = urllib.request.urlopen(request, data)
+    fr = f.read()
+    return(fr)
 
 
 def get_categories():
@@ -118,3 +130,86 @@ def category_items(category):
         cur.close()
         connection.close()
     return items
+
+
+def get_agencies():
+    query = "SELECT agency_id, agency_name, intercity_rates, intracity_rates\
+             FROM delivery_agency ORDER BY agency_id"
+    try:
+        connection = connect()
+        cur = connection.cursor()
+        cur.execute(query)
+        delivery_details = cur.fetchall()
+    except mysql.connector.Error as err:
+        print(err)
+        delivery_details = []
+    finally:
+        cur.close()
+        connection.close()
+    return delivery_details
+
+
+def show_produce(farmer_id):
+    query = "SELECT produce_image, produce_name, produce_quantity,\
+            produce_date, produce_price, produce_category\
+            FROM produce \
+            WHERE produce.farmer_id = %s ORDER BY produce_date LIMIT 1"
+    params = (farmer_id,)
+    try:
+        connection = connect()
+        cur = connection.cursor()
+        cur.execute(query, params)
+        produce_details = cur.fetchall()
+    except mysql.connector.Error as err:
+        print(err)
+        produce_details = []
+    finally:
+        cur.close()
+        connection.close()
+    s = ""
+    for produce in produce_details:
+        s += "Name: " + str(produce[1])
+        s += "\nQuantity: " + str(produce[2])
+        s += "\nDate: " + str(produce[3])
+        s += "\nPrice: " + str(produce[4])
+        s += "\nCategory: " + str(produce[5])
+    return s
+
+
+def add_produce_sms(content, farmer_id):
+    name = str(content[0])
+    price = int(content[1])
+    quantity = int(content[2])
+    category = str(content[3])
+    del_agency = int(content[4])
+    delivery_agency = get_agencies()
+    query = "INSERT INTO produce(produce_id, farmer_id, produce_name,\
+             produce_date, produce_category,\
+             produce_quantity, produce_price, delivery_agency_id)\
+             VALUES (UUID(), %s, %s, NOW(), %s, %s, %s, %s)"
+    try:
+        connection = connect()
+        cur = connection.cursor()
+        params = (farmer_id, name, category, quantity, price,
+                  delivery_agency[del_agency-1][0],)
+        cur.execute(query, params)
+        connection.commit()
+    except mysql.connector.Error as err:
+        print(err)
+        return False
+    finally:
+        cur.close()
+        connection.close()
+    return True
+
+
+def show_agencies():
+    delivery_agencies = get_agencies()
+    s = ""
+    cnt = 0
+    for agency in delivery_agencies:
+        cnt += 1
+        s += str(cnt) + ") Name: " + str(agency[1])
+        s += "\nIntracity Rates: " + str(agency[2])
+        s += "\nIntercity Rates: " + str(agency[3]) + "\n"
+    return s

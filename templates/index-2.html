@@ -5,20 +5,20 @@
 <hr>
 <div class="mainbanner">
   <div id="main-banner" class="owl-carousel home-slider">
-    <div class="item"> <a href="javascript: void(0)"><img src="/static/image/banners/Main-Banner1.jpg" alt="main-banner1" class="img-responsive" /></a> </div>
-    <div class="item"> <a href="javascript: void(0)"><img src="/static/image/banners/Main-Banner2.jpg" alt="main-banner2" class="img-responsive" /></a> </div>
-    <div class="item"> <a href="javascript: void(0)"><img src="/static/image/banners/Main-Banner3.jpg" alt="main-banner3" class="img-responsive" /></a> </div>
+    <div class="item"> <a href="javascript: void(0)"><img  loading="lazy" src="/static/image/banners/Main-Banner1.jpg" alt="main-banner1" class="img-responsive" /></a> </div>
+    <div class="item"> <a href="javascript: void(0)"><img  loading="lazy" src="/static/image/banners/Main-Banner2.jpg" alt="main-banner2" class="img-responsive" /></a> </div>
+    <div class="item"> <a href="javascript: void(0)"><img  loading="lazy" src="/static/image/banners/Main-Banner3.jpg" alt="main-banner3" class="img-responsive" /></a> </div>
   </div>
 </div>
 <div class="container">
   <div class="row">
     <div class="cms_banner ">
-      <div class="col-md-4 cms-banner-left"> <a href="javascript: void(0)"><img alt="#" src="/static/image/banners/subbanner1.jpg"></a> </div>
+      <div class="col-md-4 cms-banner-left"> <a href="javascript: void(0)"><img  loading="lazy" alt="#" src="/static/image/banners/subbanner1.jpg"></a> </div>
       <div class="col-md-4 cms-banner-middle">
-        <div class="md1"><a href="javascript: void(0)"> <img alt="#" src="/static/image/banners/subbanner2.jpg"></a> </div>
-        <div class="md2"><a href="javascript: void(0)"> <img alt="#" src="/static/image/banners/subbanner2.jpg"></a></div>
+        <div class="md1"><a href="javascript: void(0)"> <img  loading="lazy" alt="#" src="/static/image/banners/subbanner2.jpg"></a> </div>
+        <div class="md2"><a href="javascript: void(0)"> <img  loading="lazy" alt="#" src="/static/image/banners/subbanner2.jpg"></a></div>
       </div>
-      <div class="col-md-4 cms-banner-right"> <a href="javascript: void(0)"><img alt="#" src="/static/image/banners/subbanner3.jpg"></a> </div>
+      <div class="col-md-4 cms-banner-right"> <a href="javascript: void(0)"><img  loading="lazy" alt="#" src="/static/image/banners/subbanner3.jpg"></a> </div>
     </div>
   </div>
   <div class="row">
@@ -49,7 +49,7 @@
               {% for item in category %}
                 <div class="item">
                   <div class="product-thumb transition">
-                    <div class="image product-imageblock"> <a href="{{url_for('product',produce_id = item[3])}}"> <img src="{{item[0]}}" class="img-responsive" style="width: 352px;  "/> </a>
+                    <div class="image product-imageblock"> <a href="{{url_for('product',produce_id = item[3])}}"> <img  loading="lazy" src="{{item[0]}}" class="img-responsive" style="width: 352px;  "/> </a>
                       <div class="button-group">
                         <form action="{{ url_for('item') }}" method="POST">
                           <input type="hidden" name="produce_id" value="{{ item[3] }}">
@@ -82,7 +82,7 @@
             {% for item in latest %}
               <div class="item product-slider-item">
                 <div class="product-thumb transition">
-                  <div class="image product-imageblock"> <a href="{{url_for('product',produce_id = item[3])}}"> <img src="{{ item[2] }}" alt="{{item[0]}}" title="{{item[0]}}" class="img-responsive" /> </a>
+                  <div class="image product-imageblock"> <a href="{{url_for('product',produce_id = item[3])}}"> <img  loading="lazy" src="{{ item[2] }}" alt="{{item[0]}}" title="{{item[0]}}" class="img-responsive" /> </a>
                     <div class="button-group">
                       <form action="{{ url_for('item') }}" method="POST">
                         <input type="hidden" name="produce_id" value="{{ item[3] }}">

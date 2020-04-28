@@ -28,7 +28,7 @@
             <div class="product-thumb transition">
               <div class="image product-imageblock">
               <a href="{{ url_for('product', produce_id = li[3]) }}">
-              <img src="{{ li[2] }}" style="height: 60px; width: 50px;" alt="{{ li[0] }}" title="{{ li[0] }}" class="img-responsive" />
+              <img loading="lazy" src="{{ li[2] }}" style="height: 60px; width: 50px;" alt="{{ li[0] }}" title="{{ li[0] }}" class="img-responsive" />
               </a>
               </div>
               <div class="caption product-detail">
@@ -59,7 +59,7 @@
       <div class="row">
         <div class="col-sm-6">
           <div class="thumbnails">
-            <div><a class="thumbnail" href="{{ data[8] }}" title="{{ data[0] }}"><img src="{{ data[8] }}" style="height: 300px;" title="{{ data[0] }}" alt="{{ data[0] }}" /></a></div>
+            <div><a class="thumbnail" href="{{ data[8] }}" title="{{ data[0] }}"><img loading="lazy" src="{{ data[8] }}" style="height: 300px;" title="{{ data[0] }}" alt="{{ data[0] }}" /></a></div>
           </div>
         </div>
         <div class="col-sm-6">
@@ -129,7 +129,7 @@
         {% for ri in relateditems %}
           <div class="item">
             <div class="product-thumb transition">
-              <div class="image product-imageblock"> <a href="{{ url_for('product', produce_id = ri[3]) }}"> <img src="{{ ri[2] }}" style="height : 190px; width : 200px" alt="{{ ri[0] }}" title="{{ ri[0] }}" class="img-responsive" /> </a>
+              <div class="image product-imageblock"> <a href="{{ url_for('product', produce_id = ri[3]) }}"> <img loading="lazy" src="{{ ri[2] }}" style="height : 190px; width : 200px" alt="{{ ri[0] }}" title="{{ ri[0] }}" class="img-responsive" /> </a>
               </div>
               <div class="caption product-detail">
                 <h4 class="product-name"><a href="{{ url_for('product', produce_id = ri[3]) }}" title="{{ ri[0] }}">{{ ri[0] }}</a></h4>

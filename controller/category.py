@@ -46,6 +46,8 @@ def category_page(category):
     latest = get_latest_items()
     if(session.get('email', False)):
         items, subtotal, items_len = cart_items()
+    else:
+        items, subtotal, items_len = [], 0, 0
 
     query = "SELECT produce_image, produce_name, produce_price, produce_id,\
             produce_quantity FROM produce WHERE \

@@ -12,7 +12,8 @@ def validate(request):
     form = request.form
     check = all(item in ['produce_name', 'produce_date',
                          'category', 'produce_price', 'produce_quantity',
-                         'delivery_agency', 'submit'] for item in form.keys())
+                         'delivery_agency', 'produce_description',
+                         'submit'] for item in form.keys())
     return check and ('produce_img' in request.files)
 
 
@@ -61,15 +62,16 @@ def set_produce():
 
     query = "INSERT INTO produce(produce_id, farmer_id, produce_name,\
              produce_date, produce_image, produce_category,\
-             produce_quantity, produce_price, delivery_agency_id)\
-             VALUES (UUID(), %s, %s, %s, %s, %s, %s, %s, %s)"
+             produce_quantity, produce_price, delivery_agency_id,\
+             produce_description)\
+             VALUES (UUID(), %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     try:
         connection = connect()
         cur = connection.cursor()
         params = (session['id'], form['produce_name'], form['produce_date'],
                   image_path[1:], form['category'],
                   form['produce_quantity'], form['produce_price'],
-                  form['delivery_agency'])
+                  form['delivery_agency'], form['produce_description'])
         cur.execute(query, params)
         connection.commit()
     except mysql.connector.Error as err:

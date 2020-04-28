@@ -16,7 +16,9 @@ from controller.profile import (get_profile, set_profile,
 from controller.addproduce import get_produce_page, set_produce
 from controller.category import category_page
 from utilities import (get_perm_address, get_buyer_address, category_items,
-                       get_categories, get_latest_items)
+                       get_categories, get_latest_items, sendSMS, get_agencies,
+                       show_produce, add_produce_sms, show_agencies)
+from db_connection import connect
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super secret key'
@@ -55,7 +57,10 @@ def category(category):
 
 @app.route('/about-us')
 def about():
-    items, subtotal, items_len = cart_items()
+    if(session.get('email', False)):
+        items, subtotal, items_len = cart_items()
+    else:
+        items, subtotal, items_len = [], 0, 0
     return render_template('about-us.html',  items=items,
                            subtotal=subtotal,
                            items_len=items_len)
@@ -63,7 +68,10 @@ def about():
 
 @app.route('/contact-us')
 def contact():
-    items, subtotal, items_len = cart_items()
+    if(session.get('email', False)):
+        items, subtotal, items_len = cart_items()
+    else:
+        items, subtotal, items_len = [], 0, 0
     return render_template('contact.html',  items=items,
                            subtotal=subtotal,
                            items_len=items_len)
@@ -108,9 +116,9 @@ def product(produce_id):
 @buyer_check
 def checkout():
     if(request.method == 'GET'):
-        return checkout_func()
-    if(request.method == 'POST'):
         return checkout_page()
+    if(request.method == 'POST'):
+        return checkout_func()
 
 
 @app.route('/history')
@@ -197,6 +205,7 @@ def logout():
     session.pop('email', None)
     session.pop('role', None)
     session.pop('id', None)
+    session.pop('url', None)
     return redirect(url_for('index'))
 
 
@@ -210,5 +219,62 @@ def page_not_found(e):
     return render_template('403.html'), 403
 
 
+@app.route('/sms', methods=['POST'])
+def sms():
+    body = request.get_json()
+    content = body['comments']
+    sender = body['sender']
+    query = "SELECT user_id FROM user WHERE user_phone = %s"
+    try:
+        connection = connect()
+        cur = connection.cursor()
+        params = (sender,)
+        cur.execute(query, params)
+        farmer_id = cur.fetchone()
+        farmer_id = farmer_id[0]
+        print(farmer_id)
+    except mysql.connector.Error as err:
+        print(err)
+    finally:
+        cur.close()
+        connection.close()
+
+    content = content.split('\n')
+
+    if(content[0].lower() == 'help'):
+        s = "1) ADD\n"
+
+        s += "Format your message as given below: "
+
+        s += "ADD\n<Name>\n<Price>\n<Quantity>\n<Category>\
+            \n<Description>\
+            \n<Delivery Agency>\
+            \n\n"
+
+        s += "2) SHOW LATEST PRODUCE\n\n"
+
+        s += "3) DELIVERY AGENCIES"
+        # sendSMS(sender, s)
+        print(s)
+
+    if(content[0].lower() == 'add'):
+        if(len(content) == 6):
+            ret = add_produce_sms(content[1:], farmer_id)
+            if(ret):
+                # sendSMS(sender, "Produce added successfully")
+                print("s")
+
+    if(content[0].lower().replace(" ", "") == 'showlatestproduce'):
+        s = show_produce(farmer_id)
+        # sendSMS(sender, s)
+        print(s)
+
+    if(content[0].lower().replace(" ", "") == 'deliveryagencies'):
+        s = show_agencies()
+        # sendSMS(sender, s)
+        print(s)
+    return "1"
+
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run('0.0.0.0', port=5000, debug=True)

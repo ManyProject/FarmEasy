@@ -19,7 +19,7 @@
     <script src="/static/owl-carousel/owl.carousel.min.js"></script>
 </head>
 <body class="cart col-2">
-  <div class="preloader loader" style="display: block; background:#f2f2f2;"> <img src="/static/image/loader.gif"  alt="#"/></div>
+  <div class="preloader loader" style="display: block; background:#f2f2f2;"> <img loading="lazy" src="/static/image/loader.gif"  alt="#"/></div>
   <div class="bdyy">
     <header>
       <div class="container">
@@ -32,7 +32,7 @@
           </div>
           <div class="col-sm-4 col-xs-12 header-middle">
             <div class="header-middle-top">
-              <div id="logo"> <a href="{{url_for('index')}}"><img src="/static/image/logo.png" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
+              <div id="logo"> <a href="{{url_for('index')}}"><img loading="lazy" src="/static/image/logo.png" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
             </div>
           </div>
           <div class="col-sm-4 col-xs-12 header-right">
@@ -46,7 +46,7 @@
                   <table class="table table-striped">
                     <tbody>
                       <tr>
-                        <td class="text-center"><a href="{{url_for('product', produce_id = item[5])}}"><img style="height: 50px; width: 50px" class="img-thumbnail" title="Product Image" alt="Product Image" src="{{item[4]}}"></a></td>
+                        <td class="text-center"><a href="{{url_for('product', produce_id = item[5])}}"><img loading="lazy" style="height: 50px; width: 50px" class="img-thumbnail" title="Product Image" alt="Product Image" src="{{item[4]}}"></a></td>
                         <td class="text-left"><a href="{{url_for('product', produce_id = item[5])}}">{{ item[3] }}</a></td>
                         <td class="text-right">x{{ '%0.2f'| format(item[1]|float) }} Rs.</td>
                         <td class="text-right">{{ '%0.2f'| format(item[1]*item[2]|float) }} Rs.</td>

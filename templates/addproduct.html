@@ -37,8 +37,8 @@
                         <div class="form-file">
                             <input required type="file" class="inputfile" name="produce_img" id="your_picture"  onchange="readURL(this);" data-multiple-caption="{count} files selected"/>
                             <label for="your_picture">
-                                <figure>
-                                    <img src="" alt="" class="your_picture_image">
+                                <figure style="border: solid;">
+                                    <img loading="lazy" src="" alt="" class="your_picture_image">
                                 </figure>
                                 <span class="file-button">choose picture</span>
                             </label>
@@ -50,6 +50,10 @@
                             <div class="form-group">
                                 <input required type="date" name="produce_date" id="last_name" placeholder="Produce Date" />
                             </div>
+                            <div class="form-group">
+                                <input required type="text" name="produce_description" placeholder="Produce Description">
+                            </div>
+
                         </div>
                     </div>
                 </fieldset>
@@ -65,7 +69,7 @@
                                 <input required type="radio" value="Fruits" name="category" id="category0" class="inputfile"/>
                                 <label for="category0">
                                     <figure>
-                                        <img src="static/image/category/fruit.jpg" alt="" class="" class="category0_image">
+                                        <img loading="lazy" src="static/image/category/fruit.jpg" alt="" class="" class="category0_image">
                                     </figure>
                                     <span>Fruits</span>
                                 </label>
@@ -75,7 +79,7 @@
                                 <input type="radio" value="Vegetables" name="category" id="category1" class="inputfile"/>
                                 <label for="category1">
                                     <figure>
-                                        <img src="static/image/category/vegetable.jpg" alt="" class="category1_image">
+                                        <img loading="lazy" src="static/image/category/vegetable.jpg" alt="" class="category1_image">
                                     </figure>
                                     <span>Vegetables</span>
                                 </label>
@@ -85,7 +89,7 @@
                                 <input type="radio" value="Pulses" name="category" id="category2" class="inputfile"/>
                                <label for="category2">
                                     <figure>
-                                        <img src="static/image/category/pulses.jpg" alt="" class="category2_image">
+                                        <img loading="lazy" src="static/image/category/pulses.jpg" alt="" class="category2_image">
                                     </figure>
                                     <span>Pulses</span>
                                 </label>
@@ -95,7 +99,7 @@
                                 <input type="radio" value="Grains" name="category" id="category3" class="inputfile"/>
                                 <label for="category3">
                                     <figure>
-                                        <img src="static/image/category/grains.jpg" alt="" class="category3_image">
+                                        <img loading="lazy" src="static/image/category/grains.jpg" alt="" class="category3_image">
                                     </figure>
                                     <span>Grains</span>
                                 </label>
@@ -105,7 +109,7 @@
                                 <input type="radio" value="Spices" name="category" id="category4" class="inputfile"/>
                                 <label for="category4">
                                     <figure>
-                                        <img src="static/image/category/spices.jpg" alt="" class="category4_image">
+                                        <img loading="lazy" src="static/image/category/spices.jpg" alt="" class="category4_image">
                                     </figure>
                                     <span>Spices</span>
                                 </label>
