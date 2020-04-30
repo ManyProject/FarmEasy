@@ -276,5 +276,10 @@ def sms():
     return "1"
 
 
+@app.route('/service-worker.js')
+def sw():
+    return app.send_static_file('service-worker.js')
+
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

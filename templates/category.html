@@ -143,24 +143,24 @@
       </div>
       <br />
       <div class="grid-list-wrapper" id="parent">
-        {% for item in category %}
+        {% for item in range((page|int-1)*12, (page|int)*12) %}
+          {% if item < total %}
             <div class="product-layout product-list col-xs-12">
               <div class="product-thumb">
-                <div class="image product-imageblock"> <a href="{{url_for('product',produce_id = item[3])}}"> <img loading="lazy" src="{{ item[0] }}" class="img-responsive" /> </a>
+                <div class="image product-imageblock"> <a href="{{url_for('product',produce_id = category[item][3])}}"> <img loading="lazy" src="{{ category[item][0] }}" class="img-responsive" /> </a>
                   <div class="button-group">
                     <form action="{{ url_for('item') }}" method="POST">
-                      <input type="hidden" name="produce_id" value="{{ item[3] }}">
+                      <input type="hidden" name="produce_id" value="{{ category[item][3] }}">
                       <input type="hidden" name="quantity" value="1" id="input-quantity" class="form-control"/>
                       <button type="submit" value="add" name="type" class="addtocart-btn">Add to Cart</button>
-                      <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-exchange"></i></button>
                     </form>
                   </div>
                 </div>
                 <div class="caption product-detail" style="position:relative;">
-                  <h4 class="product-name"> <a href="{{url_for('product', produce_id = item[3])}}" title="{{item[1]}}" product-name="{{ item[1] }}">{{ item[1] }}</a> </h4>
+                  <h4 class="product-name"> <a href="{{url_for('product', produce_id = category[item][3])}}" title="{{category[item][1]}}" product-name="{{ category[item][1] }}">{{ category[item][1] }}</a> </h4>
                   <p class="price product-price"> 
-                    <span class="price-new" produce-price="{{ item[2] }}" style="display: inline-block;">Rs.{{item[2]}}</span>
-                    <span class="price-tax" produce-quantity="{{ item[4] }}" style="display: inline-block; position:absolute; right:0">{{item[4]}} Kg</span>
+                    <span class="price-new" produce-price="{{ category[item][2] }}" style="display: inline-block;">Rs.{{category[item][2]}}</span>
+                    <span class="price-tax" produce-quantity="{{ category[item][4] }}" style="display: inline-block; position:absolute; right:0">{{category[item][4]}} Kg</span>
                   </p>
                 </div>
                 <div class="button-group">
@@ -169,27 +169,27 @@
                 </div>
               </div>
             </div>
+          {% endif %}
         {% endfor %}
       </div>
       <div class="category-page-wrapper">
         {% if total < 12 %}
           <div class="result-inner">Showing {{ 1 }} to {{ total }} of {{ total }}</div>
+        {% elif page|int == (total//12)+1 %}
+          <div class="result-inner">Showing {{ (page|int-1)*12 }} to {{ total }} of {{ total }}</div>
         {% else %}
-          <div class="result-inner">Showing {{ (page-1)*12+1 }} to {{ (page)*12 }} of {{ total }}</div>
+          <div class="result-inner">Showing {{ ((page|int)-1)*12+1 }} to {{ (page|int)*12 }} of {{ total }}</div>
         {% endif %}
         <div class="pagination-inner">
           <ul class="pagination">
-            {% for p in range(0, total+1, 12) %}
-              {% if ((loop.index)//12)+1 == page|int %}
+            {% for p in range(0, total, 12) %}
+              {% if (p//12)+1 == page|int %}
               <li class="active"><span>{{ page }}</span></li>
               {% else %}
-              <li><a href="{{ url_for('category', category=request.path[10:], page=((loop.index)//12)+1 ) }}">{{ ((loop.index)//12)+1 }}</a></li>
+              <li><a href="{{ url_for('category', category=request.path[10:], page=(p//12)+1 ) }}">{{ (p//12)+1 }}</a></li>
               {% endif %}
-              {% if (total//12+1 != page|int) %}
-              <li><a href="{{ url_for('category', category=request.path[10:], page=(page|int+1|int)|string) }}">&gt;</a></li>
-              {% endif %}
-              <li><a href="{{ url_for('category', category=request.path[10:], page=(total//12+1)|string ) }}">&gt;|</a></li>
             {% endfor %}
+            <li><a href="{{ url_for('category', category=request.path[10:], page=(total//12+1)|string ) }}">&gt;|</a></li>
           </ul>
         </div>
       </div>

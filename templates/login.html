@@ -2,6 +2,16 @@
 <html lang="en">
   {% include "header.html" %}
   {% block body %}
+
+<style>
+  @media (max-width: 500px) {
+
+    #column-left {
+      width: 60% !important;
+     }
+
+  }
+</style>
 <div class="container">
   <ul class="breadcrumb">
     <li><a href="{{ url_for('index') }}"><i class="fa fa-home"></i></a></li>
@@ -9,7 +19,7 @@
     <li><a href="{{ url_for('auth') }}">Login</a></li>
   </ul>
   <div class="row">
-    <div class="col-sm-3 hidden-xs column-left" id="column-left">
+    <div class="col-sm-3 column-left" id="column-left">
       <div class="column-block">
         <div class="columnblock-title">Account</div>
         <div class="account-block">

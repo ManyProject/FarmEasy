@@ -1,0 +1,31 @@
+{
+    "name": "FarmEasy",
+    "short_name": "FarmEasy",
+    "theme_color": "#CBD394",
+    "background_color": "#F1F7C6",
+    "icons": [
+      {
+          "src": "/static/icons/icon-64.png",
+          "type": "image/png",
+          "sizes": "64x64"
+        },
+        {
+          "src": "/static/icons/icon-96.png",
+          "type": "image/png",
+          "sizes": "96x96"
+        },
+        {
+          "src": "/static/icons/icon-192.png",
+          "type": "image/png",
+          "sizes": "192x192"
+        },
+        {
+          "src": "/static/icons/icon-512.png",
+          "type": "image/png",
+          "sizes": "512x512"
+        }
+    ],
+    "start_url": "/index",
+    "display": "standalone",
+    "orientation": "portrait"
+  }

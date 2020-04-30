@@ -17,7 +17,30 @@
     <script src="/static/javascript/common.js"></script>
     <script src="/static/javascript/global.js"></script>
     <script src="/static/owl-carousel/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+     crossorigin="">
+    </script>
+    <link rel="manifest" href="/static/manifest.json"/>
 </head>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+    .register('/service-worker.js')
+    .then(function(registration) {
+        console.log('Service Worker Registered!');
+        return registration;
+    })
+    .catch(function(err) {
+        console.error('Unable to register service worker.', err);
+    });
+  }
+</script>
+
 <body class="cart col-2">
   <div class="preloader loader" style="display: block; background:#f2f2f2;"> <img loading="lazy" src="/static/image/loader.gif"  alt="#"/></div>
   <div class="bdyy">
@@ -27,7 +50,7 @@
           <div class="col-sm-4 col-xs-6 header-left">
             <div class="shipping">
               <div class="shipping-img"></div>
-              <div class="shipping-text">+91(000)1234-1234<span class="shipping-detail">Week From 9:00am To 7:00pm</span></div>
+              <div class="shipping-text">&nbsp;+91 987-654-3210<br><span class="shipping-detail">Week From 9:00am To 7:00pm</span></div>
             </div>
           </div>
           <div class="col-sm-4 col-xs-12 header-middle">
@@ -124,7 +147,7 @@
                     <li><a href="#" class="active parent">More</a>
                       <ul>
                         <li><a href="{{url_for('about')}}" >About Us</a></li>
-                        <li><a href="{{url_for('contact')}}" >Contact US</a> </li>
+                        <li><a href="{{url_for('contact')}}" >Contact Us</a> </li>
                       </ul>
                     </li>
                 </ul>
@@ -134,14 +157,14 @@
     {% elif session['role'] == 'Farmer' %}
     <nav id="menu" class="navbar">
       <div class="nav-inner container">
-          <div class="navbar-header"><span id="category" class="visible-xs">Categories</span>
+          <div class="navbar-header"><span id="category" class="visible-xs">Menu</span>
               <button type="button" class="btn btn-navbar navbar-toggle" ><i class="fa fa-bars"></i></button>
           </div>
           <div class="navbar-collapse">
               <ul class="main-navigation">
                 <li><a href="{{url_for('add_produce')}}" class="parent">Add Produce</a> </li>
                 <li><a href="{{ url_for('producehistory') }}" class="parent">Produce History</a></li>
-                <li><a href="#" class="active parent">Account</a>
+                <li><a href="#" class="active parent" class="parent">Account</a>
                   <ul>
                     <li><a href="{{ url_for('profile') }}" >My Profile</a></li>
                     <li><a href="{{ url_for('updatepassword') }}" >Update Password</a> </li>
@@ -161,7 +184,7 @@
     {% elif session['role'] == 'Delivery Agent' %}
     <nav id="menu" class="navbar">
       <div class="nav-inner container">
-          <div class="navbar-header"><span id="category" class="visible-xs">Categories</span>
+          <div class="navbar-header"><span id="category" class="visible-xs">Menu</span>
               <button type="button" class="btn btn-navbar navbar-toggle" ><i class="fa fa-bars"></i></button>
           </div>
           <div class="navbar-collapse">

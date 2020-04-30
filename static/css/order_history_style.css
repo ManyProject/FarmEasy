@@ -73,7 +73,7 @@
 }
 .table-filter label {
     font-weight: normal;
-    margin-left: 10px;
+    margin-left: 0px;
 }
 .table-filter select, .table-filter input {
     display: inline-block;

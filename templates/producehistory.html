@@ -51,6 +51,16 @@
 	</script>
 </head>
 <body>
+	<style>
+		@media (max-width: 500px) {
+	
+			.table-filter .filter-group{
+				float: none;
+				margin-left: 0px;
+			}
+	
+		}
+	</style>	
 	<div class="bootstrap-iso">
 		<div class="table-wrapper container">
 			{% with messages = get_flashed_messages() %}
@@ -69,16 +79,17 @@
 			<div class="table-title" >
 				<div class="row">
 					<div class="col-sm-6" style="padding: 0%; padding-left: 15px; margin: 0%;">
-						<h2 style="margin: 0%;">Produce <b>Details</b></h2>
+						<h3 style="margin: 0%;">Produce <b>Details</b></h3>
 					</div>
 				</div>
 			</div>
 			<div class="table-filter">
 				<div class="row">
 					<div class="col-sm-12">
+						<span class="filter-icon"><i class="fa fa-filter"></i></span>
 						<div class="filter-group">
 							<label>Search Any Field</label>
-							<input type="text" class="form-control" id="search" placeholder="Search here">
+							<input type="text" class="form-control" id="search" placeholder="Search here" autocomplete="off">
 						</div>
 						<div class="filter-group">
 							<label>Category</label>
@@ -97,7 +108,6 @@
 								<option value="0 Kg">Finished</option>
 							</select>
 						</div>
-						<span class="filter-icon"><i class="fa fa-filter"></i></span>
 					</div>
 				</div>
 			</div>
