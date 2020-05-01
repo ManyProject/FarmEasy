@@ -555,9 +555,9 @@ div#banner1, div#banner2 {
 	display: inline-block;
 	margin: 0 5px 5px 0;
 }
-.product-thumb {
+/* .product-thumb {
 margin:
-}
+} */
 #wishlist-total > span, #top-links .dropdown-toggle > span {
 	display: none;
 }

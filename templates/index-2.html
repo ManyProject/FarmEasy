@@ -49,7 +49,7 @@
               {% for item in category %}
                 <div class="item">
                   <div class="product-thumb transition">
-                    <div class="image product-imageblock"> <a href="{{url_for('product',produce_id = item[3])}}"> <img  loading="lazy" src="{{item[0]}}" class="img-responsive" style="width: 352px;  "/> </a>
+                    <div class="image product-imageblock"> <a href="{{url_for('product',produce_id = item[3])}}"> <img  loading="lazy" src="{{item[0]}}" alt="{{item[0]}}" title="{{item[0]}}" class="img-responsive" style="width: 400px; height:300px; "/> </a>
                       <div class="button-group">
                         <form action="{{ url_for('item') }}" method="POST">
                           <input type="hidden" name="produce_id" value="{{ item[3] }}">
@@ -82,7 +82,7 @@
             {% for item in latest %}
               <div class="item product-slider-item">
                 <div class="product-thumb transition">
-                  <div class="image product-imageblock"> <a href="{{url_for('product',produce_id = item[3])}}"> <img  loading="lazy" src="{{ item[2] }}" alt="{{item[0]}}" title="{{item[0]}}" class="img-responsive" /> </a>
+                  <div class="image product-imageblock"> <a href="{{url_for('product',produce_id = item[3])}}"> <img  loading="lazy" src="{{ item[2] }}" alt="{{item[0]}}" title="{{item[0]}}" class="img-responsive" style="width: 400px; height:300px; "/> </a>
                     <div class="button-group">
                       <form action="{{ url_for('item') }}" method="POST">
                         <input type="hidden" name="produce_id" value="{{ item[3] }}">

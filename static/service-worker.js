@@ -10,6 +10,7 @@ var urlsToCache = [
   '/static/javascript/DioProgress.js',
   '/static/javascript/global.js',
   '/static/javascript/jstree.min.js',
+  '/static/javascript/query-2.1.1.min.js',
   '/static/javascript/lazysizes.min.js',
   '/static/javascript/main.js',
   '/static/javascript/parally.js',
@@ -40,6 +41,22 @@ self.addEventListener('install', function(event) {
   event.respondWith(
     fetch(event.request).catch(function() {
       return caches.match(event.request);
+    })
+  );
+});
+
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.filter(function(cacheName) {
+          // Return true if you want to remove this cache,
+          // but remember that caches are shared across
+          // the whole origin
+        }).map(function(cacheName) {
+          return caches.delete(cacheName);
+        })
+      );
     })
   );
 });

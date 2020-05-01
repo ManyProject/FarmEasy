@@ -584,8 +584,8 @@ border-radius: 0px;
 	width: 100%;
 	padding: 23px 0;
 }
-#menu .btn-navbar:hover, #menu .btn-navbar:focus, #menu .btn-navbar:active, #menu .btn-navbar.disabled, #menu .btn-navbar[disabled] {
-}
+/* #menu .btn-navbar:hover, #menu .btn-navbar:focus, #menu .btn-navbar:active, #menu .btn-navbar.disabled, #menu .btn-navbar[disabled] {
+} */
 .testimonial-desc{
 	margin: 0 0 10px;
 }
@@ -958,8 +958,8 @@ footer ul li {
 	min-height: 0;
 }
 }
-.product-thumb .rating {
-}
+/* .product-thumb .rating {
+} */
 .rating .fa-stack {
 	font-size: 8px;
 	vertical-align: 1px;

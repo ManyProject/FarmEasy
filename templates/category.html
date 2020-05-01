@@ -86,7 +86,7 @@
             <div class="product-thumb transition">
               <div class="image product-imageblock">
               <a href="{{ url_for('product', produce_id = li[3]) }}">
-                <img loading="lazy" src="{{ li[2] }}" style="height: 60px; width: 50px;" alt="{{ li[0] }}" title="{{ li[0] }}" class="img-responsive" />
+                <img loading="lazy" src="{{ li[2] }}" style="height: 45px; width: 60px;" alt="{{ li[0] }}" title="{{ li[0] }}" class="img-responsive" />
               </a>
               </div>
               <div class="caption product-detail">
@@ -147,7 +147,7 @@
           {% if item < total %}
             <div class="product-layout product-list col-xs-12">
               <div class="product-thumb">
-                <div class="image product-imageblock"> <a href="{{url_for('product',produce_id = category[item][3])}}"> <img loading="lazy" src="{{ category[item][0] }}" class="img-responsive" /> </a>
+                <div class="image product-imageblock"> <a href="{{url_for('product',produce_id = category[item][3])}}"> <img loading="lazy" src="{{ category[item][0] }}" class="img-responsive" style="height:216px; width:300px;" /> </a>
                   <div class="button-group">
                     <form action="{{ url_for('item') }}" method="POST">
                       <input type="hidden" name="produce_id" value="{{ category[item][3] }}">

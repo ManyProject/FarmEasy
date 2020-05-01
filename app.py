@@ -1,6 +1,7 @@
 from flask import (Flask, render_template, request, redirect, url_for,
                    session, flash)
 import mysql.connector
+from flask_compress import Compress
 
 from controller.authentication import (login, register, authentication_check,
                                        farmer_check, buyer_check, agent_check)
@@ -21,9 +22,11 @@ from utilities import (get_perm_address, get_buyer_address, category_items,
 from db_connection import connect
 
 app = Flask(__name__)
+Compress(app)
+
 app.config['SECRET_KEY'] = 'super secret key'
 app.config['UPLOAD_FOLDER'] = '/static/user_profile_images'
-
+app.config['MAX_CONTENT_LENGTH'] = 100 * 1024
 
 # @app.before_request
 # def before_request():
