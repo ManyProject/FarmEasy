@@ -48,12 +48,12 @@ def set_produce():
         flash("Not all input fields were completed. Try again")
         return redirect(url_for('add_produce'))
 
-    ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+    ALLOWED_EXTENSIONS = set(['svg'])
     if('produce_img' in request.files):
         image_name = request.files['produce_img'].filename
         image_ext = image_name.split('.', 1)[1].lower()
         if (image_ext not in ALLOWED_EXTENSIONS):
-            flash("Allowed Extensions are : jpg, jpeg, png ")
+            flash("Allowed Extension is .svg")
         image_name = (form['produce_name'] + "-" +
                       str(datetime.now().strftime("%d%m%y %H%M%S"))
                       + "." + image_ext)

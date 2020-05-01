@@ -1,6 +1,19 @@
 var CACHE_NAME = 'offline-calculator';
 var urlsToCache = [
-  '/index',
+  '/static/css/bootstrap-iso.css',
+  '/static/css/order_history_style.css',
+  '/static/css/profile_style.css',
+  '/static/css/responsive.css',
+  '/static/css/style.css',
+  '/static/css/stylesheet.css',
+  '/static/javascript/common.js',
+  '/static/javascript/DioProgress.js',
+  '/static/javascript/global.js',
+  '/static/javascript/jstree.min.js',
+  '/static/javascript/lazysizes.min.js',
+  '/static/javascript/main.js',
+  '/static/javascript/parally.js',
+  '/static/javascript/template.js',
   'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'
 ];
 self.addEventListener('install', function(event) {
