@@ -55,7 +55,7 @@ def set_produce():
         if (image_ext not in ALLOWED_EXTENSIONS):
             flash("Allowed Extensions are : jpg, jpeg, png ")
         image_name = (form['produce_name'] + "-" +
-                      str(datetime.now().strftime("%a%d%y %H%M%S"))
+                      str(datetime.now().strftime("%d%m%y %H%M%S"))
                       + "." + image_ext)
         image_path = "./static/produce-images/" + image_name
         request.files['produce_img'].save(image_path)
