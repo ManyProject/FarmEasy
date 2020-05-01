@@ -196,6 +196,14 @@ $(window).load(function() {
 $(".preloader").removeClass("loader");
 $(".preloader").css("display","none");
 });
+
+
+$(window).on('beforeunload', function () {
+	// user has triggered a navigation, show the loading animation
+	$(".preloader").addClass("loader");
+	$(".preloader").css("display", "");
+});
+
 	
 $.fn.tabs = function() {
 	var selector = this;
