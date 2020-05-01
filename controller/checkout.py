@@ -10,7 +10,7 @@ from controller.cart import cart_items, delete_item
 def checkout_page():
     categories = get_categories()
     items, subtotal, items_len = cart_items()
-    query = "SELECT buyer_address FROM address WHERE buyer_id = %s"
+    query = "SELECT DISTINCT buyer_address FROM address WHERE buyer_id = %s"
     try:
         connection = connect()
         cur = connection.cursor()
