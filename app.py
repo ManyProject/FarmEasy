@@ -24,12 +24,14 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super secret key'
 app.config['UPLOAD_FOLDER'] = '/static/user_profile_images'
 
+
 @app.before_request
 def before_request():
     if not request.is_secure and app.env != "development":
         url = request.url.replace("http://", "https://", 1)
         code = 301
         return redirect(url, code=code)
+
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
