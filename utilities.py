@@ -175,14 +175,14 @@ def show_produce(farmer_id):
     finally:
         cur.close()
         connection.close()
-    s = ""
-    for produce in produce_details:
-        s += "Name: " + str(produce[1])
-        s += "\nQuantity: " + str(produce[2])
-        s += "\nDate: " + str(produce[3])
-        s += "\nPrice: " + str(produce[4])
-        s += "\nCategory: " + str(produce[5])
-    return s
+        s = ""
+        for produce in produce_details:
+            s += "Name: " + str(produce[1])
+            s += "\nQuantity: " + str(produce[2])
+            s += "\nDate: " + str(produce[3])
+            s += "\nPrice: " + str(produce[4])
+            s += "\nCategory: " + str(produce[5])
+        return s
 
 
 def add_produce_sms(content, farmer_id):
