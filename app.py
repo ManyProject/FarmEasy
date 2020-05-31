@@ -235,7 +235,7 @@ def page_not_found(e):
 def sms():
     print(request.form)
     body = request.form
-    content = body['comments']
+    content = body['content']
     sender = body['sender'][2:]
     query = "SELECT user_id FROM user WHERE user_phone = %s"
     try:
@@ -275,7 +275,7 @@ def sms():
 
     if(cnt[1].lower() == 'add'):
         if(len(content) == 6):
-            ret = add_produce_sms(content[1:], farmer_id)
+            ret = add_produce_sms(cnt[2:], farmer_id)
             if(ret):
                 # sendSMS(sender, "Produce added successfully")
                 print("s")
