@@ -9,9 +9,10 @@ from db_connection import connect
 
 
 def sendSMS(numbers, message):
+    message = urllib.parse.urlencode(message)
     data = urllib.parse.urlencode({'apikey': os.environ.get('api'),
-                                   'numbers': numbers,
-                                   'message': message, 'sender': 'FarmEasy'})
+                                   'numbers': '91' + numbers,
+                                   'message': message, 'sender': 'TXTLCL'})
     data = data.encode('utf-8')
     request = urllib.request.Request("https://api.textlocal.in/send/?")
     f = urllib.request.urlopen(request, data)

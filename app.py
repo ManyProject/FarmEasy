@@ -270,24 +270,24 @@ def sms():
         s += "2) SHOW LATEST PRODUCE\n\n"
 
         s += "3) DELIVERY AGENCIES"
-        # sendSMS(sender, s)
+        sendSMS(sender, s)
         print(s)
 
     if(cnt[1].lower() == 'add'):
         if(len(content) == 6):
             ret = add_produce_sms(cnt[2:], farmer_id)
             if(ret):
-                # sendSMS(sender, "Produce added successfully")
+                sendSMS(sender, "Produce added successfully")
                 print("s")
 
     if(cnt[1].lower().replace(" ", "") == 'showlatestproduce'):
         s = show_produce(farmer_id)
-        # sendSMS(sender, s)
+        sendSMS(sender, s)
         print(s)
 
     if(cnt[1].lower().replace(" ", "") == 'deliveryagencies'):
         s = show_agencies()
-        # sendSMS(sender, s)
+        sendSMS(sender, s)
         print(s)
     return "1"
 
