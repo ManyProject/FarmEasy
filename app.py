@@ -252,9 +252,12 @@ def sms():
         cur.close()
         connection.close()
 
-    content = content.split('\n')
+    print(content)
+    cnt = content.split('\n')
+    print(cnt)
+    print(len(cnt))
 
-    if(content[0].lower() == 'help'):
+    if(cnt[1].lower() == 'help'):
         s = "1) ADD\n"
 
         s += "Format your message as given below: "
@@ -270,19 +273,19 @@ def sms():
         # sendSMS(sender, s)
         print(s)
 
-    if(content[1].lower() == 'add'):
+    if(cnt[1].lower() == 'add'):
         if(len(content) == 6):
             ret = add_produce_sms(content[1:], farmer_id)
             if(ret):
                 # sendSMS(sender, "Produce added successfully")
                 print("s")
 
-    if(content[1].lower().replace(" ", "") == 'showlatestproduce'):
+    if(cnt[1].lower().replace(" ", "") == 'showlatestproduce'):
         s = show_produce(farmer_id)
         # sendSMS(sender, s)
         print(s)
 
-    if(content[1].lower().replace(" ", "") == 'deliveryagencies'):
+    if(cnt[1].lower().replace(" ", "") == 'deliveryagencies'):
         s = show_agencies()
         # sendSMS(sender, s)
         print(s)
