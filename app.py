@@ -234,8 +234,6 @@ def page_not_found(e):
 @app.route('/sms', methods=['POST'])
 def sms():
     print(request.form)
-    for key, val in request:
-        print(key + " : " + val)
     body = request.form
     content = body['comments']
     sender = body['sender']
