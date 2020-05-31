@@ -233,7 +233,7 @@ def page_not_found(e):
 
 @app.route('/sms', methods=['POST'])
 def sms():
-    body = request.get_json()
+    body = request.body
     content = body['comments']
     sender = body['sender']
     query = "SELECT user_id FROM user WHERE user_phone = %s"
