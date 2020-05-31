@@ -236,7 +236,7 @@ def sms():
     print(request.form)
     body = request.form
     content = body['comments']
-    sender = body['sender']
+    sender = body['sender'][2:]
     query = "SELECT user_id FROM user WHERE user_phone = %s"
     try:
         connection = connect()
