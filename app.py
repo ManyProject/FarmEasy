@@ -237,20 +237,6 @@ def sms():
     body = request.form
     content = body['content']
     sender = body['sender'][2:]
-    query = "SELECT user_id FROM user WHERE user_phone = %s"
-    try:
-        connection = connect()
-        cur = connection.cursor()
-        params = (sender,)
-        cur.execute(query, params)
-        farmer_id = cur.fetchone()
-        farmer_id = farmer_id[0]
-        print(farmer_id)
-    except mysql.connector.Error as err:
-        print(err)
-    finally:
-        cur.close()
-        connection.close()
 
     print(content)
     cnt = content.split('\n')
@@ -274,21 +260,63 @@ def sms():
         print(s)
 
     if(cnt[1].lower() == 'add'):
-        if(len(content) == 6):
-            ret = add_produce_sms(cnt[2:], farmer_id)
-            if(ret):
-                sendSMS(sender, "Produce added successfully")
-                print("s")
+        if(len(cnt[2:]) == 6):
+            query = "SELECT user_id FROM user WHERE user_phone = %s"
+            try:
+                connection = connect()
+                cur = connection.cursor()
+                params = (sender,)
+                cur.execute(query, params)
+                farmer_id = cur.fetchone()
+                farmer_id = farmer_id[0]
+                print(farmer_id)
+                ret = add_produce_sms(cnt[2:], farmer_id)
+                if(ret):
+                    sendSMS(sender, "Produce added successfully")
+                    print("s")
+            except mysql.connector.Error as err:
+                print(err)
+            finally:
+                cur.close()
+                connection.close()
 
     if(cnt[1].lower().replace(" ", "") == 'showlatestproduce'):
-        s = show_produce(farmer_id)
-        sendSMS(sender, s)
-        print(s)
+        query = "SELECT user_id FROM user WHERE user_phone = %s"
+        try:
+            connection = connect()
+            cur = connection.cursor()
+            params = (sender,)
+            cur.execute(query, params)
+            farmer_id = cur.fetchone()
+            farmer_id = farmer_id[0]
+            print(farmer_id)
+            s = show_produce(farmer_id)
+            sendSMS(sender, s)
+            print(s)
+        except mysql.connector.Error as err:
+            print(err)
+        finally:
+            cur.close()
+            connection.close()
 
     if(cnt[1].lower().replace(" ", "") == 'deliveryagencies'):
-        s = show_agencies()
-        sendSMS(sender, s)
-        print(s)
+        query = "SELECT user_id FROM user WHERE user_phone = %s"
+        try:
+            connection = connect()
+            cur = connection.cursor()
+            params = (sender,)
+            cur.execute(query, params)
+            farmer_id = cur.fetchone()
+            farmer_id = farmer_id[0]
+            print(farmer_id)
+            s = show_agencies()
+            sendSMS(sender, s)
+            print(s)
+        except mysql.connector.Error as err:
+            print(err)
+        finally:
+            cur.close()
+            connection.close()
     return "1"
 
 
