@@ -1,3 +1,5 @@
+import os
+
 from flask import flash, session
 import mysql.connector
 import urllib.request
@@ -7,7 +9,8 @@ from db_connection import connect
 
 
 def sendSMS(numbers, message):
-    data = urllib.parse.urlencode({'apikey': 'apikey', 'numbers': numbers,
+    data = urllib.parse.urlencode({'apikey': os.environ.get('api'),
+                                   'numbers': numbers,
                                    'message': message, 'sender': 'FarmEasy'})
     data = data.encode('utf-8')
     request = urllib.request.Request("https://api.textlocal.in/send/?")
