@@ -10,13 +10,18 @@ from db_connection import connect
 
 def sendSMS(numbers, message):
     message = urllib.parse.urlencode(message)
-    data = urllib.parse.urlencode({'apikey': os.environ.get('api'),
-                                   'numbers': '91' + numbers,
-                                   'message': message, 'sender': 'TXTLCL'})
+    pre = {'apikey': os.environ.get('api'),
+           'numbers': '91' + numbers,
+           'message': message, 'sender': 'TXTLCL'}
+    print(pre.keys())
+    print(pre)
+    data = urllib.parse.urlencode(pre)
+
     data = data.encode('utf-8')
     request = urllib.request.Request("https://api.textlocal.in/send/?")
     f = urllib.request.urlopen(request, data)
     fr = f.read()
+    print(fr)
     return(fr)
 
 

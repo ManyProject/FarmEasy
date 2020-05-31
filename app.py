@@ -260,7 +260,7 @@ def sms():
     if(cnt[1].lower() == 'help'):
         s = "1) ADD\n"
 
-        s += "Format your message as given below: "
+        s += "Format your message as given below:\n"
 
         s += "ADD\n<Name>\n<Price>\n<Quantity>\n<Category>\
             \n<Description>\
