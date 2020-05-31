@@ -28,6 +28,7 @@ app.config['SECRET_KEY'] = 'super secret key'
 app.config['UPLOAD_FOLDER'] = '/static/user_profile_images'
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024
 
+
 @app.before_request
 def before_request():
     if not request.is_secure and app.env != "development":
@@ -268,19 +269,19 @@ def sms():
         # sendSMS(sender, s)
         print(s)
 
-    if(content[0].lower() == 'add'):
+    if(content[1].lower() == 'add'):
         if(len(content) == 6):
             ret = add_produce_sms(content[1:], farmer_id)
             if(ret):
                 # sendSMS(sender, "Produce added successfully")
                 print("s")
 
-    if(content[0].lower().replace(" ", "") == 'showlatestproduce'):
+    if(content[1].lower().replace(" ", "") == 'showlatestproduce'):
         s = show_produce(farmer_id)
         # sendSMS(sender, s)
         print(s)
 
-    if(content[0].lower().replace(" ", "") == 'deliveryagencies'):
+    if(content[1].lower().replace(" ", "") == 'deliveryagencies'):
         s = show_agencies()
         # sendSMS(sender, s)
         print(s)
