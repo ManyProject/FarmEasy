@@ -150,6 +150,8 @@ def get_agencies():
         cur = connection.cursor()
         cur.execute(query)
         delivery_details = cur.fetchall()
+        print('success')
+        print(delivery_details)
     except mysql.connector.Error as err:
         print(err)
         delivery_details = []
@@ -170,7 +172,7 @@ def show_produce(farmer_id):
         cur = connection.cursor()
         cur.execute(query, params)
         produce_details = cur.fetchall()
-        print('succ')
+        print('success')
         print(produce_details)
     except mysql.connector.Error as err:
         print(err)
@@ -189,7 +191,7 @@ def show_produce(farmer_id):
                 s += "\nCategory: " + str(produce[5])
         else:
             s = "No produce found"
-            return s
+        return s
 
 
 def add_produce_sms(content, farmer_id):
@@ -221,6 +223,7 @@ def add_produce_sms(content, farmer_id):
 
 def show_agencies():
     delivery_agencies = get_agencies()
+    print(len(delivery_agencies))
     s = ""
     cnt = 0
     for agency in delivery_agencies:
