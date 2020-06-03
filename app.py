@@ -247,8 +247,9 @@ def sms():
         s += "Format your message as given below:\n"
 
         s += "ADD\n<Name>\n<Price>\n<Quantity>\n<Category>\
+            [Fruits, Vegetables, Spices, Pulses, Grains]\
             \n<Description>\
-            \n<Delivery Agency>\
+            \n<Delivery Agency>(Obtained from HELP)\
             \n\n"
 
         s += "2) SHOW LATEST PRODUCE\n\n"

@@ -117,6 +117,14 @@ def register(app):
                  VALUES(UUID(), %s, %s, %s, %s, %s)"
         x = random.randint(0, len(address)-1)
         cur.execute(query, (name, email, phone, address[x], role, pw_hash, ))
+        uuid = connection.insert_id()
+        print(uuid)
+        if(role == 'Farmer'):
+            query = "INSERT INTO farmer(farmer_id) VALUES(%s)"
+            cur.execute(query, (uuid,))
+        elif(role == 'Buyer'):
+            query = 'INSERT INTO buyer(buyer_id) VALUES (%s)'
+            cur.execute(query, (uuid,))
         connection.commit()
     except mysql.connector.Error as err:
         print(err)

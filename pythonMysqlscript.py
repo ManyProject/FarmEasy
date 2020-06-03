@@ -26,7 +26,8 @@ intracity_rates = [50, 35, 42, 37]
 delivery_status = ['Delivered', 'Shipping', 'Pending']
 method = ['Cash On Delivery', 'Credit/Debit Card', 'Net Banking']
 produce_image = ["https://www.naturefresh.ca/wp-content/uploads/NFF-health-benefits-of-Tomatoes.jpg",
-                 "https://www.dw.com/image/47429859_303.jpg","https://sastapasal.com/wp-content/uploads/2019/11/chana-dal.jpg",
+                 "https://www.dw.com/image/47429859_303.jpg",
+                 "https://sastapasal.com/wp-content/uploads/2019/11/chana-dal.jpg",
                  "https://organicexpressmart.com/media/image/268/organic-khapali-wheat-whole-1-kg.jpg",
                  "https://cdn.britannica.com/s:700x500/27/171027-050-7F7889C9/flower-buds-clove-tree.jpg"]
 
@@ -76,7 +77,7 @@ for i in range(0, 80):
     x = random.randint(0, len(names)-1)
     y = random.randint(0, len(role)-1)
     phone = random.randrange(9000000000, 9999999999)
-    val = (names[x], names[x].lower()+str(i)+'@gmail.com', phone,address[x], hashed,user_image, role[y])
+    val = (names[x], names[x].lower()+str(i)+'@gmail.com', phone, address[x], hashed, user_image, role[y])
     values.append(val)
 
 sql = "INSERT INTO user(user_id,user_name,user_email,user_phone,user_address,user_password,user_image,user_role) VALUES (UUID(), %s, %s, %s, %s, %s, %s, %s)"
@@ -184,7 +185,9 @@ for i in buid:
     if delivery_stat == 'Pending':
         pickup = "NA"
         drop = "NA"
-    val = (i[0],order_quantity,order_date,order_price,delivery_agency_id,delivery_stat, pickup, drop, method[x],delivery_address, produce_id,)
+    val = (i[0], order_quantity, order_date, order_price, delivery_agency_id,
+           delivery_stat, pickup, drop, method[x], delivery_address,
+           produce_id,)
     values.append(val)
 
 sql = "INSERT INTO orders(buyer_id,order_id,order_quantity,order_date,order_price,delivery_agency_id,\
