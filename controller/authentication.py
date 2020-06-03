@@ -119,15 +119,15 @@ def register(app):
                  VALUES(%s, %s, %s, %s, %s, %s, %s)"
         x = random.randint(0, len(address)-1)
         cur.execute(query,
-                    (uuid, name, email, phone, address[x], role, pw_hash, ))
+                    (uuid[0], name, email, phone, address[x], role, pw_hash, ))
         connection.commit()
         print(uuid)
         if(role == 'Farmer'):
             query = "INSERT INTO farmer(farmer_id) VALUES(%s)"
-            cur.execute(query, (uuid,))
+            cur.execute(query, (uuid[0],))
         elif(role == 'Buyer'):
             query = 'INSERT INTO buyer(buyer_id) VALUES (%s)'
-            cur.execute(query, (uuid,))
+            cur.execute(query, (uuid[0],))
         connection.commit()
     except mysql.connector.Error as err:
         print(err)
