@@ -10,7 +10,7 @@ from db_connection import connect
 
 def sendSMS(numbers, message):
     print(message)
-    message = urllib.parse.urlencode(message)
+    # message = urllib.parse.urlencode(message)
     print(message)
     pre = {'apikey': os.environ.get('api'),
            'numbers': '91' + numbers,
