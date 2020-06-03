@@ -2,12 +2,12 @@
 <html lang="en">
 {% include "header.html" %}
 </body>
-<style>
-  input.disabled:hover{
-    cursor:not-allowed;
-    color: grey;
+
+<script>
+  function func1(){
+    alert("First add items in the cart");
   }
-</style>
+</script>
 {% block body %}
 
 <body style = "color: black;">
@@ -221,7 +221,7 @@
                   {% if subtotal == 0 %}
                     <input type="submit" data-loading-text="Loading..." class="disabled btn btn-primary" id="button-confirm" value="Confirm Order" style="margin-bottom:8px;" data-toggle="modal" data-target="#notAvailable" disabled>
                   {% else %}
-                    <input type="submit" data-loading-text="Loading..." class="btn btn-primary" id="button-confirm" value="Confirm Order" style="margin-bottom:8px;">
+                    <input type="submit" data-loading-text="Loading..." class="btn btn-primary" id="button-confirm" value="Confirm Order" style="margin-bottom:8px;" onclick="func1()">
                   {% endif %}
                   </div>
               </div>
