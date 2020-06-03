@@ -77,10 +77,13 @@ for i in range(0, 80):
     x = random.randint(0, len(names)-1)
     y = random.randint(0, len(role)-1)
     phone = random.randrange(9000000000, 9999999999)
-    val = (names[x], names[x].lower()+str(i)+'@gmail.com', phone, address[x], hashed, user_image, role[y])
+    val = (names[x], names[x].lower()+str(i)+'@gmail.com', phone,
+           address[x], hashed, user_image, role[y])
     values.append(val)
 
-sql = "INSERT INTO user(user_id,user_name,user_email,user_phone,user_address,user_password,user_image,user_role) VALUES (UUID(), %s, %s, %s, %s, %s, %s, %s)"
+sql = "INSERT INTO user(user_id,user_name,user_email,user_phone,user_address,\
+        user_password,user_image,user_role) VALUES\
+        (UUID(), %s, %s, %s, %s, %s, %s, %s)"
 mycursor.executemany(sql, values)
 mydb.commit()
 
@@ -89,11 +92,13 @@ mycursor.execute(sql)
 uid = mycursor.fetchall()
 
 values = []
-for i in range (0, len(agency_name)-1):
-    val = (intracity_rates[i], intercity_rates[i],agency_name[i])
+for i in range(0, len(agency_name)-1):
+    val = (intracity_rates[i], intercity_rates[i], agency_name[i])
     values.append(val)
 
-sql = "INSERT INTO delivery_agency(agency_id,intracity_rates,intercity_rates, agency_name) VALUES (UUID(), %s, %s, %s)"
+sql = "INSERT INTO delivery_agency\
+       (agency_id,intracity_rates,intercity_rates, agency_name)\
+        VALUES (UUID(), %s, %s, %s)"
 mycursor.executemany(sql, values)
 mydb.commit()
 
@@ -119,11 +124,11 @@ for i in uid:
         mycursor.execute(sql, params)
         mydb.commit()
 
-
     if i[1] == 'Delivery Agent':
         daid = i[0]
         x = random.randint(0, len(aid)-1)
-        sql = "INSERT INTO delivery_agent(delivery_agent_id,agency_id) VALUES (%s, %s)"
+        sql = "INSERT INTO delivery_agent(delivery_agent_id, agency_id)\
+               VALUES (%s, %s)"
         val = daid
         val1 = str(aid[x][0])
         params = (val, val1,)
@@ -147,14 +152,21 @@ values = []
 for i in fid:
     x = random.randint(0, len(produce_name)-1)
     y = random.randint(0, (len(fid)-1))
-    produce_quantity = random.randint(1,1000)
-    produce_date = (randomDate("2020/03/01 08:00", "2020/03/20 23:00", random.random()))
-    val = (str(fid[y][0]),produce_name[x],round(random.uniform(produce_price[x]*0.8,produce_price[x]*1.2), 2),
-    produce_quantity,produce_image[x],produce_category[x],produce_date,aid[random.randint(0, len(aid)-1)][0], produce_description[random.randint(0, len(produce_description)-1)],)
+    produce_quantity = random.randint(1, 1000)
+    produce_date = (randomDate("2020/03/01 08:00", "2020/03/20 23:00",
+                    random.random()))
+    val = (str(fid[y][0]), produce_name[x],
+           round(random.uniform(produce_price[x]*0.8, produce_price[x]*1.2),
+           2),
+           produce_quantity, produce_image[x], produce_category[x],
+           produce_date, aid[random.randint(0, len(aid)-1)][0],
+           produce_description[random.randint(0, len(produce_description)-1)],)
     values.append(val)
 
-sql = "INSERT INTO produce(produce_id,farmer_id,produce_name,produce_price,produce_quantity,\
-    produce_image,produce_category,produce_date,delivery_agency_id, produce_description) VALUES (UUID(), %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+sql = "INSERT INTO produce(produce_id, farmer_id, produce_name, produce_price,\
+       produce_quantity, produce_image, produce_category, produce_date,\
+       delivery_agency_id, produce_description) \
+       VALUES (UUID(), %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 mycursor.executemany(sql, values)
 mydb.commit()
 
@@ -168,19 +180,23 @@ buid = mycursor.fetchall()
 
 values = []
 for i in buid:
-    order_quantity = random.randint(1,5)
-    order_price = random.randint(1000,9999)
-    order_date = (randomDate("2020/03/22 08:00", "2020/03/26 23:00", random.random()))
+    order_quantity = random.randint(1, 5)
+    order_price = random.randint(1000, 9999)
+    order_date = (randomDate("2020/03/22 08:00", "2020/03/26 23:00",
+                  random.random()))
     delivery_agency_id = aid[random.randint(0, len(aid)-1)][0]
     produce_id = pid[random.randint(0, len(aid)-1)][0]
     x = random.randint(0, len(delivery_status)-1)
-    delivery_address = address[random.randint(0,len(names)-1)]
+    delivery_address = address[random.randint(0, len(names)-1)]
     delivery_stat = delivery_status[x]
     if delivery_stat == 'Delivered':
-        pickup = (randomDate("2020/03/27 8:00", "2020/03/27 20:00", random.random()))
-        drop = (randomDate("2020/03/28 8:00", "2020/03/28 20:00", random.random()))
+        pickup = (randomDate("2020/03/27 8:00", "2020/03/27 20:00",
+                  random.random()))
+        drop = (randomDate("2020/03/28 8:00", "2020/03/28 20:00",
+                random.random()))
     if delivery_stat == 'Shipping':
-        pickup = (randomDate("2020/03/27 8:00", "2020/03/27 20:00", random.random()))
+        pickup = (randomDate("2020/03/27 8:00", "2020/03/27 20:00",
+                  random.random()))
         drop = "NA"
     if delivery_stat == 'Pending':
         pickup = "NA"
@@ -190,16 +206,18 @@ for i in buid:
            produce_id,)
     values.append(val)
 
-sql = "INSERT INTO orders(buyer_id,order_id,order_quantity,order_date,order_price,delivery_agency_id,\
-    delivery_status,pickup_time, drop_time, payment_method, delivery_address, produce_id) VALUES (%s, UUID(), %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+sql = "INSERT INTO orders(buyer_id,order_id,order_quantity,order_date,\
+       order_price,delivery_agency_id, delivery_status,pickup_time,\
+       drop_time, payment_method, delivery_address, produce_id)\
+       VALUES (%s, UUID(), %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 mycursor.executemany(sql, values)
 mydb.commit()
 
 values = []
 for i in buid:
-    x = random.randint(0,len(produce_name)-1)
-    item_quantity = random.randint(1,10)
-    val = (item_quantity, i[0], pid[random.randint(0,len(pid)-1)][0],)
+    x = random.randint(0, len(produce_name)-1)
+    item_quantity = random.randint(1, 10)
+    val = (item_quantity, i[0], pid[random.randint(0, len(pid)-1)][0],)
     values.append(val)
 
 sql = "INSERT INTO cart_items(item_id, item_quantity, buyer_id, produce_id)\

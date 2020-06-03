@@ -114,7 +114,7 @@ def register(app):
         cur = connection.cursor()
         query = "INSERT INTO user(user_id, user_name, user_email, user_phone,\
                  user_address, user_role, user_password)\
-                 VALUES(UUID(), %s, %s, %s, %s, %s)"
+                 VALUES(UUID(), %s, %s, %s, %s, %s, %s)"
         x = random.randint(0, len(address)-1)
         cur.execute(query, (name, email, phone, address[x], role, pw_hash, ))
         uuid = connection.insert_id()
