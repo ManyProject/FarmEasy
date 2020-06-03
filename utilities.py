@@ -212,6 +212,7 @@ def add_produce_sms(content, farmer_id):
                   delivery_agency[del_agency-1][0],)
         cur.execute(query, params)
         connection.commit()
+        print('succ')
     except mysql.connector.Error as err:
         print(err)
         return False

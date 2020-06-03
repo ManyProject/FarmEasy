@@ -269,9 +269,12 @@ def sms():
                 farmer_id = farmer_id[0]
                 print(farmer_id)
                 ret = add_produce_sms(cnt[2:], farmer_id)
+                print(ret)
                 if(ret):
                     sendSMS(sender, "Produce added successfully")
-                    print("s")
+                    print("yes")
+                else:
+                    print("no")
             except mysql.connector.Error as err:
                 print(err)
             finally:
