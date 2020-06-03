@@ -199,17 +199,19 @@ def add_produce_sms(content, farmer_id):
     price = int(content[1])
     quantity = int(content[2])
     category = str(content[3])
-    del_agency = int(content[4])
+    description = str(content[4])
+    del_agency = int(content[5])
     delivery_agency = get_agencies()
     query = "INSERT INTO produce(produce_id, farmer_id, produce_name,\
              produce_date, produce_category,\
-             produce_quantity, produce_price, delivery_agency_id)\
-             VALUES (UUID(), %s, %s, NOW(), %s, %s, %s, %s)"
+             produce_quantity, produce_price, delivery_agency_id,\
+             produce_description)\
+             VALUES (UUID(), %s, %s, NOW(), %s, %s, %s, %s, %s)"
     try:
         connection = connect()
         cur = connection.cursor()
         params = (farmer_id, name, category, quantity, price,
-                  delivery_agency[del_agency-1][0],)
+                  delivery_agency[del_agency-1][0], description,)
         cur.execute(query, params)
         connection.commit()
         print('succ')
