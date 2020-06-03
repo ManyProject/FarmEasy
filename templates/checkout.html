@@ -212,8 +212,12 @@
               </div>
               <div class="buttons">
                 <div class="pull-right">
-                  <input type="submit" data-loading-text="Loading..." class="btn btn-primary" id="button-confirm" value="Confirm Order" style="margin-bottom:8px;">
-                </div>
+                  {% if subtotal == 0%}
+                    <input type="submit" data-loading-text="Loading..." class="btn btn-primary" id="button-confirm" value="Confirm Order" style="margin-bottom:8px;">
+                  {% else %}
+                  <input type="submit" data-loading-text="Loading..." class="btn btn-primary" id="button-confirm" value="Confirm Order" style="margin-bottom:8px;" disabled>
+                  {% endif%}
+                  </div>
               </div>
             </div>
           </div>
