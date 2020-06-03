@@ -112,13 +112,15 @@ def register(app):
         bcrypt = Bcrypt(app)
         pw_hash = bcrypt.generate_password_hash(pwd).decode('utf-8')
         cur = connection.cursor()
+        cur.execute('SELECT UUID()')
+        uuid = cur.fetchone()
         query = "INSERT INTO user(user_id, user_name, user_email, user_phone,\
                  user_address, user_role, user_password)\
-                 VALUES(UUID(), %s, %s, %s, %s, %s, %s)"
+                 VALUES(%s, %s, %s, %s, %s, %s, %s)"
         x = random.randint(0, len(address)-1)
-        cur.execute(query, (name, email, phone, address[x], role, pw_hash, ))
+        cur.execute(query,
+                    (uuid, name, email, phone, address[x], role, pw_hash, ))
         connection.commit()
-        uuid = cur.lastrowid
         print(uuid)
         if(role == 'Farmer'):
             query = "INSERT INTO farmer(farmer_id) VALUES(%s)"
