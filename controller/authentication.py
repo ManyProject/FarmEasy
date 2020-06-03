@@ -117,7 +117,7 @@ def register(app):
                  VALUES(UUID(), %s, %s, %s, %s, %s, %s)"
         x = random.randint(0, len(address)-1)
         cur.execute(query, (name, email, phone, address[x], role, pw_hash, ))
-        uuid = connection.insert_id()
+        uuid = cur.lastrowid
         print(uuid)
         if(role == 'Farmer'):
             query = "INSERT INTO farmer(farmer_id) VALUES(%s)"
