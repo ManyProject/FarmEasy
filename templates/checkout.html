@@ -212,11 +212,11 @@
               </div>
               <div class="buttons">
                 <div class="pull-right">
-                  {% if subtotal == 0%}
-                    <input type="submit" data-loading-text="Loading..." class="btn btn-primary" id="button-confirm" value="Confirm Order" style="margin-bottom:8px;">
+                  {% if subtotal == 0 %}
+                    <input type="submit" data-loading-text="Loading..." class="btn btn-primary" id="button-confirm" value="Confirm Order" style="margin-bottom:8px;" disabled>
                   {% else %}
-                  <input type="submit" data-loading-text="Loading..." class="btn btn-primary" id="button-confirm" value="Confirm Order" style="margin-bottom:8px;" disabled>
-                  {% endif%}
+                    <input type="submit" data-loading-text="Loading..." class="btn btn-primary" id="button-confirm" value="Confirm Order" style="margin-bottom:8px;">
+                  {% endif %}
                   </div>
               </div>
             </div>
