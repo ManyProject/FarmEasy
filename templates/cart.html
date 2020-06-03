@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 {% include "header.html" %}
+
+<script>
+  function func1(){
+    alert("Add items in the cart to checkout");
+  }
+</script>
+
 {% block body %}
 <div class="container">
     <ul class="breadcrumb">
@@ -109,7 +116,11 @@
         </div>
         <div class="buttons">
           <div class="pull-left"><a class="btn btn-default" href="{{url_for('index')}}">Continue Shopping</a></div>
-          <div class="pull-right"><a class="btn btn-primary" href="{{url_for('checkout')}}">Checkout</a></div>
+          {% if subtotal == 0 %}
+          <div class="pull-right"><input type="button" class="btn btn-primary" onclick="func1()">Checkout</a></div>
+          {% else %}
+            <div class="pull-right"><a class="btn btn-primary" href="{{url_for('checkout')}}">Checkout</a></div>
+          {% endif %}
         </div>
       </div>
     </div>
