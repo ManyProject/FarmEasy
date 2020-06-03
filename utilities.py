@@ -9,11 +9,12 @@ from db_connection import connect
 
 
 def sendSMS(numbers, message):
+    print(message)
     message = urllib.parse.urlencode(message)
+    print(message)
     pre = {'apikey': os.environ.get('api'),
            'numbers': '91' + numbers,
            'message': message, 'sender': 'TXTLCL'}
-    print(pre.keys())
     print(pre)
     data = urllib.parse.urlencode(pre)
 
@@ -169,12 +170,15 @@ def show_produce(farmer_id):
         cur = connection.cursor()
         cur.execute(query, params)
         produce_details = cur.fetchall()
+        print('succ')
+        print(produce_details)
     except mysql.connector.Error as err:
         print(err)
         produce_details = []
     finally:
         cur.close()
         connection.close()
+        print(len(produce_details))
         s = ""
         for produce in produce_details:
             s += "Name: " + str(produce[1])

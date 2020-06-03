@@ -238,10 +238,8 @@ def sms():
     content = body['content']
     sender = body['sender'][2:]
 
-    print(content)
     cnt = content.split('\n')
     print(cnt)
-    print(len(cnt))
 
     if(cnt[1].lower() == 'help'):
         s = "1) ADD\n"
