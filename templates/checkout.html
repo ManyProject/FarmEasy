@@ -3,8 +3,9 @@
 {% include "header.html" %}
 </body>
 <style>
-  #button-confirm:hover{
+  input.disabled:hover{
     cursor:not-allowed;
+    color: grey;
   }
 </style>
 {% block body %}
@@ -218,9 +219,9 @@
               <div class="buttons">
                 <div class="pull-right">
                   {% if subtotal == 0 %}
-                    <input type="submit" data-loading-text="Loading..." class="btn btn-primary" id="button-confirm" value="Confirm Order" style="margin-bottom:8px;" disabled>
+                    <input type="submit" data-loading-text="Loading..." class="disabled btn btn-primary" id="button-confirm" value="Confirm Order" style="margin-bottom:8px;" disabled>
                   {% else %}
-                    <input type="submit" data-loading-text="Loading..." class="btn btn-primary disabled" id="button-confirm" value="Confirm Order" style="margin-bottom:8px;">
+                    <input type="submit" data-loading-text="Loading..." class="btn btn-primary" id="button-confirm" value="Confirm Order" style="margin-bottom:8px;">
                   {% endif %}
                   </div>
               </div>
