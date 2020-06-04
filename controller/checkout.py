@@ -41,20 +41,21 @@ def checkout_page():
 
 
 def checkout_func():
-    if(request.form.get('payment_address') == 'existing_address'):
-        address = request.form.get('address')
-    elif(request.form.get('payment_address') == 'new_address'):
-        address = (request.form.get('address', None) + ", "
-                   + request.form.get('city', None) + ", "
-                   + request.form.get('postcode', None) + ", "
-                   + request.form.get('state', None))
     try:
-        query = "INSERT into address (buyer_id, address_id, buyer_address)\
-                 VALUES (%s, UUID(), %s)"
         connection = connect()
         cur = connection.cursor()
-        params = (session['id'], address,)
-        cur.execute(query, params)
+        if(request.form.get('payment_address') == 'existing_address'):
+            address = request.form.get('address')
+        elif(request.form.get('payment_address') == 'new_address'):
+            address = (request.form.get('address', None) + ", "
+                    + request.form.get('city', None) + ", "
+                    + request.form.get('postcode', None) + ", "
+                    + request.form.get('state', None))
+
+            query = "INSERT into address (buyer_id, address_id, buyer_address)\
+                    VALUES (%s, UUID(), %s)"
+            params = (session['id'], address,)
+            cur.execute(query, params)
 
         items, subtotal, item_len = cart_items()
 
@@ -93,6 +94,7 @@ def checkout_func():
         cur.executemany(query, values)
 
         connection.commit()
+        flash("Order added successfully")
     except mysql.connector.Error as err:
         print(err)
         flash("Could not place your order. Try again later.")
