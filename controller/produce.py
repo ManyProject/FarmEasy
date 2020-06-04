@@ -1,4 +1,4 @@
-from flask import render_template, request, session
+from flask import render_template, request, session, flash
 import mysql.connector
 from flask_bcrypt import Bcrypt
 

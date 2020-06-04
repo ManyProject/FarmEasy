@@ -111,6 +111,7 @@ def set_pass(app):
         params = (pw_hash, session['id'],)
         cur.execute(query, params)
         connection.commit()
+        flash("Password updated successfully!!")
     except mysql.connector.Error as err:
         print(err)
         flash("Could not update your details. Try again Later")

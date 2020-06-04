@@ -82,5 +82,5 @@ def set_produce():
     finally:
         cur.close()
         connection.close()
-    flash("Successfully added produce")
+    flash("Produce added Successfully")
     return redirect(url_for('add_produce'))

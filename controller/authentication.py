@@ -1,4 +1,5 @@
-from flask import render_template, request, session, redirect, url_for, abort
+from flask import (render_template, request, session,
+                   redirect, url_for, abort, flash)
 import mysql.connector
 from flask_bcrypt import Bcrypt
 from functools import wraps
@@ -70,12 +71,16 @@ def login(app):
                 session['email'] = results[3]
                 session['role'] = results[1]
                 session['id'] = results[2]
+                flash("Login successful")
                 return redirect(url_for('index'))
             else:
+                flash("Incorrect password")
                 return redirect(url_for('auth'))
         else:
+            flash("No such user.. Register first!!")
             return redirect(url_for('auth'))
     except mysql.connector.Error as err:
+        flash("Something went wrong")
         print("Something went wrong: {}".format(err))
         return "SQL ERROR"
     finally:
@@ -100,12 +105,15 @@ def register(app):
     address = ['Mumbai', 'Delhi', 'Pune', 'Banglore', 'Kolkata']
 
     if(None in ip_vars):
+        flsh("Incomplete Form")
         return "Incomplete form"
     if(pwd != pwd_repeat):
+        flash("Passwords did not match")
         return redirect(url_for('registration'))
     regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
 
     if(not re.search(regex, email)):
+        flash("Incorrect Email Id")
         return redirect(url_for('registration'))
     try:
         connection = connect()
@@ -129,7 +137,9 @@ def register(app):
             query = 'INSERT INTO buyer(buyer_id) VALUES (%s)'
             cur.execute(query, (uuid[0],))
         connection.commit()
+        flash("Registered successfully")
     except mysql.connector.Error as err:
+        flash("Could not register..Try again later")
         print(err)
     finally:
         cur.close()
