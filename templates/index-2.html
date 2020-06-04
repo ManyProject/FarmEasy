@@ -2,6 +2,19 @@
 <html lang="en">
 {% include "header.html" %}
 {% block body %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-success text-center">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+              </button>
+          <strong>{{ message }}</strong>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
 <hr>
 <div class="mainbanner">
   <div id="main-banner" class="owl-carousel home-slider">
@@ -23,17 +36,7 @@
   </div>
   <div class="row">
     <div id="content" class="col-md-12" style="width: 100%;">
-      {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-success text-center">
-                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
-                      </button>
-                  <strong>{{ message }}</strong>
-              </div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
+      
       <div class="customtab">
         <div id="tabs" class="customtab-wrapper">
           <ul class='customtab-inner'>
