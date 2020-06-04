@@ -105,7 +105,7 @@ def register(app):
     address = ['Mumbai', 'Delhi', 'Pune', 'Banglore', 'Kolkata']
 
     if(None in ip_vars):
-        flsh("Incomplete Form")
+        flash("Incomplete Form")
         return "Incomplete form"
     if(pwd != pwd_repeat):
         flash("Passwords did not match")
@@ -113,7 +113,7 @@ def register(app):
     regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
 
     if(not re.search(regex, email)):
-        flash("Incorrect Email Id")
+        # flash("Incorrect Email Id")
         return redirect(url_for('registration'))
     try:
         connection = connect()
