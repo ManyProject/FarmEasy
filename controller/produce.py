@@ -11,7 +11,7 @@ def product_detail(produce_id):
 
     query = "SELECT produce_name, produce_price, user_name, produce_id,\
              produce_quantity, user_address, user_phone,\
-             produce_category, produce_image FROM produce INNER JOIN user\
+             produce_category, produce_image, produce_description FROM produce INNER JOIN user\
              ON farmer_id = user_id where produce_id = %s"
     try:
         connection = connect()

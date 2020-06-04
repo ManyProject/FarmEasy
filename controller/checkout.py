@@ -47,7 +47,7 @@ def checkout_func():
         if(request.form.get('payment_address') == 'existing_address'):
             address = request.form.get('address')
         elif(request.form.get('payment_address') == 'new_address'):
-            address = (request.form.get('address', None) + ", "
+            address = (request.form.get('address_new', None) + ", "
                     + request.form.get('city', None) + ", "
                     + request.form.get('postcode', None) + ", "
                     + request.form.get('state', None))

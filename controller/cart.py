@@ -120,9 +120,9 @@ def add_item(produce_id, quantity):
         params = (quantity, buyer_id, produce_id)
         cur.execute(query, params)
         connection.commit()
-        flash("Item added successfully in the cart")
+        flash("Item added successfully to your cart")
     except mysql.connector.Error as err:
-        flash("Could not add item to the cart")
+        flash("Could not add item to your cart")
         print(err)
     finally:
         cur.close()

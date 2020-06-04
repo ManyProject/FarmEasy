@@ -2,6 +2,17 @@
 <html lang="en">
 {% include "header.html" %}
 {% block body %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-success text-center">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+              </button>
+          <strong>{{ message }}</strong>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
 <body class="category col-2 left-col">
 <div class="container">
   <ul class="breadcrumb">
@@ -102,17 +113,6 @@
        </div>
     </div>
     <div id="content" class="col-sm-9">
-      {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-success text-center">
-                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
-                      </button>
-                  <strong>{{ message }}</strong>
-              </div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
       <h2 class="category-title">Products</h2>
       <div class="row category-banner">
         <div class="col-sm-12 category-image"><img loading="lazy" src="/static/image/banners/category-banner.jpg" alt="Desktops" title="Desktops" class="img-thumbnail" /></div>
