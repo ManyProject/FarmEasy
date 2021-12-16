@@ -7,7 +7,7 @@ import bcrypt
 from db_connection import connect
 
 mydb = connect()
-
+print("connected")
 names = ['Yash', 'Harshit', 'Aman', 'Amar', 'Shadab']
 role = ['Farmer', 'Buyer', 'Delivery Agent']
 address = ['Mumbai', 'Delhi', 'Pune', 'Bangalore', 'Kolkata']
@@ -26,9 +26,9 @@ intracity_rates = [50, 35, 42, 37]
 delivery_status = ['Delivered', 'Shipping', 'Pending']
 method = ['Cash On Delivery', 'Credit/Debit Card', 'Net Banking']
 produce_image = ["https://www.naturefresh.ca/wp-content/uploads/NFF-health-benefits-of-Tomatoes.jpg",
-                 "https://www.dw.com/image/47429859_303.jpg",
+                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQcRfIW5tggAic_wBYqqZstYQzyvi407PIDA&usqp=CAU",
                  "https://sastapasal.com/wp-content/uploads/2019/11/chana-dal.jpg",
-                 "https://organicexpressmart.com/media/image/268/organic-khapali-wheat-whole-1-kg.jpg",
+                 "https://media.istockphoto.com/photos/wheat-seed-heads-isolated-on-white-background-picture-id133543924?b=1&k=20&m=133543924&s=170667a&w=0&h=fL2F1NSzmnrOP_0i8eeIXi2QL39ktcuCpLFB7QAJ3Mg=",
                  "https://cdn.britannica.com/s:700x500/27/171027-050-7F7889C9/flower-buds-clove-tree.jpg"]
 
 
