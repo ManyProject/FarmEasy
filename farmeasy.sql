@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `farmeasy`
+-- Database: `sql6459407`
 --
 
 -- --------------------------------------------------------
@@ -124,10 +124,11 @@ CREATE TABLE `produce` (
   `produce_name` varchar(100) NOT NULL,
   `produce_price` float NOT NULL,
   `produce_quantity` int(11) NOT NULL,
-  `produce_image` varchar(100) NOT NULL,
+  `produce_image` varchar(1000) NOT NULL,
   `produce_category` varchar(20) NOT NULL,
   `produce_date` datetime NOT NULL,
-  `delivery_agency_id` varchar(36) NOT NULL
+  `delivery_agency_id` varchar(36) NOT NULL,
+  `produce_description` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
